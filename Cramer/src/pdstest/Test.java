@@ -14,9 +14,6 @@ public class Test {
 		select();
 		delete();	
 		select();*/
-		
-		//toto ca va 
-		// NOn ca va pas
 	}
 
 	public static void insert() throws SQLException {
