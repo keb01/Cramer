@@ -16,6 +16,7 @@ public class Test {
 		select();*/
 		
 		//toto ca va 
+		//toto va très bien
 	}
 
 	public static void insert() throws SQLException {
