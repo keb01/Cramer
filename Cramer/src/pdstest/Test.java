@@ -14,6 +14,8 @@ public class Test {
 		select();
 		delete();	
 		select();*/
+		
+		//toto ca va 
 	}
 
 	public static void insert() throws SQLException {
