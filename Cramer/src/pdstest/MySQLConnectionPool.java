@@ -65,7 +65,7 @@ public class MySQLConnectionPool
       
       
       result.connection.createStatement().execute("USE devCramer");
-      result.useStatement = result.connection.prepareStatement("SELECT id FROM Personne");
+      result.useStatement = result.connection.prepareStatement("SELECT id,nom FROM Personne");
       
       
       return result;
@@ -86,10 +86,10 @@ public class MySQLConnectionPool
 	    while(rs.next())
 	    {
 	      int id= rs.getInt("id");
-	      //String nom= rs.getString("nom");
+	      String nom= rs.getString("nom");
 	      //, idPersonne, blabla, blablabla
 	      System.out.println(id);
-	      //System.out.println(nom);
+	      System.out.println(nom);
 	    }
 	    
 	    rs.close();
