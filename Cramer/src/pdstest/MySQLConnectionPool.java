@@ -89,7 +89,7 @@ public class MySQLConnectionPool
 	      String nom= rs.getString("nom");
 	      //, idPersonne, blabla, blablabla
 	      System.out.println(id);
-	      System.out.println(nom);
+	      //System.out.println(nom);
 	    }
 	    
 	    rs.close();
