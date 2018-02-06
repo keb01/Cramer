@@ -27,7 +27,7 @@ public class ProduitDAO extends DAO<Produit>{
 										rs.getString("image"), 
 										rs.getInt("poids"), 
 										rs.getString("provenance"), 
-										rs.getInt("categorie")); //DAO Categorie à faire
+										rs.getInt("idcategorie")); //DAO Categorie à faire
 			}	
 		} catch (SQLException e) {
 			e.printStackTrace();
