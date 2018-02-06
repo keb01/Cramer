@@ -13,8 +13,8 @@ public class ListenerProduit implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
-		prod.chargerInfos();
-		FICHIERNAWEL.afficherDetailProd(prod);
+		//prod.chargerInfos();
+		//FICHIERNAWEL.afficherDetailProd(prod);
 	}
 
 }

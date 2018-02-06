@@ -2,10 +2,7 @@ package Prototype;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.Scanner;
 
 public class Database {
 
@@ -13,7 +10,7 @@ public class Database {
 		 private static final String USER = "bddcramer";
 		 private static final String PASSWORD = "cramer";
 		 private static final String DRIVER_NAME = "com.mysql.jdbc.Driver";
-		 
+		 private static Connection connect;
 		 static {
 			 try {
 				 Class.forName(DRIVER_NAME).newInstance();
@@ -32,10 +29,17 @@ public class Database {
 			 }
 		 }
 		 
-		public static Connection getConnection() throws SQLException {
-			 return DriverManager.getConnection(URL, USER, PASSWORD);
+		
+		public static Connection getConnection(){
+			if(connect == null){
+				try {
+					connect = DriverManager.getConnection(URL, USER, PASSWORD);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}		
+			return connect;	
 		}
-		 
 	}
 
 
