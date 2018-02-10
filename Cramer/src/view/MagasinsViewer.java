@@ -61,6 +61,7 @@ public class MagasinsViewer extends JPanel
   public void nextPage()
   {
 	currentPage++;
+	if ( currentPage > 9 ) currentPage = 9;
 	listViewer.viewPage(magasins, currentPage);
   }
   
