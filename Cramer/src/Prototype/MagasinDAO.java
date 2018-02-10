@@ -76,6 +76,7 @@ public class MagasinDAO extends DAO<Magasin>{
 			rs = st.executeQuery(sql);
 			
 			while(rs.next()) {
+				
 				liste.add(new Produit(rs.getInt("A.id"),
 										rs.getString("A.nom"), 
 										rs.getString("A.description"), 
@@ -90,4 +91,33 @@ public class MagasinDAO extends DAO<Magasin>{
 		}
 		obj.setListeProduits(liste);
 	}
+	
+	public ArrayList<Magasin> getAllMagasins(){
+		
+		ArrayList<Magasin> liste = new ArrayList<Magasin>();
+		
+		
+		Statement st = null;
+		ResultSet rs = null;
+		
+		
+		try {
+			st = this.connect.createStatement();
+			String sql = "SELECT * FROM Magasin ";
+			rs = st.executeQuery(sql);
+			
+			while(rs.next()) {
+				liste.add(new Magasin(rs.getInt("id"),
+						rs.getString("logo"), 
+						rs.getString("nom"), 
+						rs.getString("description"), 
+						rs.getInt("idEmplacement"), 
+						rs.getInt("idCategorieMagasin")));  
+			}	
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return liste;
+	}
+	
 }
