@@ -16,6 +16,7 @@ public class PanelListeObjet extends JPanel{
 		this.objet = m;
 		this.label = new JLabel(m.getNom());
 		this.add(label);
+		this.setVisible(true);
 	}
 
 }

@@ -26,8 +26,8 @@ public class Main {
 			p1.add(new PanelListeObjet(m));
 		}
 		p.add(p1);
+		f.add(p);
 		
-		f.setContentPane(new Contenant());
 		f.setVisible(true);
 	}
 
