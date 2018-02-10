@@ -1,8 +1,10 @@
 package Prototype;
 
+import java.awt.BorderLayout;
 import java.util.ArrayList;
 
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 public class Main {
 
@@ -27,7 +29,8 @@ public class Main {
 		}
 		p.add(p1);
 		f.add(p);
-		
+		JScrollPane scroll = new JScrollPane(p1);
+		f.getContentPane().add(scroll, BorderLayout.WEST);
 		f.setVisible(true);
 	}
 
