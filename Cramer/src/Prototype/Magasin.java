@@ -1,5 +1,6 @@
 package Prototype;
 
+<<<<<<< HEAD
 import java.util.ArrayList;
 
 public class Magasin {
@@ -74,4 +75,9 @@ public class Magasin {
 		this.description = description;
 	}
 	
+=======
+public class Magasin 
+{
+  
+>>>>>>> branch 'master' of https://github.com/picpicb/Cramer.git
 }
