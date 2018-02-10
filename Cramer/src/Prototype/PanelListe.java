@@ -7,9 +7,9 @@ import javax.swing.JPanel;
 
 
 public class PanelListe extends JPanel{
+	
 	public PanelListe(){
-
-		
+	
 		this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
 		
 		
