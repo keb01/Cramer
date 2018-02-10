@@ -1,5 +1,6 @@
 package Prototype;
 
-public class Magasin {
-
+public class Magasin 
+{
+  
 }
