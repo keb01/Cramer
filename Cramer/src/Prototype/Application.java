@@ -2,8 +2,15 @@ package Prototype;
 
 public class Application {
 	public static void main(String[] args) {
-	DAO<Produit> DAOp = new ProduitDAO();
-	Produit p1 = DAOp.find(1);
-	System.out.println(p1.getCategorie().getNom());
+	MagasinDAO DAOp = new MagasinDAO();
+	Magasin p1 = DAOp.find(1);
+	DAOp.getListeProduit(p1);
+	
+	for( Produit p : p1.getListeProduits() ){
+		System.out.println(p.getNom());
+
 	}
+	
+	
+		}
 }

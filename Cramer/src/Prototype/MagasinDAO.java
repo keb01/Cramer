@@ -3,9 +3,11 @@ package Prototype;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 public class MagasinDAO extends DAO<Magasin>{
-
+	private DAO<CategorieArticle> DAOca = new CategorieArticleDAO();	
+	
 //*****************************************Methodes heritage DAO*********************************************************	
 	
 	@Override
@@ -59,6 +61,33 @@ public class MagasinDAO extends DAO<Magasin>{
 	}
 	
 //***********************************************************************************************************************	
-	
-
+	public void getListeProduit(Magasin obj){
+		
+		ArrayList<Produit> liste = new ArrayList<Produit>();
+		
+		
+		Statement st = null;
+		ResultSet rs = null;
+		
+		
+		try {
+			st = this.connect.createStatement();
+			String sql = "SELECT * FROM Article A JOIN StockMagasin SM ON A.id = SM.idArticle WHERE SM.idMagasin="+obj.getId();
+			rs = st.executeQuery(sql);
+			
+			while(rs.next()) {
+				liste.add(new Produit(rs.getInt("A.id"),
+										rs.getString("A.nom"), 
+										rs.getString("A.description"), 
+										rs.getString("A.image"), 
+										rs.getInt("A.poids"), 
+										rs.getString("A.provenance"), 
+										DAOca.find(rs.getInt("idcategorie")),
+										rs.getDouble("SM.prixUnitaire"))); 
+			}	
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		obj.setListeProduits(liste);
+	}
 }
