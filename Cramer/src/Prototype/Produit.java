@@ -7,12 +7,14 @@ public class Produit {
 	private String urlImage;
 	private long poids;
 	private String provenance;
-	private long categorie;
+	private CategorieArticle categorie;
+	private double prix;
 	
+
 	public Produit(){
 		
 	}
-	public Produit(long id, String nom, String description, String urlImage, long poids, String provenance, long categorie){
+	public Produit(long id, String nom, String description, String urlImage, long poids, String provenance, CategorieArticle categorie, double prix){
 		this.id = id;
 		this.nom = nom;
 		this.description = description;
@@ -20,6 +22,7 @@ public class Produit {
 		this.poids = poids;
 		this.provenance = provenance;
 		this.categorie = categorie;
+		this.prix = prix;
 	}
 	public long getId() {
 		return id;
@@ -57,11 +60,18 @@ public class Produit {
 	public void setProvenance(String provenance) {
 		this.provenance = provenance;
 	}
-	public long getCategorie() {
+	public CategorieArticle getCategorie() {
 		return categorie;
 	}
-	public void setCategorie(long categorie) {
+	public void setCategorie(CategorieArticle categorie) {
 		this.categorie = categorie;
+	}
+	
+	public double getPrix() {
+		return prix;
+	}
+	public void setPrix(double prix) {
+		this.prix = prix;
 	}
 }
 

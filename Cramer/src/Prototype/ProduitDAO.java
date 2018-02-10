@@ -6,10 +6,15 @@ import java.sql.Statement;
 
 
 public class ProduitDAO extends DAO<Produit>{
+	
+private DAO<CategorieArticle> DAOca = new CategorieArticleDAO();	
 
+//*****************************************Methodes heritage DAO*********************************************************	
+	
 	@Override
 	public Produit find(long id) {
 		Produit produit = new Produit();
+		
 		
 		Statement st =null;
 		ResultSet rs =null;
@@ -27,7 +32,8 @@ public class ProduitDAO extends DAO<Produit>{
 										rs.getString("image"), 
 										rs.getInt("poids"), 
 										rs.getString("provenance"), 
-										rs.getInt("idcategorie")); //DAO Categorie à faire
+										DAOca.find(rs.getInt("idcategorie")),  //DAO CategorieArticle à faire
+										0.0); 
 			}	
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -52,6 +58,37 @@ public class ProduitDAO extends DAO<Produit>{
 	public void delete(Produit obj) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+//***********************************************************************************************************************	
+	
+	public Produit findInMagasin(long idMag, long idProd) {
+		Produit produit = new Produit();
+		
+		Statement st =null;
+		ResultSet rs =null;
+		
+		
+		try {
+			st = this.connect.createStatement();
+			String sql = "SELECT * FROM Article A JOIN StockMagasin SM ON A.id = SM.idArticle WHERE A.id="+idProd+" AND SM.idMagasin="+idMag;
+			rs = st.executeQuery(sql);
+			
+			if(rs.first()) {
+				produit = new Produit(rs.getInt("A.id"),
+										rs.getString("A.nom"), 
+										rs.getString("A.description"), 
+										rs.getString("A.image"), 
+										rs.getInt("A.poids"), 
+										rs.getString("A.provenance"), 
+										DAOca.find(rs.getInt("idcategorie")),
+										rs.getDouble("SM.prixUnitaire")); 
+			}	
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return produit;
 	}
 
 }
