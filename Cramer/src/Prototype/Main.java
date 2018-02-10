@@ -25,10 +25,10 @@ public class Main {
 			//dao.getListeProduit(m);
 			p1.add(new PanelListeObjet(m));
 		}
-		
+		p.add(p1);
 		
 		f.setContentPane(new Contenant());
-		
+		f.setVisible(true);
 	}
 
 }
