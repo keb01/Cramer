@@ -14,9 +14,9 @@ public class Main {
 
 	public static void main(String[] args) {
 		Fenetre f = new Fenetre();
-		JPanel p = new Contenant();
-		JPanel p1 = new PanelListe();
-		JPanel p2 = new PanelListe();
+		Contenant p = new Contenant();
+		PanelListe p1 = new PanelListe();
+		PanelListe p2 = new PanelListe();
 		
 		MagasinDAO dao = new MagasinDAO();
 		ArrayList<Magasin> listeMagasins = new ArrayList<Magasin>();
@@ -25,8 +25,11 @@ public class Main {
 		
 		for(Magasin m : listeMagasins  ) {
 			//dao.getListeProduit(m);
-			p1.add(new PanelListeObjet(m));
+			PanelListeObjet panel = new PanelListeObjet(m);
+			panel.addMouseListener(new ListenerMagasin(panel,p2,p,f));
+			p1.add(panel);
 		}
+		
 		p.add(p1);
 		f.add(p);
 		JScrollPane scroll = new JScrollPane(p1);
