@@ -50,13 +50,36 @@ private DAO<CategorieArticle> DAOca = new CategorieArticleDAO();
 
 	@Override
 	public Produit update(Produit obj) {
-		// TODO Auto-generated method stub
-		return null;
+
+		Statement st =null;
+		
+		try {
+			st = this.connect.createStatement();
+			String sql = "UPDATE Article SET nom = '"+obj.getNom()+"' WHERE id ="+obj.getId();
+			System.out.println(sql);
+			st.executeUpdate(sql);
+			obj = this.find(obj.getId());
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return obj;
 	}
 
 	@Override
 	public void delete(Produit obj) {
-		// TODO Auto-generated method stub
+		Statement st =null;
+		
+		try {
+			st = this.connect.createStatement();
+			String sql = "DELETE FROM Article WHERE id ="+obj.getId();
+			System.out.println(sql);
+			st.executeUpdate(sql);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		
 	}
 	

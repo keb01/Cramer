@@ -6,18 +6,22 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
+import javax.swing.JPanel;
+
 public class ListenerMagasin implements MouseListener {
 
 	private PanelListeObjet panel;
 	private PanelListe p2;
 	private Fenetre f;
-	private Contenant p;
+	private Contenant c;
+	private JPanel containerArticle;
 	
-	public ListenerMagasin(PanelListeObjet panel,PanelListe p2,Contenant p,Fenetre f) {
+	public ListenerMagasin(PanelListeObjet panel,PanelListe p2,Contenant c,Fenetre f,JPanel containerArticle) {
 	this.panel=panel;
 	this.p2 = p2;
 	this.f=f;
-	this.p = p;
+	this.c = c;
+	this.containerArticle = containerArticle;
 	}
 	
 	@Override
@@ -32,8 +36,9 @@ public class ListenerMagasin implements MouseListener {
 			PanelListeObjet pan = new PanelListeObjet(p);
 			
 			p2.add(pan);
+			pan.addMouseListener(new ListenerProduit(p,containerArticle));
 		}
-		p.add(p2);
+		c.add(p2);
 		f.repaint();
 		f.setVisible(true);
 		
