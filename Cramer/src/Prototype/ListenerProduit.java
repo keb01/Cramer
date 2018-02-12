@@ -9,22 +9,23 @@ import javax.swing.JPanel;
 
 public class ListenerProduit implements MouseListener{
 
-	private Produit prod;
-	private JPanel c;
+	private Contenant c;
+	private ElementDeListe e;
 	
-	public ListenerProduit(Produit prod, JPanel c) {
-	this.prod=prod;	
-	this.c = c;
+	public ListenerProduit(Contenant c,ElementDeListe e) {
+		this.c = c;
+		this.e=e;
 	}
 	
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
-		c.removeAll();
-		PanelArticle pa = new PanelArticle(prod);
-		c.add(pa);
-		pa.setVisible(true);
+		c.getContainerArticle().removeAll();
+		c.getContainerArticle().revalidate();
+		c.getContainerArticle().repaint();
+		PanelArticle pa = new PanelArticle((Produit) e.getObjet(),c);
+		c.getContainerArticle().add(pa);
 		c.revalidate();
-		c.repaint();
+		
 		
 	}
 	@Override

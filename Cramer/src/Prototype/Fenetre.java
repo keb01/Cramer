@@ -8,7 +8,7 @@ public class Fenetre extends JFrame {
 		/*this.pack();
 		setDefaultLookAndFeelDecorated(true);
 		this.setExtendedState(MAXIMIZED_BOTH);*/
-		this.setSize(400,400);
+		this.setSize(1000,600);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTitle("Application");
 		this.setVisible(true);

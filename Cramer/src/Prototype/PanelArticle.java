@@ -22,6 +22,7 @@ public class PanelArticle extends JPanel{
 	private JButton suppButton;
 	private JButton modifButton;
 	private Produit produit;
+	private Contenant contenant;
 	
 	
 	/*public PanelArticle(){
@@ -44,8 +45,9 @@ public class PanelArticle extends JPanel{
 	}*/
 	
 	
-	public PanelArticle(Produit p){
+	public PanelArticle(Produit p, Contenant c){
 		// remplissage des éléments
+		this.contenant=c;
 		this.produit = p;
 		this.imgArticle = new ImageArticle("Pictures/Articles/"+produit.getUrlImage());
 		this.nom = new JLabel(produit.getNom(),SwingConstants.CENTER);
@@ -145,6 +147,7 @@ public class PanelArticle extends JPanel{
 		ProduitDAO pDAO = new ProduitDAO();
 		pDAO.delete(produit);
 		this.setVisible(false);
+		contenant.getContainerArticle().removeAll();
 	}
 
 	public void setProduit(Produit produit) {

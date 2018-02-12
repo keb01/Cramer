@@ -10,37 +10,29 @@ import javax.swing.JPanel;
 
 public class ListenerMagasin implements MouseListener {
 
-	private PanelListeObjet panel;
-	private PanelListe p2;
-	private Fenetre f;
 	private Contenant c;
-	private JPanel containerArticle;
+	private ElementDeListe e;
 	
-	public ListenerMagasin(PanelListeObjet panel,PanelListe p2,Contenant c,Fenetre f,JPanel containerArticle) {
-	this.panel=panel;
-	this.p2 = p2;
-	this.f=f;
+	public ListenerMagasin(Contenant c,ElementDeListe e) {
 	this.c = c;
-	this.containerArticle = containerArticle;
+	this.e=e;
 	}
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		p2.removeAll();
-		// TODO Auto-generated method stub
+		c.getContainerArticle().removeAll();
+		c.getContainerArticle().revalidate();
+		c.getContainerArticle().repaint();
 		MagasinDAO DAOp = new MagasinDAO();
-		Magasin mag = (Magasin)this.panel.getObjet();
+		Magasin mag = (Magasin)this.e.getObjet();
 		DAOp.getListeProduit(mag);
-		
+		c.getP2().clearList();
 		for( Produit p : mag.getListeProduits() ){
-			PanelListeObjet pan = new PanelListeObjet(p);
-			
-			p2.add(pan);
-			pan.addMouseListener(new ListenerProduit(p,containerArticle));
+			ElementDeListe pan = new ElementDeListe(p);
+			c.getP2().remplissage(pan);
+			pan.addMouseListener(new ListenerProduit(c,pan));
 		}
-		c.add(p2);
-		f.repaint();
-		f.setVisible(true);
+		c.getP2().affichage();
 		
 		//méthode affichage des produits afficherproduit(mag)
 		

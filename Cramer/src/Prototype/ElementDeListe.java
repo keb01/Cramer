@@ -4,7 +4,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class PanelListeObjet extends JPanel{
+public class ElementDeListe extends JPanel{
 
 	
 	private Object objet;
@@ -26,7 +26,7 @@ public class PanelListeObjet extends JPanel{
 		this.label = label;
 	}
 
-	public PanelListeObjet(Magasin m) {
+	public ElementDeListe(Magasin m) {
 		super();
 		this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
 		this.objet = m;
@@ -35,7 +35,7 @@ public class PanelListeObjet extends JPanel{
 		this.setVisible(true);
 	}
 	
-	public PanelListeObjet(Produit p) {
+	public ElementDeListe(Produit p) {
 		super();
 		this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
 		this.objet = p;
