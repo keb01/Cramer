@@ -42,9 +42,8 @@ public class Main {
 		}
 		contenant.getP1().affichage();
 		
-		JScrollPane scroll = new JScrollPane(contenant.getP1());
-		scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		f.getContentPane().add(scroll, BorderLayout.WEST);
+		
+		
 		f.setVisible(true);
 		
 	}

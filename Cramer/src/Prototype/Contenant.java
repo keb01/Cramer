@@ -7,6 +7,7 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.LineBorder;
 
 public class Contenant extends JPanel {
@@ -19,7 +20,7 @@ public class Contenant extends JPanel {
 		this.setLayout(new BorderLayout());
 		//contenant = new JPanel();
 		p1 = new PanelListe();
-		p1.setSize(300,600);
+		
 		p1.setBorder(new LineBorder(Color.GREEN));
 		p2 = new PanelListe();
 		p2.setSize(300,600);
@@ -29,6 +30,10 @@ public class Contenant extends JPanel {
 		containerArticle.setBorder(new LineBorder(Color.GREEN));
 		
 		this.add(p1,BorderLayout.WEST);
+
+		JScrollPane scroll = new JScrollPane(p1);
+		scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		this.add(scroll,BorderLayout.WEST);
 		this.add(p2,BorderLayout.CENTER);
 		this.add(containerArticle,BorderLayout.EAST);
 	}
