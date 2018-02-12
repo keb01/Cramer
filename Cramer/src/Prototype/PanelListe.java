@@ -1,13 +1,11 @@
 package Prototype;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.border.LineBorder;
 
 
@@ -47,5 +45,10 @@ public class PanelListe extends JPanel{
 	public void clearList() {
 		liste.clear();
 	}
+
+	public ArrayList<ElementDeListe> getListe() {
+		return liste;
+	}
+	
 	
 }

@@ -43,5 +43,17 @@ public class ElementDeListe extends JPanel{
 		this.add(label);
 		this.setVisible(true);
 	}
+	
+	public void affichage(){
+		this.label.setText(((Produit) objet).getNom());
+		revalidate();
+		repaint();
+	}
+	
+	public void ModifElement(Produit p){
+		this.objet = p;
+		affichage();
+
+	}
 
 }

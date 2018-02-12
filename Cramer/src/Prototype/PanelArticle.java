@@ -21,7 +21,7 @@ public class PanelArticle extends JPanel{
 	private JLabel provenance;
 	private JButton suppButton;
 	private JButton modifButton;
-	private Produit produit;
+	private ElementDeListe produit;
 	private Contenant contenant;
 	
 	
@@ -45,16 +45,16 @@ public class PanelArticle extends JPanel{
 	}*/
 	
 	
-	public PanelArticle(Produit p, Contenant c){
+	public PanelArticle(ElementDeListe e, Contenant c){
 		// remplissage des éléments
 		this.contenant=c;
-		this.produit = p;
-		this.imgArticle = new ImageArticle("Pictures/Articles/"+produit.getUrlImage());
-		this.nom = new JLabel(produit.getNom(),SwingConstants.CENTER);
-		this.description = createArea(produit.getDescription(), true, 0, null);
-		this.prix = new JLabel(String.valueOf(produit.getPrix())+"€");
-		this.poids = new JLabel("Poids : "+String.valueOf(produit.getPoids()));
-		this.provenance = new JLabel("Provenance : "+produit.getProvenance());
+		this.produit = e;
+		this.imgArticle = new ImageArticle("Pictures/Articles/"+((Produit) produit.getObjet()).getUrlImage());
+		this.nom = new JLabel(((Produit) produit.getObjet()).getNom(),SwingConstants.CENTER);
+		this.description = createArea(((Produit) produit.getObjet()).getDescription(), true, 0, null);
+		this.prix = new JLabel(String.valueOf(((Produit) produit.getObjet()).getPrix())+"€");
+		this.poids = new JLabel("Poids : "+String.valueOf(((Produit) produit.getObjet()).getPoids()));
+		this.provenance = new JLabel("Provenance : "+((Produit) produit.getObjet()).getProvenance());
 		
 		this.setLayout(new BorderLayout());
 		JPanel info = new JPanel();
@@ -103,7 +103,7 @@ public class PanelArticle extends JPanel{
 	
 	public void afficher(){
 		
-		this.nom.setText(produit.getNom());
+		this.nom.setText(((Produit) produit.getObjet()).getNom());
 		
 	}
 	
@@ -127,30 +127,45 @@ public class PanelArticle extends JPanel{
     }
 	
 	public Produit getProduit(){
-		return produit;
+		return ((Produit) produit.getObjet());
 	}
 
 
 
 
 	public void modifierArticle(String text) {
-		produit.setNom(text);
-		ProduitDAO pDAO = new ProduitDAO();
-		setProduit(pDAO.update(produit));
 		
-		System.out.println("FINI DE CHARGE : "+produit.getNom());
+		Produit newp = new Produit(((Produit) produit.getObjet()).getId(), 
+				text, 
+				((Produit) produit.getObjet()).getDescription(), 
+				((Produit) produit.getObjet()).getUrlImage(),
+				((Produit) produit.getObjet()).getPoids(), 
+				((Produit) produit.getObjet()).getProvenance(), 
+				((Produit) produit.getObjet()).getCategorie(), 
+				((Produit) produit.getObjet()).getPrix());
+		
+		
+		//((Produit) produit.getObjet()).setNom(text);
+		ProduitDAO pDAO = new ProduitDAO();
+		
+		produit.ModifElement(pDAO.update(newp));
+		
+		System.out.println("FINI DE CHARGE : "+((Produit) produit.getObjet()).getNom());
 		afficher();
+	
+		//contenant.getP2().getListe().remove(produit);
+		//contenant.getP2()
+		contenant.getP2().revalidate();
+		contenant.getP2().repaint();
 	}
 	
 	
 	public void supprimerArticle(){
 		ProduitDAO pDAO = new ProduitDAO();
-		pDAO.delete(produit);
+		pDAO.delete(((Produit) produit.getObjet()));
 		this.setVisible(false);
 		contenant.getContainerArticle().removeAll();
 	}
 
-	public void setProduit(Produit produit) {
-		this.produit = produit;
-	}
+
 }

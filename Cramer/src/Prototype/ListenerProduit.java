@@ -22,7 +22,7 @@ public class ListenerProduit implements MouseListener{
 		c.getContainerArticle().removeAll();
 		c.getContainerArticle().revalidate();
 		c.getContainerArticle().repaint();
-		PanelArticle pa = new PanelArticle((Produit) e.getObjet(),c);
+		PanelArticle pa = new PanelArticle(e,c);
 		c.getContainerArticle().add(pa);
 		c.revalidate();
 		
