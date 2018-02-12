@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 public class MagasinDAO extends DAO<Magasin>{
 	private DAO<CategorieArticle> DAOca = new CategorieArticleDAO();	
+	//private DAO<CategorieMagasin> DAOcm = new CategorieMagasinDAO();
 	
 //*****************************************Methodes heritage DAO*********************************************************	
 	
@@ -119,5 +120,61 @@ public class MagasinDAO extends DAO<Magasin>{
 		}
 		return liste;
 	}
+
+//*************************************Récupère liste magasin en fonction catégorie selectionnée********************************
+public ArrayList<CategorieMagasin> getCategorieMagasin(){
+		
+		ArrayList<CategorieMagasin> liste = new ArrayList<CategorieMagasin>();
+		
+		
+		Statement st = null;
+		ResultSet rs = null;
+		
+		
+		try {
+			st = this.connect.createStatement();
+			String sql = "SELECT * FROM CategorieMagasin ";
+			rs = st.executeQuery(sql);
+			
+			while(rs.next()) {
+				
+				liste.add(new CategorieMagasin(rs.getInt("id"),
+									  rs.getString("nom"))
+										); 
+			}	
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return liste;
+	}
+	
+	public ArrayList<Magasin> getMagasinByCategorie(long id){
+		
+		ArrayList<Magasin> liste = new ArrayList<Magasin>();
+		
+		
+		Statement st = null;
+		ResultSet rs = null;
+		
+		
+		try {
+			st = this.connect.createStatement();
+			String sql = "SELECT * FROM Magasin where idCategorieMagasin="+id;
+			rs = st.executeQuery(sql);
+			
+			while(rs.next()) {
+				liste.add(new Magasin(rs.getInt("id"),
+						rs.getString("logo"), 
+						rs.getString("nom"), 
+						rs.getString("description"), 
+						rs.getInt("idEmplacement"), 
+						rs.getInt("idCategorieMagasin")));
+			}	
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return liste;
+	}
+	
 	
 }
