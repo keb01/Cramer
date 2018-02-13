@@ -17,7 +17,6 @@ public class Prototype {
 		PanelListe panelArt = new PanelListe();
 		PanelArticle panelDetailArt = new PanelArticle();
 		
-		
 		fenetrePrincipale.add(panelMag,BorderLayout.WEST);
 		JScrollPane scroll = new JScrollPane(panelMag);
 		scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);

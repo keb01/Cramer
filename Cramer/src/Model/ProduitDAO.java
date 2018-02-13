@@ -115,4 +115,20 @@ private DAO<CategorieArticle> DAOca = new CategorieArticleDAO();
 		return produit;
 	}
 
+
+
+	public void deleteInMagasin(Produit obj, long idMag) {
+		Statement st =null;
+		
+		try {
+			st = this.connect.createStatement();
+			String sql = "DELETE FROM StockMagasin WHERE idArticle ="+obj.getId()+" AND idMagasin ="+idMag;
+			System.out.println(sql);
+			st.executeUpdate(sql);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
 }

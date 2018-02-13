@@ -84,6 +84,7 @@ public class CoreProto {
 		selectProduit = p;
 		panelDetailArt.update(p.getNom(),p.getDescription(),p.getUrlImage(),p.getProvenance(),p.getPoids(),p.getPrix());
 		panelDetailArt.setListenerModifButton(new ListenerModifArticle(this));
+		panelDetailArt.setListenerSuppButton(new ListenerDelArticle(this));
 		panelDetailArt.setVisible(true);
 	}
 
@@ -104,5 +105,12 @@ public class CoreProto {
 		
 	}
 
+	public void supprimerArticle(){
+		produitDAO.deleteInMagasin(selectProduit, selectMag.getId());
+		selectProduit = null;
+		panelDetailArt.setVisible(false);
+		magasinDAO.chargerListeProduit(selectMag);
+		updateListeProduit();
+	}
 	
 }
