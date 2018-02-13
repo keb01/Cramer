@@ -1,7 +1,7 @@
 package Model;
 
 
-public class Produit {
+public class Article {
 	private long id;
 	private String nom;
 	private String description;
@@ -12,10 +12,10 @@ public class Produit {
 	private double prix;
 	
 
-	public Produit(){
+	public Article(){
 		
 	}
-	public Produit(long id, String nom, String description, String urlImage, long poids, String provenance, CategorieArticle categorie, double prix){
+	public Article(long id, String nom, String description, String urlImage, long poids, String provenance, CategorieArticle categorie, double prix){
 		this.id = id;
 		this.nom = nom;
 		this.description = description;

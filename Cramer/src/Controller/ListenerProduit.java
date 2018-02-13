@@ -4,16 +4,16 @@ package Controller;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import Model.Produit;
+import Model.Article;
 
 
 public class ListenerProduit implements MouseListener{
 
 	private CoreProto c;
-	private Produit p;
+	private Article p;
 	
 	
-	public ListenerProduit(CoreProto c,Produit p) {
+	public ListenerProduit(CoreProto c,Article p) {
 		this.c = c;
 		this.p=p;
 	}
