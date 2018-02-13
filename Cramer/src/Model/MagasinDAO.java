@@ -65,7 +65,7 @@ public class MagasinDAO extends DAO<Magasin>{
 //***********************************************************************************************************************	
 	public void chargerListeProduit(Magasin obj){
 		
-		ArrayList<Produit> liste = new ArrayList<Produit>();
+		ArrayList<Article> liste = new ArrayList<Article>();
 		
 		
 		Statement st = null;
@@ -79,7 +79,7 @@ public class MagasinDAO extends DAO<Magasin>{
 			
 			while(rs.next()) {
 				
-				liste.add(new Produit(rs.getInt("A.id"),
+				liste.add(new Article(rs.getInt("A.id"),
 										rs.getString("A.nom"), 
 										rs.getString("A.description"), 
 										rs.getString("A.image"), 

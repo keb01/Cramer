@@ -7,8 +7,8 @@ import javax.swing.JLabel;
 
 import Model.Magasin;
 import Model.MagasinDAO;
-import Model.Produit;
-import Model.ProduitDAO;
+import Model.Article;
+import Model.ArticleDAO;
 import View.FenetreModificationArticle;
 import View.PanelArticle;
 import View.PanelListe;
@@ -21,9 +21,9 @@ public class CoreProto {
 	private FenetreModificationArticle fenetreModif;
 	private ArrayList<Magasin> listeMag;
 	private MagasinDAO magasinDAO;
-	private ProduitDAO produitDAO;
+	private ArticleDAO produitDAO;
 	private Magasin selectMag;
-	private Produit selectProduit;
+	private Article selectProduit;
 	
 	public CoreProto(PanelListe pMag,PanelListe pArt, PanelArticle pDet){
 		
@@ -33,7 +33,7 @@ public class CoreProto {
 		this.panelDetailArt =pDet;
 		this.listeMag = new ArrayList<Magasin>();
 		this.magasinDAO = new MagasinDAO();
-		this.produitDAO = new ProduitDAO();
+		this.produitDAO = new ArticleDAO();
 		
 		
 		//Initialisation de la liste des magasins
@@ -60,7 +60,7 @@ public class CoreProto {
 	public void updateListeProduit(){
 		panelArt.removeAll();
 		int px = 0;
-		for(Produit p : selectMag.getListeProduits()){
+		for(Article p : selectMag.getListeProduits()){
 			JLabel label = new JLabel(p.getNom());
 			label.addMouseListener(new ListenerProduit(this,p));
 			panelArt.add(label);
@@ -80,7 +80,7 @@ public class CoreProto {
 		
 	}
 
-	public void selectedProduit(Produit p) {
+	public void selectedProduit(Article p) {
 		selectProduit = p;
 		panelDetailArt.update(p.getNom(),p.getDescription(),p.getUrlImage(),p.getProvenance(),p.getPoids(),p.getPrix());
 		panelDetailArt.setListenerModifButton(new ListenerModifArticle(this));

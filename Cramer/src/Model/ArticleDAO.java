@@ -6,15 +6,15 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 
-public class ProduitDAO extends DAO<Produit>{
+public class ArticleDAO extends DAO<Article>{
 	
 private DAO<CategorieArticle> DAOca = new CategorieArticleDAO();	
 
 //*****************************************Methodes heritage DAO*********************************************************	
 	
 	@Override
-	public Produit find(long id) {
-		Produit produit = new Produit();
+	public Article find(long id) {
+		Article produit = new Article();
 		
 		
 		Statement st =null;
@@ -27,7 +27,7 @@ private DAO<CategorieArticle> DAOca = new CategorieArticleDAO();
 			rs = st.executeQuery(sql);
 			
 			if(rs.first()) {
-				produit = new Produit(rs.getInt("id"),
+				produit = new Article(rs.getInt("id"),
 										rs.getString("nom"), 
 										rs.getString("description"), 
 										rs.getString("image"), 
@@ -44,13 +44,13 @@ private DAO<CategorieArticle> DAOca = new CategorieArticleDAO();
 	}
 
 	@Override
-	public Produit create(Produit obj) {
+	public Article create(Article obj) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Produit update(Produit obj) {
+	public Article update(Article obj) {
 
 		Statement st =null;
 		
@@ -69,7 +69,7 @@ private DAO<CategorieArticle> DAOca = new CategorieArticleDAO();
 	}
 
 	@Override
-	public void delete(Produit obj) {
+	public void delete(Article obj) {
 		Statement st =null;
 		
 		try {
@@ -86,8 +86,8 @@ private DAO<CategorieArticle> DAOca = new CategorieArticleDAO();
 	
 //***********************************************************************************************************************	
 	
-	public Produit findInMagasin(long idMag, long idProd) {
-		Produit produit = new Produit();
+	public Article findInMagasin(long idMag, long idProd) {
+		Article produit = new Article();
 		
 		Statement st =null;
 		ResultSet rs =null;
@@ -99,7 +99,7 @@ private DAO<CategorieArticle> DAOca = new CategorieArticleDAO();
 			rs = st.executeQuery(sql);
 			
 			if(rs.first()) {
-				produit = new Produit(rs.getInt("A.id"),
+				produit = new Article(rs.getInt("A.id"),
 										rs.getString("A.nom"), 
 										rs.getString("A.description"), 
 										rs.getString("A.image"), 

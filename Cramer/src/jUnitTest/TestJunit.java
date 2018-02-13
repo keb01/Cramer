@@ -3,7 +3,7 @@ package jUnitTest;
 import static org.junit.Assert.*;
 import org.junit.Test;
 import Model.MagasinDAO;
-import Model.ProduitDAO;
+import Model.ArticleDAO;
 
 
 public class TestJunit {
@@ -19,8 +19,7 @@ public class TestJunit {
 		assertEquals(32,mg.getCategorieMagasin().size());
 		
 		
-		ProduitDAO pro = new ProduitDAO();
-		//ArrayList<Magasin> liste = new ArrayList<Magasin>();
+		ArticleDAO pro = new ArticleDAO();
 		//test: le produit 1 existe bien
 		assertNotNull((pro.find(1)));
 		//test: le produit 1 existe bien et se trouve dans le magasin 1

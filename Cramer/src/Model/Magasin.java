@@ -11,7 +11,7 @@ public class Magasin {
 	private long idEmplacement;
 	private long idCategorieMagasin;
 	private String description;
-	private ArrayList<Produit> listeProduits;
+	private ArrayList<Article> listeProduits;
 	
 	
 	public Magasin(){
@@ -25,17 +25,17 @@ public class Magasin {
 		this.description = description;
 		this.idEmplacement = idEmplacement;
 		this.idCategorieMagasin = idCategorieMagasin;
-		this.listeProduits = new ArrayList<Produit>();
+		this.listeProduits = new ArrayList<Article>();
 	}
 	
 	
 	
 	
 	
-	public ArrayList<Produit> getListeProduits() {
+	public ArrayList<Article> getListeProduits() {
 		return listeProduits;
 	}
-	public void setListeProduits(ArrayList<Produit> listeProduits) {
+	public void setListeProduits(ArrayList<Article> listeProduits) {
 		this.listeProduits = listeProduits;
 	}
 	
