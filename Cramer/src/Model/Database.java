@@ -7,9 +7,9 @@ import java.sql.SQLException;
 
 public class Database {
 
-		 private static final String URL = "jdbc:mysql://localhost/bdd_sdzee"; //192.168.1.25 //picpicb.ddns.net:5000
-		 private static final String USER = "root"; //bddcramer / prodCramer
-		 private static final String PASSWORD = "root"; //cramer
+		 private static final String URL = "jdbc:mysql://picpicb.ddns.net:5000/devCramer"; //192.168.1.25 //picpicb.ddns.net:5000
+		 private static final String USER = "bddcramer"; //bddcramer / prodCramer
+		 private static final String PASSWORD = "cramer"; //cramer
 		 private static final String DRIVER_NAME = "com.mysql.jdbc.Driver";
 		 private static Connection connect;
 		 static {
