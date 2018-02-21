@@ -22,7 +22,7 @@ public class MySQLConnectionPool
   private Deque<MySQLConnection> pool;
   public MySQLConnectionPool()
   {
-    pool = new LinkedBlockingDeque<>();
+    pool = new LinkedBlockingDeque<>(15);
   }
   
   public MySQLConnection acquireConnection()

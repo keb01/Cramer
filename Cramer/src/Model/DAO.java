@@ -4,7 +4,8 @@ package Model;
 import java.sql.Connection;
 
 public abstract class DAO<T> {
-	public Connection connect = Database.getConnection();
+	public MySQLConnectionPool pool = new MySQLConnectionPool();
+	public Connection connect = pool.acquireConnection();
 	
 	/**
 	 * Permet de récupérer un objet via son ID
