@@ -1,9 +1,16 @@
 package Server;
 
+import Controller.ListenerMagasin;
+import Model.Magasin;
+import Model.MagasinDAO;
+import org.codehaus.jackson.map.ObjectMapper;
+
+import javax.swing.*;
 import java.io.IOException;
 import java.net.Socket;
+import java.util.ArrayList;
 
-public class HandleClient implements AppProtocol{
+public class HandleClient implements Runnable,AppProtocol{
 	private final Socket s;
 	private InputManager in;
 	private OutputManager out;
@@ -38,7 +45,36 @@ public class HandleClient implements AppProtocol{
 			// logger Terence : client deconnecte
 		}
 	}
-	
-	
+
+    @Override
+    public void askListMagasin() throws IOException {
+        MagasinDAO magasinDAO = new MagasinDAO();
+        ArrayList<Magasin> listeMag = new ArrayList<Magasin>();
+        listeMag = magasinDAO.getAllMagasins();
+
+        /**** JSON CONCAT ****/
+        ObjectMapper mapper = new ObjectMapper();
+        String json = "[";
+        for(Magasin m : listeMag){
+            json += mapper.writeValueAsString(m)+",";
+        }
+        json += "]";
+        out.sendListMagasin(json);
+    }
+
+    @Override
+	public void sendListZones(String s) {
+
+	}
+
+	@Override
+	public void sendListBornes(String s) {
+
+	}
+
+	@Override
+	public void sendListMagasin(String s) throws IOException {}
+
+
 	// IMPLEMENT METHODES DU PROTOCOL EN UTILISANT NOTRE 'OUT'
 }

@@ -11,7 +11,29 @@ public class OutputManager implements AppProtocol{
 	public OutputManager(OutputStream out) throws IOException {
 		this.ow = new PrintWriter(out, true);
 	}
-	
+
+    @Override
+    public void askListMagasin() throws IOException {
+
+    }
+
+    @Override
+	public void sendListZones(String s) {
+		ow.println(s);
+	}
+
+	@Override
+	public void sendListBornes(String s) {
+		ow.println(s);
+	}
+
+	@Override
+	public void sendListMagasin(String s) {
+		//ow.println(s);
+        System.out.println(s);
+	}
+
+
 	// IMPLEMENT METHODES DU PROTOCOL POUR ENVOI JSON AU CLIENT
 	
 }

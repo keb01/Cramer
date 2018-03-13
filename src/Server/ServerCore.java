@@ -24,7 +24,7 @@ public class ServerCore extends Thread{
 				try{
 					Socket s = ss.accept();
 					//logger (nouveau client)
-					//new Thread(new HandleClient(s, logger)).start();
+					new Thread(new HandleClient(s)).start();
 				}catch(SocketTimeoutException ex){
 				}
 			}

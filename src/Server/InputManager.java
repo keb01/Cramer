@@ -22,6 +22,10 @@ public class InputManager {
 			while (!stop) {
 				String line = is.readLine();
 				System.out.println("lecture"+line);
+
+                    System.out.println("requette listeMag");
+					handler.askListMagasin();
+
 				
 				//LECTURE DU JSON DE QUERIES
 			}
