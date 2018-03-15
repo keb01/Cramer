@@ -9,6 +9,7 @@ public class BorneDAO extends DAO<Magasin>{
 	
 //*****************************************Methodes heritage DAO*********************************************************	
 	
+	
 		@Override
 		public Borne find(int id) {
 			
