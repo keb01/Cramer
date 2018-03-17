@@ -9,11 +9,11 @@ import Model.Article;
 
 public class ListenerProduit implements MouseListener{
 
-	private CoreProto c;
+	private AppGestionProduit c;
 	private Article p;
 	
 	
-	public ListenerProduit(CoreProto c,Article p) {
+	public ListenerProduit(AppGestionProduit c,Article p) {
 		this.c = c;
 		this.p=p;
 	}

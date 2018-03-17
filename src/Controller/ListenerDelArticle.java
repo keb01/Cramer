@@ -5,9 +5,9 @@ import java.awt.event.ActionListener;
 
 public class ListenerDelArticle implements ActionListener{
 
-	private CoreProto c;
+	private AppGestionProduit c;
 	
-	public ListenerDelArticle(CoreProto c) {
+	public ListenerDelArticle(AppGestionProduit c) {
 		this.c = c;
 	}
 

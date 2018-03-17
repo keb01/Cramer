@@ -5,9 +5,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ListenerModifArticle implements ActionListener{
-	private CoreProto c;
+	private AppGestionProduit c;
 	
-	public ListenerModifArticle(CoreProto c) {
+	public ListenerModifArticle(AppGestionProduit c) {
 		this.c = c;
 	}
 	

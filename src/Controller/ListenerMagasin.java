@@ -10,10 +10,10 @@ import Model.Magasin;
 
 public class ListenerMagasin implements MouseListener {
 
-	private CoreProto c;
+	private AppGestionProduit c;
 	private Magasin m;
 	
-	public ListenerMagasin(CoreProto c, Magasin m) {
+	public ListenerMagasin(AppGestionProduit c, Magasin m) {
 	this.c = c;
 	this.m=m;
 	}

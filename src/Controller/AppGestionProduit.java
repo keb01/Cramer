@@ -15,7 +15,7 @@ import View.PanelListe;
 
 
 
-public class CoreProto {
+public class AppGestionProduit {
 	private PanelListe panelMag,panelArt;
 	private PanelArticle panelDetailArt;
 	private FenetreModificationArticle fenetreModif;
@@ -25,7 +25,7 @@ public class CoreProto {
 	private Magasin selectMag;
 	private Article selectProduit;
 	
-	public CoreProto(PanelListe pMag,PanelListe pArt, PanelArticle pDet){
+	public AppGestionProduit(PanelListe pMag,PanelListe pArt, PanelArticle pDet){
 		
 		fenetreModif = new FenetreModificationArticle();
 		this.panelMag = pMag;
