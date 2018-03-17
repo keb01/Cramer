@@ -2,7 +2,10 @@ package Controller;
 
 
 import java.awt.BorderLayout;
+
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTabbedPane;
 
 import View.Fenetre;
 import View.PanelArticle;
@@ -13,18 +16,12 @@ public class Prototype {
 		Fenetre fenetrePrincipale = new Fenetre();
 		
 //Cr�ation des panneaux d'affichage |Magasins|Produits|D�tail Produit|
-		PanelListe panelMag = new PanelListe();
-		PanelListe panelArt = new PanelListe();
-		PanelArticle panelDetailArt = new PanelArticle();
 		
-		fenetrePrincipale.add(panelMag,BorderLayout.WEST);
-		JScrollPane scroll = new JScrollPane(panelMag);
-		scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		fenetrePrincipale.add(scroll,BorderLayout.WEST);
-		
-		fenetrePrincipale.add(panelArt,BorderLayout.CENTER);
-		fenetrePrincipale.add(panelDetailArt,BorderLayout.EAST);
-		new AppGestionProduit(panelMag,panelArt,panelDetailArt);
+		JTabbedPane tabbedPane = new JTabbedPane();
+		JPanel AppGestionProduitPanel = new JPanel();
+		tabbedPane.add("Gestion Produit", AppGestionProduitPanel);
+		fenetrePrincipale.add(tabbedPane);
+		new AppGestionProduit(AppGestionProduitPanel);
 		
 		
 		fenetrePrincipale.setVisible(true);

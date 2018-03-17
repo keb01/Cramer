@@ -1,9 +1,12 @@
 package Controller;
 
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.util.ArrayList;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 import Model.Magasin;
 import Model.MagasinDAO;
@@ -18,6 +21,7 @@ import View.PanelListe;
 public class AppGestionProduit {
 	private PanelListe panelMag,panelArt;
 	private PanelArticle panelDetailArt;
+	private JPanel tabPanel;
 	private FenetreModificationArticle fenetreModif;
 	private ArrayList<Magasin> listeMag;
 	private MagasinDAO magasinDAO;
@@ -25,12 +29,25 @@ public class AppGestionProduit {
 	private Magasin selectMag;
 	private Article selectProduit;
 	
-	public AppGestionProduit(PanelListe pMag,PanelListe pArt, PanelArticle pDet){
+	public AppGestionProduit(JPanel tabPanel){
+		
+		
+		this.tabPanel = tabPanel;
+		this.tabPanel.setLayout(new BorderLayout());
+		panelMag = new PanelListe();
+		panelArt = new PanelListe();
+		panelDetailArt = new PanelArticle();
+		
+		tabPanel.add(panelMag,BorderLayout.WEST);
+		JScrollPane scroll = new JScrollPane(panelMag);
+		scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		tabPanel.add(scroll,BorderLayout.WEST);
+		
+		tabPanel.add(panelArt,BorderLayout.CENTER);
+		tabPanel.add(panelDetailArt,BorderLayout.EAST);
+		
 		
 		fenetreModif = new FenetreModificationArticle();
-		this.panelMag = pMag;
-		this.panelArt = pArt;
-		this.panelDetailArt =pDet;
 		this.listeMag = new ArrayList<Magasin>();
 		this.magasinDAO = new MagasinDAO();
 		this.produitDAO = new ArticleDAO();
