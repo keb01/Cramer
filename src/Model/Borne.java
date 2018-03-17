@@ -8,7 +8,7 @@ private int idZone;
 public Borne () {
 }
 
-public Article (int id, int idZone) {
+public Borne (int id, int idZone) {
 	this.id = id;
 	this.idZone = idZone;
 }
