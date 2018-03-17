@@ -1,6 +1,8 @@
 package Server;
 
 import Controller.ListenerMagasin;
+import Model.Borne;
+import Model.BorneDAO;
 import Model.Magasin;
 import Model.MagasinDAO;
 import org.codehaus.jackson.map.ObjectMapper;
@@ -58,9 +60,26 @@ public class HandleClient implements Runnable,AppProtocol{
         for(Magasin m : listeMag){
             json += mapper.writeValueAsString(m)+",";
         }
+        json += json.substring(0, json.length() - 1);
         json += "]";
         out.sendListMagasin(json);
     }
+    
+	@Override
+	public void askListBornes() throws IOException {
+		BorneDAO borneDAO = new BorneDAO();
+		ArrayList<Borne> listeBorne = new ArrayList<Borne>();
+		listeBorne = borneDAO.getAllBornes();
+		/**** JSON CONCAT ****/
+        ObjectMapper mapper = new ObjectMapper();
+        String json = "[";
+        for(Borne b : listeBorne){
+            json += mapper.writeValueAsString(b)+",";
+        }
+        json += json.substring(0, json.length() - 1);
+        json += "]";
+        out.sendListMagasin(json);
+	}
 
     @Override
 	public void sendListZones(String s) {
@@ -76,5 +95,9 @@ public class HandleClient implements Runnable,AppProtocol{
 	public void sendListMagasin(String s) throws IOException {}
 
 
+
+
 	// IMPLEMENT METHODES DU PROTOCOL EN UTILISANT NOTRE 'OUT'
+	
+	
 }

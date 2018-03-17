@@ -8,7 +8,7 @@ public interface AppProtocol {
     // QUERIES
 
     public void askListMagasin() throws IOException;
-
+    public void askListBornes() throws IOException;
 
 
     //ANSWERS

@@ -5,6 +5,7 @@ package Model;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 
 public class BorneDAO extends DAO<Borne>{
@@ -102,6 +103,30 @@ private DAO<Zone> DAOzone = new ZoneDAO();
 		}
 		
 		return borne;
+	}
+	
+public ArrayList<Borne> getAllBornes(){
+		
+		ArrayList<Borne> liste = new ArrayList<Borne>();
+		
+		
+		Statement st = null;
+		ResultSet rs = null;
+		
+		
+		try {
+			st = this.connect.createStatement();
+			String sql = "SELECT * FROM Borne ";
+			rs = st.executeQuery(sql);
+			
+			while(rs.next()) {
+				liste.add(new Borne(rs.getInt("B.id"),
+						  rs.getInt("B.idZone")));  
+			}	
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return liste;
 	}
 
 }

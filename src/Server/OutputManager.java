@@ -24,13 +24,19 @@ public class OutputManager implements AppProtocol{
 
 	@Override
 	public void sendListBornes(String s) {
-		ow.println(s);
+		//ow.println(s);
+        System.out.println(s);
 	}
 
 	@Override
 	public void sendListMagasin(String s) {
 		//ow.println(s);
         System.out.println(s);
+	}
+
+	@Override
+	public void askListBornes() throws IOException {
+		
 	}
 
 
