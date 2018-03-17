@@ -12,7 +12,7 @@ public class BorneDAO extends DAO<Borne>{
 	
 private DAO<Zone> DAOzone = new ZoneDAO();
 
-//*****************************************Methodes heritage DAO*********************************************************	
+//*****************************************Extended methods of DAO*********************************************************	
 	
 	@Override
 	public Borne find(long id) {

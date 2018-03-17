@@ -31,29 +31,27 @@ public class AppGestionProduit {
 	
 	public AppGestionProduit(JPanel tabPanel){
 		
-		
+		// Tab panel initialization 
 		this.tabPanel = tabPanel;
 		this.tabPanel.setLayout(new BorderLayout());
 		panelMag = new PanelListe();
 		panelArt = new PanelListe();
 		panelDetailArt = new PanelArticle();
-		
 		tabPanel.add(panelMag,BorderLayout.WEST);
 		JScrollPane scroll = new JScrollPane(panelMag);
 		scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		tabPanel.add(scroll,BorderLayout.WEST);
-		
 		tabPanel.add(panelArt,BorderLayout.CENTER);
 		tabPanel.add(panelDetailArt,BorderLayout.EAST);
 		
-		
 		fenetreModif = new FenetreModificationArticle();
+		// DAOs initialization
 		this.listeMag = new ArrayList<Magasin>();
 		this.magasinDAO = new MagasinDAO();
 		this.produitDAO = new ArticleDAO();
 		
 		
-		//Initialisation de la liste des magasins
+		//Stores list initialization
 		listeMag = magasinDAO.getAllMagasins();
 		updateListeMagasin();
 		

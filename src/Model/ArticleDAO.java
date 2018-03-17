@@ -10,7 +10,7 @@ public class ArticleDAO extends DAO<Article>{
 	
 private DAO<CategorieArticle> DAOca = new CategorieArticleDAO();	
 
-//*****************************************Methodes heritage DAO*********************************************************	
+//*****************************************Extended methods of DAO*********************************************************	
 	
 	@Override
 	public Article find(long id) {
@@ -33,7 +33,7 @@ private DAO<CategorieArticle> DAOca = new CategorieArticleDAO();
 										rs.getString("image"), 
 										rs.getInt("poids"), 
 										rs.getString("provenance"), 
-										DAOca.find(rs.getInt("idcategorie")),  //DAO CategorieArticle à faire
+										DAOca.find(rs.getInt("idcategorie")),  //DAO CategorieArticle ï¿½ faire
 										0.0); 
 			}	
 		} catch (SQLException e) {

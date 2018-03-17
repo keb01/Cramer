@@ -10,7 +10,7 @@ public class MagasinDAO extends DAO<Magasin>{
 	private DAO<CategorieArticle> DAOca = new CategorieArticleDAO();	
 	//private DAO<CategorieMagasin> DAOcm = new CategorieMagasinDAO();
 	
-//*****************************************Methodes heritage DAO*********************************************************	
+//*****************************************Extended methods of DAO*********************************************************	
 	
 	@Override
 	public Magasin find(long id) {
@@ -122,7 +122,7 @@ public class MagasinDAO extends DAO<Magasin>{
 		return liste;
 	}
 
-//*************************************Récupère liste magasin en fonction catégorie selectionnée********************************
+//*************************************Rï¿½cupï¿½re liste magasin en fonction catï¿½gorie selectionnï¿½e********************************
 public ArrayList<CategorieMagasin> getCategorieMagasin(){
 		
 		ArrayList<CategorieMagasin> liste = new ArrayList<CategorieMagasin>();

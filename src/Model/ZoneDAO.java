@@ -7,7 +7,7 @@ import java.sql.Statement;
 
 public class ZoneDAO extends DAO<Zone> {
 
-//*****************************************Methodes heritage DAO*********************************************************	
+//*****************************************Extended methods of DAO*********************************************************	
 	
 	@Override
 	public Zone find(long id) {

@@ -7,7 +7,7 @@ import java.sql.Statement;
 
 public class CategorieArticleDAO extends DAO<CategorieArticle>{
 
-//*****************************************Methodes heritage DAO*********************************************************	
+//*****************************************Extended methods of DAO*********************************************************	
 	
 	@Override
 	public CategorieArticle find(long id) {

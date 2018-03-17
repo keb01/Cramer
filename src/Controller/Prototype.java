@@ -1,30 +1,29 @@
 package Controller;
 
 
-import java.awt.BorderLayout;
-
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
-
 import View.Fenetre;
-import View.PanelArticle;
-import View.PanelListe;
 
 public class Prototype {
 	public static void main(String[] args) {
 		Fenetre fenetrePrincipale = new Fenetre();
 		
-//Cr�ation des panneaux d'affichage |Magasins|Produits|D�tail Produit|
+//Init of the cores and panels of each services, (todo : depending on the type of user logged in)
 		
 		JTabbedPane tabbedPane = new JTabbedPane();
-		JPanel AppGestionProduitPanel = new JPanel();
-		tabbedPane.add("Gestion Produit", AppGestionProduitPanel);
 		fenetrePrincipale.add(tabbedPane);
+		
+		//Adding AppGestionProduitPanel to the main Window and starting the core
+		JPanel AppGestionProduitPanel = new JPanel();
+		tabbedPane.add("Gestion Produits", AppGestionProduitPanel);
 		new AppGestionProduit(AppGestionProduitPanel);
 		
+		//Adding AppGestionProduitPanel to the main Window and starting the core
+		JPanel AppGestionBornePanel = new JPanel();
+		tabbedPane.add("Gestion Bornes", AppGestionBornePanel);
+		//new AppGestionProduit(AppGestionProduitPanel);
 		
 		fenetrePrincipale.setVisible(true);
-		
 	}
 }
