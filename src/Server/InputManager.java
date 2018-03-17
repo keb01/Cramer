@@ -25,6 +25,7 @@ public class InputManager {
 
                     System.out.println("requette listeMag");
 					handler.askListMagasin();
+					handler.askListBornes();
 
 				
 				//LECTURE DU JSON DE QUERIES

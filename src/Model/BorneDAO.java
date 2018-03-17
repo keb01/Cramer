@@ -120,8 +120,8 @@ public ArrayList<Borne> getAllBornes(){
 			rs = st.executeQuery(sql);
 			
 			while(rs.next()) {
-				liste.add(new Borne(rs.getInt("B.id"),
-						  rs.getInt("B.idZone")));  
+				liste.add(new Borne(rs.getInt("id"),
+						  rs.getInt("idZone")));  
 			}	
 		} catch (SQLException e) {
 			e.printStackTrace();
