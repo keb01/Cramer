@@ -20,6 +20,7 @@ public class TestJSON  {
 
 		//Object to JSON in file
 		mapper.writeValue(new File("client.json"), user);
+
 		
 	}
 
