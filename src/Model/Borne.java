@@ -8,7 +8,7 @@ public class Borne {
 	public Borne () {
 	}
 
-	public Borne(int id, Zone zone) {
+	public Borne(int id, Zone zone){
 	this.id = id;
 	this.zone = zone;
 	}
