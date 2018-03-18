@@ -1,31 +1,31 @@
 package Model;
 
 public class Borne {
-private int id;
-private int idZone;
+	private int id;
+	private Zone zone;
 
 
-public Borne () {
-}
+	public Borne () {
+	}
 
-public Borne (int id, int idZone) {
+	public Borne (int id, Zone zone) {
 	this.id = id;
-	this.idZone = idZone;
-}
+	this.zone = zone;
+	}
 
 
-public int getId() {
-	return id;
-}
-public void setId(int id) {
-	this.id = id;
-}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 
-public int getIdZone() {
-	return idZone;
-}
-public void setIdZone(int idZone) {
-	this.idZone = idZone;
-}
+	public Zone getZone() {
+		return zone;
+	}
+	public void setZone(Zone zone) {
+		this.zone = zone;
+	}
 
 }

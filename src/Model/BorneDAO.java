@@ -18,7 +18,7 @@ private DAO<Zone> DAOzone = new ZoneDAO();
 	public Borne find(long id) {
 		Borne borne = new Borne();
 		
-		
+	
 		Statement st =null;
 		ResultSet rs =null;
 		
@@ -30,7 +30,7 @@ private DAO<Zone> DAOzone = new ZoneDAO();
 			
 			if(rs.first()) {
 				borne = new Borne(rs.getInt("id"),
-								  rs.getInt("idZone")); 
+								  DAOzone.find(rs.getInt("idZone")));
 			}	
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -52,10 +52,10 @@ private DAO<Zone> DAOzone = new ZoneDAO();
 		
 		try {
 			st = this.connect.createStatement();
-			String sql = "UPDATE Borne SET idZone = '"+obj.getIdZone()+"' WHERE idZone ="+obj.getIdZone();
+			String sql = "UPDATE Borne SET Zone = '"+obj.getZone()+"' WHERE id ="+obj.getId();
 			System.out.println(sql);
 			st.executeUpdate(sql);
-			obj = this.find(obj.getIdZone());
+			obj = this.find(obj.getId());
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -96,7 +96,7 @@ private DAO<Zone> DAOzone = new ZoneDAO();
 			
 			if(rs.first()) {
 				borne = new Borne(rs.getInt("B.id"),
-								  rs.getInt("B.idZone"));
+						 		  DAOzone.find(rs.getInt("idZone")));
 			}	
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -105,7 +105,7 @@ private DAO<Zone> DAOzone = new ZoneDAO();
 		return borne;
 	}
 	
-public ArrayList<Borne> getAllBornes(){
+	public ArrayList<Borne> getAllBornes(){
 		
 		ArrayList<Borne> liste = new ArrayList<Borne>();
 		
@@ -121,7 +121,7 @@ public ArrayList<Borne> getAllBornes(){
 			
 			while(rs.next()) {
 				liste.add(new Borne(rs.getInt("id"),
-						  rs.getInt("idZone")));  
+						            DAOzone.find(rs.getInt("idZone"))));  
 			}	
 		} catch (SQLException e) {
 			e.printStackTrace();
