@@ -30,7 +30,7 @@ public class Zone {
 		return nom;
 	}
 	
-	public void setNom(){
+	public void setNom(String nom){
 		this.nom=nom;
 	}
 	
@@ -46,7 +46,7 @@ public class Zone {
 		return coefPrivilege;
 	}
 	
-	public void setCoefPrivilege(double CoefPrivilege){
+	public void setCoefPrivilege(double coefPrivilege){
 		this.coefPrivilege=coefPrivilege;
 	}
 }
