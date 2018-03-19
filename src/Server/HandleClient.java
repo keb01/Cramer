@@ -17,12 +17,12 @@ public class HandleClient implements Runnable,AppProtocol{
 	private InputManager in;
 	private OutputManager out;
 	private boolean stop = false;
-	// private logger Terence
+	private LoggerWriter logger;
 	
 	
-	public HandleClient(Socket s /*, logger Terence*/) throws IOException {
+	public HandleClient(Socket s ,LoggerWriter logger ) throws IOException {
 		this.s = s;
-		//this.logger = logger;
+		this.logger = logger;
 	}
 	
 	public void run() {
@@ -44,7 +44,7 @@ public class HandleClient implements Runnable,AppProtocol{
 				s.close();
 			} catch (IOException ex) { ex.printStackTrace(); }
 			
-			// logger Terence : client deconnecte
+			this.logger.setMessageLog("Un client s'est déconnecté");
 		}
 	}
 

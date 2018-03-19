@@ -9,7 +9,7 @@ public class ServerCore extends Thread{
 	private int port;
 	private boolean stop = false;
 	private ServerSocket ss;
-	// private logger Terence
+	private LoggerWriter logger;
 	
 	public ServerCore(int port) throws IOException {
 		this.port = port;
@@ -23,14 +23,14 @@ public class ServerCore extends Thread{
 			while(!stop){
 				try{
 					Socket s = ss.accept();
-					//logger (nouveau client)
-					new Thread(new HandleClient(s)).start();
+					this.logger.setMessageLog("Un client s'est connecté");
+					new Thread(new HandleClient(s,this.logger)).start();
 				}catch(SocketTimeoutException ex){
 				}
 			}
 		} catch (IOException e) {
 			System.out.println("Impossible d'utiliser le port " + port);
-			//Logger.getLogger(ServerCore.class.getName()).log(Level.SEVERE,null, e);
+			this.logger.setErrorLog("Erreur : " + e);
 		}
 	}
 	public synchronized void finish() {
