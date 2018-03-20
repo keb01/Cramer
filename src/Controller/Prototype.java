@@ -19,10 +19,10 @@ public class Prototype {
 		tabbedPane.add("Gestion Produits", AppGestionProduitPanel);
 		new AppGestionProduit(AppGestionProduitPanel);
 		
-		//Adding AppGestionProduitPanel to the main Window and starting the core
+		//Adding AppGestionBornePanel to the main Window and starting the core
 		JPanel AppGestionBornePanel = new JPanel();
 		tabbedPane.add("Gestion Bornes", AppGestionBornePanel);
-		//new AppGestionProduit(AppGestionProduitPanel);
+		new AppGestionBorne(AppGestionBornePanel);
 		
 		fenetrePrincipale.setVisible(true);
 	}
