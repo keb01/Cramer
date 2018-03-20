@@ -1,26 +1,61 @@
 package DAOClient;
 
-import org.codehaus.jackson.map.ObjectMapper;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintStream;
+import java.net.Socket;
+import java.net.UnknownHostException;
 
 public class Query {
     private String queryType;
     private String table;
     private String param;
+    private Socket s;
+    private PrintStream out;
+    private InputStreamReader in;
 
-    public Query(String queryType,String table, String param){
-        this.queryType = queryType;
-        this.table = table;
-        this.param = param;
+    public Query(){
+    	try {
+			s = new Socket("localhost", 5001);
+			out = new PrintStream(s.getOutputStream());
+			in = new InputStreamReader(s.getInputStream());
+            out.print("toto\n");
+            
+			
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        this.queryType = "";
+        this.table = "";
+        this.param = "";
     }
+    
+    
 
     public String executeQuery(){
-      String json = "";
-        ObjectMapper mapper = new ObjectMapper();
-        //mapper.writeValue(jso,this);
-
-
-
-        return json;
+    	String query = "{";
+        query += "\"TYPE\": \""+queryType+"\",";
+        query += "\"TABLE\": \""+table+"\",";
+        query += "\"PARAM\": \""+param+"\"";
+        query += "}\n";
+        System.out.println(query);
+        out.print(query);
+        
+        String line = null;
+        try (BufferedReader is = new BufferedReader(in)) {
+        	line = is.readLine();
+        	System.out.println(line);
+    	} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        return line;
+        
     }
 
     public String getQueryType() {

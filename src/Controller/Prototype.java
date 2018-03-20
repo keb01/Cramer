@@ -3,6 +3,8 @@ package Controller;
 
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
+
+import DAOClient.Query;
 import View.Fenetre;
 
 public class Prototype {
@@ -20,9 +22,10 @@ public class Prototype {
 		new AppGestionProduit(AppGestionProduitPanel);
 		
 		//Adding AppGestionBornePanel to the main Window and starting the core
+		Query q = new Query();
 		JPanel AppGestionBornePanel = new JPanel();
 		tabbedPane.add("Gestion Bornes", AppGestionBornePanel);
-		new AppGestionBorne(AppGestionBornePanel);
+		new AppGestionBorne(AppGestionBornePanel,q);
 		
 		fenetrePrincipale.setVisible(true);
 	}

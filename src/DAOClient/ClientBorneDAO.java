@@ -8,11 +8,14 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public class ClientBorneDAO extends ClientDAO {
-    private ClientDAO<Zone> ClientDAOzone = new ClientZoneDAO();
-
-
-
-
+	private Query queryManager;
+    private ClientDAO<Zone> clientZoneDAO;
+    
+    public ClientBorneDAO(Query q) {
+		this.queryManager = q;
+		clientZoneDAO = new ClientZoneDAO(this.queryManager);
+				
+	}
     @Override
     public Object find(long id) {
         return null;

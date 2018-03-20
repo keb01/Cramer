@@ -17,14 +17,15 @@ public class InputManager {
 	
 	public void doRun() throws IOException {
 		String json;
-		boolean stop = false;
+		String line = null;
 		try (BufferedReader is = new BufferedReader(new InputStreamReader(in))) {
-			while (!stop) {
-				String line = is.readLine();
+			
+			while ((line = is.readLine()) != null) {
+				 
 				System.out.println("lecture"+line);
 
-                    System.out.println("requette listeMag");
-					handler.askListMagasin();
+                    //System.out.println("requette listeMag");
+					//handler.askListMagasin();
 					handler.askListBornes();
 
 				

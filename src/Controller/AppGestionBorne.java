@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import DAOClient.ClientBorneDAO;
 import DAOClient.ClientZoneDAO;
+import DAOClient.Query;
 import Model.Borne;
 import Model.Zone;
 import View.PanelArticle;
@@ -23,8 +24,9 @@ public class AppGestionBorne {
 private ClientZoneDAO zoneDAO;
 	private Borne selectBorne;
 	private Zone selectZone;
+	private Query qManager;
 	
-	public AppGestionBorne(JPanel tabPanel){
+	public AppGestionBorne(JPanel tabPanel,Query q){
 		
 		// Tab panel initialization 
 		this.tabPanel = tabPanel;
@@ -40,14 +42,16 @@ private ClientZoneDAO zoneDAO;
 		tabPanel.add(panelDetailBorne,BorderLayout.EAST);
 		
 		// DAOs initialization
+		this.qManager = q;
+		
 		this.listeZone = new ArrayList<Zone>();
 		this.listeBorne = new ArrayList<Borne>();
-		this.borneDAO = new ClientBorneDAO();
-		this.zoneDAO = new ClientZoneDAO();
+		this.borneDAO = new ClientBorneDAO(qManager);
+		this.zoneDAO = new ClientZoneDAO(qManager);
 		
 		
 		//Areas list initialization
-		//listeZone = zoneDAO.getAllZones(); A FAIRE JM
+		listeZone = zoneDAO.getAllZones(); 
 		//listeBorne = borneDAO.getAllBornes(); A FAIRE JM
 
 		updateListeZone();
