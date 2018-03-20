@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 import Model.MagasinDAO;
 import Model.ArticleDAO;
+import Model.BorneDAO;
 
 
 public class TestJunit {
@@ -20,11 +21,14 @@ public class TestJunit {
 		
 		
 		ArticleDAO pro = new ArticleDAO();
-		//test: le produit 1 existe bien
+		//test: product 1 exists 
 		assertNotNull((pro.find(1)));
-		//test: le produit 1 existe bien et se trouve dans le magasin 1
+		//test: product 1 exists in shop 1
 		assertNotNull((pro.findInMagasin(1,1)));
 		
+		BorneDAO borne = new BorneDAO();
+		assertNotNull((borne.find(1)));
+		assertNotNull((borne.findInBorne(3,2)));
 	}
 	
 
