@@ -10,7 +10,7 @@ public class ClientTest {
 
     public static void main(String[] args) {
         try {
-            Socket s  = new Socket("localhost", 5000);
+            Socket s  = new Socket("localhost", 5001);
             PrintStream printStream = new PrintStream(s.getOutputStream());
             printStream.print("toto\n");
             try (BufferedReader is = new BufferedReader(new InputStreamReader(s.getInputStream()))) {

@@ -17,6 +17,8 @@ public class Client {
 		this.sexe = sexe;
 		this.caracteristiques = caracteristiques;
 	}
+	public Client(){
+	}
 
 	public String getNom() {
 		return nom;
