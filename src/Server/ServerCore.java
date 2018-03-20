@@ -13,6 +13,7 @@ public class ServerCore extends Thread{
 	
 	public ServerCore(int port) throws IOException {
 		this.port = port;
+		this.logger = new LoggerWriter();
 		this.logger.setMessageLog("Server started...");
 		this.start();
 	}

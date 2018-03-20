@@ -6,7 +6,7 @@ public class ServerMain {
 
     public static void main(String[] args) {
         try {
-            ServerCore server = new ServerCore(5000);
+            ServerCore server = new ServerCore(5001);
 
 
         } catch (IOException e) {

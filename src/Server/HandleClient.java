@@ -55,14 +55,21 @@ public class HandleClient implements Runnable,AppProtocol{
         listeMag = magasinDAO.getAllMagasins();
 
         /**** JSON CONCAT ****/
-        ObjectMapper mapper = new ObjectMapper();
+        /*ObjectMapper mapper = new ObjectMapper();
         String json = "[";
         for(Magasin m : listeMag){
             json += mapper.writeValueAsString(m)+",";
         }
         json += json.substring(0, json.length() - 1);
         json += "]";
-        out.sendListMagasin(json);
+        out.sendListMagasin(json);*/
+		ObjectMapper mapper = new ObjectMapper();
+
+		mapper.writeValue(System.out,listeMag);
+
+		//out.sendListMagasin();
+
+
     }
     
 	@Override
