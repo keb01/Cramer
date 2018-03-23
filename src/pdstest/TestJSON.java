@@ -20,6 +20,8 @@ public class TestJSON  {
 
 		//Object to JSON in file
 		mapper.writeValue(new File("client.json"), user);
+		
+		
 		Client user1 = mapper.readValue(new File("client.json"),Client.class);
 		System.out.println(user1.nom);
 	}
