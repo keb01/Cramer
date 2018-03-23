@@ -68,26 +68,26 @@ public class ClientZoneDAO extends ClientDAO<Zone>{
 	}
 
 
-	public ArrayList<Zone> getZoneIdX(long id){
+	public Zone getZoneIdX(long id){
+		//ArrayList pas nécessaire
 		
-		
-		queryManager.setQueryType("LIST");
+		queryManager.setQueryType("FIND");
 		queryManager.setTable("ZONE");
 		queryManager.setParam(Long.toString(id));
 		String response = queryManager.executeQuery();
 		
 		ObjectMapper objectMapper = new ObjectMapper();
-		ArrayList<Zone> listZone = new ArrayList<Zone>();
+		Zone zone = new Zone();
 		
 		try {
-			Zone[] tab = objectMapper.readValue(response, Zone[].class);
-			listZone = new ArrayList<Zone>(Arrays.asList(tab));
+			zone = objectMapper.readValue(response, Zone.class);
+			
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		
-		return listZone;
+		return zone;
 
 	}
 
