@@ -20,7 +20,7 @@ public class Query {
 			s = new Socket("localhost", 5001);
 			out = new PrintStream(s.getOutputStream());
 			in = new InputStreamReader(s.getInputStream());
-            out.print("toto\n");
+            
             
 			
 		} catch (UnknownHostException e) {
@@ -39,9 +39,9 @@ public class Query {
 
     public String executeQuery(){
     	String query = "{";
-        query += "\"TYPE\": \""+queryType+"\",";
-        query += "\"TABLE\": \""+table+"\",";
-        query += "\"PARAM\": \""+param+"\"";
+        query += "\"queryType\": \""+queryType+"\",";
+        query += "\"table\": \""+table+"\",";
+        query += "\"param\": \""+param+"\"";
         query += "}\n";
         System.out.println(query);
         out.print(query);

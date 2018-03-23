@@ -1,11 +1,10 @@
 package DAOClient;
 
 import Model.Zone;
-
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import org.codehaus.jackson.map.ObjectMapper;
 
 public class ClientZoneDAO extends ClientDAO<Zone>{
 	private Query queryManager;
@@ -47,12 +46,23 @@ public class ClientZoneDAO extends ClientDAO<Zone>{
 
 
 	public ArrayList<Zone> getAllZones(){
-		ArrayList<Zone> listZone = new ArrayList<Zone>();
+		
 		queryManager.setQueryType("LIST");
 		queryManager.setTable("ZONE");
 		queryManager.setParam("");
-		queryManager.executeQuery();
-
+		String response = queryManager.executeQuery();
+		
+		ObjectMapper objectMapper = new ObjectMapper();
+		ArrayList<Zone> listZone = new ArrayList<Zone>();
+		
+		try {
+			Zone[] tab = objectMapper.readValue(response, Zone[].class);
+			listZone = new ArrayList<Zone>(Arrays.asList(tab));
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
 		return listZone;
 
 	}

@@ -5,17 +5,17 @@ public class Zone {
 	private long id;
 	private String nom;
 	private String description;
-	private double coefPrivilege;
+	private double coefP;
 
 	public Zone() {
 		
 	}
 	
-	public Zone(long id, String nom, String description, double coefPrivilege){
+	public Zone(long id, String nom, String description, double coefP){
 		this.id=id;
 		this.nom=nom;
 		this.description=description;
-		this.coefPrivilege=coefPrivilege;
+		this.coefP=coefP;
 	}
 	
 	public long getId(){
@@ -42,11 +42,11 @@ public class Zone {
 		this.description=description;
 	}
 	
-	public double getCoefPrvilege(){
-		return coefPrivilege;
+	public double getCoefP(){
+		return coefP;
 	}
 	
-	public void setCoefPrivilege(double coefPrivilege){
-		this.coefPrivilege=coefPrivilege;
+	public void setCoefP(double coefP){
+		this.coefP=coefP;
 	}
 }

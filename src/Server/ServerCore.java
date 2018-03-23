@@ -24,14 +24,14 @@ public class ServerCore extends Thread{
 			while(!stop){
 				try{
 					Socket s = ss.accept();
-					this.logger.setMessageLog("Un client s'est connecté");
+					this.logger.setMessageLog("New client connexion");
 					new Thread(new HandleClient(s,this.logger)).start();
 				}catch(SocketTimeoutException ex){
 				}
 			}
 		} catch (IOException e) {
-			System.out.println("Impossible d'utiliser le port " + port);
-			this.logger.setErrorLog("Erreur : " + e);
+			
+			this.logger.setErrorLog("ERROR : " + e);
 		}
 	}
 	public synchronized void finish() {

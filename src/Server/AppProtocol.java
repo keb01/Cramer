@@ -9,7 +9,7 @@ public interface AppProtocol {
 
     public void askListMagasin() throws IOException;
     public void askListBornes() throws IOException;
-
+    public void askListZones() throws IOException;
 
     //ANSWERS
     public void sendListZones(String s);

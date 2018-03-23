@@ -1,13 +1,13 @@
 package Server;
 
-import Controller.ListenerMagasin;
+
 import Model.Borne;
 import Model.BorneDAO;
 import Model.Magasin;
 import Model.MagasinDAO;
+import Model.Zone;
+import Model.ZoneDAO;
 import org.codehaus.jackson.map.ObjectMapper;
-
-import javax.swing.*;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -44,7 +44,7 @@ public class HandleClient implements Runnable,AppProtocol{
 				s.close();
 			} catch (IOException ex) { ex.printStackTrace(); }
 			
-			this.logger.setMessageLog("Un client s'est déconnecté");
+			this.logger.setMessageLog("Client exit");
 		}
 	}
 
@@ -53,23 +53,10 @@ public class HandleClient implements Runnable,AppProtocol{
         MagasinDAO magasinDAO = new MagasinDAO();
         ArrayList<Magasin> listeMag = new ArrayList<Magasin>();
         listeMag = magasinDAO.getAllMagasins();
-
-        /**** JSON CONCAT ****/
-        /*ObjectMapper mapper = new ObjectMapper();
-        String json = "[";
-        for(Magasin m : listeMag){
-            json += mapper.writeValueAsString(m)+",";
-        }
-        json += json.substring(0, json.length() - 1);
-        json += "]";
-        out.sendListMagasin(json);*/
-		ObjectMapper mapper = new ObjectMapper();
-
-		mapper.writeValue(System.out,listeMag);
-
-		//out.sendListMagasin();
-
-
+        /**** JSON MAPPER ****/
+        ObjectMapper mapper = new ObjectMapper();
+		String json = mapper.writeValueAsString(listeMag);
+		//out.sendListMagasin(json);
     }
     
 	@Override
@@ -77,15 +64,22 @@ public class HandleClient implements Runnable,AppProtocol{
 		BorneDAO borneDAO = new BorneDAO();
 		ArrayList<Borne> listeBorne = new ArrayList<Borne>();
 		listeBorne = borneDAO.getAllBornes();
-		/**** JSON CONCAT ****/
+		/**** JSON MAPPER ****/
         ObjectMapper mapper = new ObjectMapper();
-        String json = "[";
-        for(Borne b : listeBorne){
-            json += mapper.writeValueAsString(b)+",";
-        }
-        json += json.substring(0, json.length() - 1);
-        json += "]";
+		String json = mapper.writeValueAsString(listeBorne);
         out.sendListMagasin(json);
+	}
+	
+	@Override
+	public void askListZones() throws IOException {
+		ZoneDAO zoneDAO = new ZoneDAO();
+		ArrayList<Zone> listeZone = new ArrayList<Zone>();
+		listeZone = zoneDAO.getAllZones();
+		/**** JSON MAPPER ****/
+		ObjectMapper mapper = new ObjectMapper();
+		String json = mapper.writeValueAsString(listeZone);
+        out.sendListZones(json);
+		
 	}
 
     @Override
@@ -100,6 +94,8 @@ public class HandleClient implements Runnable,AppProtocol{
 
 	@Override
 	public void sendListMagasin(String s) throws IOException {}
+
+	
 
 
 

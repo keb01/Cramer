@@ -63,7 +63,7 @@ private ClientZoneDAO zoneDAO;
 		panelZone.removeAll();
 		int px = 0;
 		for(Zone m : listeZone){
-			JLabel label = new JLabel(m.getNom());
+			JLabel label = new JLabel(m.getNom()+" "+m.getDescription());
 			label.addMouseListener(new ListenerZone(this,m));
 			panelZone.add(label);
 			px++;

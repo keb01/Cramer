@@ -39,6 +39,12 @@ public class OutputManager implements AppProtocol{
 		
 	}
 
+	@Override
+	public void askListZones() throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 	// IMPLEMENT METHODES DU PROTOCOL POUR ENVOI JSON AU CLIENT
 	
