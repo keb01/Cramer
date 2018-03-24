@@ -11,25 +11,23 @@ public class Query {
     private String queryType;
     private String table;
     private String param;
-    private Socket s;
     private PrintStream out;
     private InputStreamReader in;
+    private BufferedReader is;
 
     public Query(){
     	try {
-			s = new Socket("localhost", 5001);
+			Socket s = new Socket("localhost", 5001);
 			out = new PrintStream(s.getOutputStream());
 			in = new InputStreamReader(s.getInputStream());
-            
-            
-			
-		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			is = new BufferedReader(in);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		
+        
         this.queryType = "";
         this.table = "";
         this.param = "";
@@ -43,17 +41,19 @@ public class Query {
         query += "\"table\": \""+table+"\",";
         query += "\"param\": \""+param+"\"";
         query += "}\n";
-        System.out.println(query);
+        System.out.println("CLIENT QUERY : "+query);
         out.print(query);
         
         String line = null;
-        try (BufferedReader is = new BufferedReader(in)) {
-        	line = is.readLine();
-        	System.out.println(line);
-    	} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+       
+        	try {
+				line = is.readLine();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        	System.out.println("SERVER RESP : "+line);
+    	
         return line;
         
     }

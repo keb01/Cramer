@@ -24,9 +24,9 @@ public class InputManager {
 		try (BufferedReader is = new BufferedReader(new InputStreamReader(in))) {
 			
 			while ((line = is.readLine()) != null) {
-				System.out.println(line);
+				System.out.println("CLIENT ASKING : "+line);
 				InputQuery query = mapper.readValue(line, InputQuery.class);
-				System.out.println(query.getQueryType());
+				
                 switch (query.getQueryType()) {
 				case "LIST":
 					switch (query.getTable()) {

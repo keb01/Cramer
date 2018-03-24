@@ -1,6 +1,11 @@
 package Controller;
 
 
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintStream;
+import java.net.Socket;
+
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
@@ -16,16 +21,19 @@ public class Prototype {
 		JTabbedPane tabbedPane = new JTabbedPane();
 		fenetrePrincipale.add(tabbedPane);
 		
-		//Adding AppGestionProduitPanel to the main Window and starting the core
-		JPanel AppGestionProduitPanel = new JPanel();
-		tabbedPane.add("Gestion Produits", AppGestionProduitPanel);
-		new AppGestionProduit(AppGestionProduitPanel);
+			
+			//Adding AppGestionProduitPanel to the main Window and starting the core
+			JPanel AppGestionProduitPanel = new JPanel();
+			tabbedPane.add("Gestion Produits", AppGestionProduitPanel);
+			new AppGestionProduit(AppGestionProduitPanel);
+			
+			//Adding AppGestionBornePanel to the main Window and starting the core
+			Query q = new Query();
+			JPanel AppGestionBornePanel = new JPanel();
+			tabbedPane.add("Gestion Bornes", AppGestionBornePanel);
+			new AppGestionBorne(AppGestionBornePanel,q);
+
 		
-		//Adding AppGestionBornePanel to the main Window and starting the core
-		Query q = new Query();
-		JPanel AppGestionBornePanel = new JPanel();
-		tabbedPane.add("Gestion Bornes", AppGestionBornePanel);
-		new AppGestionBorne(AppGestionBornePanel,q);
 		
 		fenetrePrincipale.setVisible(true);
 	}

@@ -52,7 +52,17 @@ private ClientZoneDAO zoneDAO;
 		
 		//Areas list initialization
 		listeZone = zoneDAO.getAllZones(); 
-		//listeBorne = borneDAO.getAllBornes(); A FAIRE JM
+		listeBorne = borneDAO.getAllBornes();
+		for(Borne p : listeBorne){
+			System.out.println("Borne "+p.getId()+" "+p.getZone().getDescription());
+			/*if(p.getZone().getId() == selectZone.getId()){
+				JLabel label = new JLabel("Borne "+p.getId());
+				label.addMouseListener(new ListenerBorne(this,p));
+				panelBorne.add(label);
+				px++;
+			}*/
+			
+		}
 
 		updateListeZone();
 		
@@ -77,12 +87,13 @@ private ClientZoneDAO zoneDAO;
 		panelBorne.removeAll();
 		int px = 0;
 		for(Borne p : listeBorne){
-			if(p.getZone().getId() == selectZone.getId()){
+			System.out.println("Borne "+p.getId()+" "+p.getZone().getDescription());
+			/*if(p.getZone().getId() == selectZone.getId()){
 				JLabel label = new JLabel("Borne "+p.getId());
 				label.addMouseListener(new ListenerBorne(this,p));
 				panelBorne.add(label);
 				px++;
-			}
+			}*/
 			
 		}
 		panelBorne.setPreferredSize(new Dimension(300, px*16));
@@ -92,6 +103,7 @@ private ClientZoneDAO zoneDAO;
 	
 
 	public void selectedZone(Zone m) {
+		System.out.println("toto"+m.getNom());
 		panelDetailBorne.setVisible(false);
 		selectZone = m;
 		updateListeBorne();
