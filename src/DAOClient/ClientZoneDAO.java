@@ -90,6 +90,21 @@ public class ClientZoneDAO extends ClientDAO<Zone>{
 		return zone;
 
 	}
+	
+	public void deleteZone(long idZone){
+		//ArrayList unusual
+		
+		queryManager.setQueryType("DELETE");
+		queryManager.setTable("ZONE");
+		queryManager.setParam("{\"id\": \""+Long.toString(idZone)+"\"}");
+		
+		//queryManager.getParam().get(1)=Long.toString(idZone);
+		
+		String answer = queryManager.executeQuery();
+		
+		
+
+	}
 
 
 }
