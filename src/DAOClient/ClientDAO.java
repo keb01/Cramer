@@ -1,8 +1,5 @@
 package DAOClient;
 
-import Model.MySQLConnectionPool;
-
-import java.sql.Connection;
 
 public abstract class ClientDAO<T> {
 

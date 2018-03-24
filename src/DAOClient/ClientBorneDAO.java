@@ -2,46 +2,40 @@ package DAOClient;
 
 import Model.*;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
 
-public class ClientBorneDAO extends ClientDAO {
-    private ClientDAO<Zone> ClientDAOzone = new ClientZoneDAO();
+public class ClientBorneDAO extends ClientDAO<Borne> {
+	private Query queryManager;
+    private ClientDAO<Zone> clientZoneDAO;
+    
+    public ClientBorneDAO(Query q) {
+		this.queryManager = q;
+		clientZoneDAO = new ClientZoneDAO(this.queryManager);
+				
+	}
 
+	@Override
+	public Borne find(long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
+	@Override
+	public Borne create(Borne obj) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
+	@Override
+	public Borne update(Borne obj) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-    @Override
-    public Object find(long id) {
-        return null;
-        
-    }
-
-    @Override
-    public Object create(Object obj) {
-        return null;
-    }
-
-    @Override
-    public Object update(Object obj) {
-        return null;
-    }
-
-    @Override
-    public void delete(Object obj) {
-
-    }
-
-
-
-
-
-
-
-
-
+	@Override
+	public void delete(Borne obj) {
+		// TODO Auto-generated method stub
+		
+	}
 
 
 

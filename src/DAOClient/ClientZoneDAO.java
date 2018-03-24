@@ -1,32 +1,95 @@
 package DAOClient;
 
 import Model.Zone;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import org.codehaus.jackson.map.ObjectMapper;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+public class ClientZoneDAO extends ClientDAO<Zone>{
+	private Query queryManager;
 
-public class ClientZoneDAO extends ClientDAO{
-    @Override
-    public Object find(long id) {
-        return null;
-    }
+	public ClientZoneDAO(Query q){
+		this.queryManager = q;
+	}
 
-    @Override
-    public Object create(Object obj) {
-        return null;
-    }
+	//*****************************************Extended methods of DAO*********************************************************
 
-    @Override
-    public Object update(Object obj) {
-        return null;
-    }
+	@Override
+	public Zone find(long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-    @Override
-    public void delete(Object obj) {
 
-    }
+	@Override
+	public Zone create(Zone obj) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-//*****************************************Extended methods of DAO*********************************************************
+
+	@Override
+	public Zone update(Zone obj) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public void delete(Zone obj) {
+		// TODO Auto-generated method stub
+
+	}
+
+	//*************************************************************************************************************************
+
+
+	public ArrayList<Zone> getAllZones(){
+		
+		queryManager.setQueryType("LIST");
+		queryManager.setTable("ZONE");
+		queryManager.setParam("");
+		String response = queryManager.executeQuery();
+		
+		ObjectMapper objectMapper = new ObjectMapper();
+		ArrayList<Zone> listZone = new ArrayList<Zone>();
+		
+		try {
+			Zone[] tab = objectMapper.readValue(response, Zone[].class);
+			listZone = new ArrayList<Zone>(Arrays.asList(tab));
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		return listZone;
+
+	}
+
+
+	public Zone getZoneIdX(long id){
+		//ArrayList pas nécessaire
+		
+		queryManager.setQueryType("FIND");
+		queryManager.setTable("ZONE");
+		queryManager.setParam(Long.toString(id));
+		String response = queryManager.executeQuery();
+		
+		ObjectMapper objectMapper = new ObjectMapper();
+		Zone zone = new Zone();
+		
+		try {
+			zone = objectMapper.readValue(response, Zone.class);
+			
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		return zone;
+
+	}
+
 
 }
