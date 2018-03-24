@@ -59,7 +59,7 @@ public ArrayList<Borne> getAllBornes(){
 		ArrayList<Borne> listBorne = new ArrayList<Borne>();
 		
 		try {
-			Zone[] tab = objectMapper.readValue(response, Zone[].class);
+			Borne[] tab = objectMapper.readValue(response, Borne[].class);
 			listBorne = new ArrayList<Borne>();
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
