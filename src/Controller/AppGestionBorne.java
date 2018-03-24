@@ -77,14 +77,14 @@ private ClientZoneDAO zoneDAO;
 		panelBorne.removeAll();
 		int px = 0;
 		for(Borne p : listeBorne){
-			System.out.println("Borne "+p.getId()+" "+p.getZone().getDescription());
-			/*if(p.getZone().getId() == selectZone.getId()){
+			//System.out.println("Borne "+p.getId()+" "+p.getZone().getDescription());
+			if(p.getZone().getId() == selectZone.getId()){
 				JLabel label = new JLabel("Borne "+p.getId());
 				label.addMouseListener(new ListenerBorne(this,p));
 				panelBorne.add(label);
 				px++;
-			}*/
-			
+			}
+		
 		}
 		panelBorne.setPreferredSize(new Dimension(300, px*16));
 		panelBorne.revalidate();
