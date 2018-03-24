@@ -1,8 +1,12 @@
 package Controller;
 
 
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+
+import javax.swing.JLabel;
 
 import Model.Article;
 
@@ -20,6 +24,11 @@ public class ListenerProduit implements MouseListener{
 	
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
+		JLabel l = (JLabel) arg0.getSource();
+		for(Component la : l.getParent().getComponents()){
+			la.setForeground(Color.BLACK);
+		}
+		l.setForeground(Color.RED);
 	c.selectedProduit(p);
 		
 		

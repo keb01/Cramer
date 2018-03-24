@@ -1,8 +1,12 @@
 package Controller;
 
 
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+
+import javax.swing.JLabel;
 
 import Model.Magasin;
 
@@ -20,6 +24,11 @@ public class ListenerMagasin implements MouseListener {
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
+		JLabel l = (JLabel) e.getSource();
+		for(Component la : l.getParent().getComponents()){
+			la.setForeground(Color.BLACK);
+		}
+		l.setForeground(Color.RED);
 		c.selectedMagasin(m);
 		
 	}
