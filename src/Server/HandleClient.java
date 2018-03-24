@@ -81,6 +81,17 @@ public class HandleClient implements Runnable,AppProtocol{
         out.sendListZones(json);
 		
 	}
+	
+	public void askZone(long id) throws IOException {
+		ZoneDAO zoneDAO = new ZoneDAO();
+		Zone listeZone = new Zone();
+		listeZone = zoneDAO.find(id);
+		/**** JSON MAPPER ****/
+		ObjectMapper mapper = new ObjectMapper();
+		String json = mapper.writeValueAsString(listeZone);
+        out.sendListZones(json);
+		
+	}
 
     @Override
 	public void sendListZones(String s) {

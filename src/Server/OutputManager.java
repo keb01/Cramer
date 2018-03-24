@@ -18,6 +18,12 @@ public class OutputManager implements AppProtocol{
     }
 
     @Override
+	public void askZone(long id) throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
 	public void sendListZones(String s) {
 		ow.println(s);
 	}

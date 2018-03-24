@@ -42,6 +42,16 @@ public class InputManager {
 					
 					break;
 				case "FIND":
+					switch (query.getTable()) {
+					case "ZONE":
+						handler.askZone(Long.parseLong(query.getParam()));
+						break;
+					case "BORNE":
+						handler.askListBornes();
+						break;
+					default:
+						break;
+					}
 					
 					break;	
 				case "DELETE":
