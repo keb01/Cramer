@@ -28,7 +28,7 @@ public class TestJunit {
 		
 		BorneDAO borne = new BorneDAO();
 		assertNotNull((borne.find(1)));
-		assertNotNull((borne.findInBorne(3,2)));
+		assertNotNull((borne.findZone(3,2)));
 	}
 	
 
