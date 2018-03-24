@@ -98,7 +98,18 @@ public class ClientZoneDAO extends ClientDAO<Zone>{
 		queryManager.setTable("ZONE");
 		queryManager.setParam("{\"id\": \""+Long.toString(idZone)+"\"}");
 		
-		//queryManager.getParam().get(1)=Long.toString(idZone);
+		String answer = queryManager.executeQuery();
+		
+		
+
+	}
+	
+	public void updateZone(long idZone){
+		//ArrayList unusual
+		
+		queryManager.setQueryType("UPDATE");
+		queryManager.setTable("ZONE");
+		queryManager.setParam("{\"id\": \""+Long.toString(idZone)+"\"}");
 		
 		String answer = queryManager.executeQuery();
 		
