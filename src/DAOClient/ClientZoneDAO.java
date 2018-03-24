@@ -69,7 +69,7 @@ public class ClientZoneDAO extends ClientDAO<Zone>{
 
 
 	public Zone getZoneIdX(long id){
-		//ArrayList pas nécessaire
+		//ArrayList unusual
 		
 		queryManager.setQueryType("FIND");
 		queryManager.setTable("ZONE");

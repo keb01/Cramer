@@ -82,7 +82,7 @@ private DAO<Zone> DAOzone = new ZoneDAO();
 	
 //***********************************************************************************************************************	
 	
-	public Borne findInBorne(long id, long idZone) {
+	public Borne findZone(long id, long idZone) {
 		Borne borne = new Borne();
 		
 		Statement st =null;
@@ -91,7 +91,7 @@ private DAO<Zone> DAOzone = new ZoneDAO();
 		
 		try {
 			st = this.connect.createStatement();
-			String sql = "SELECT * FROM Borne B JOIN Zone Z ON B.idZone = Z.idZone WHERE B.id="+id+" AND Z.idZone="+idZone;
+			String sql = "SELECT idZone FROM Borne B JOIN Zone Z ON B.idZone = Z.idZone WHERE B.id="+id;
 			rs = st.executeQuery(sql);
 			
 			if(rs.first()) {
