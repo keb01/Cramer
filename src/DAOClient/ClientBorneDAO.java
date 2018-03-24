@@ -51,7 +51,7 @@ public class ClientBorneDAO extends ClientDAO<Borne> {
 public ArrayList<Borne> getAllBornes(){
 		
 		queryManager.setQueryType("LIST");
-		queryManager.setTable("Borne");
+		queryManager.setTable("BORNE");
 		queryManager.setParam("");
 		String response = queryManager.executeQuery();
 		
@@ -75,7 +75,7 @@ public ArrayList<Borne> getAllBornes(){
 		//ArrayList unusual
 		
 		queryManager.setQueryType("FIND");
-		queryManager.setTable("Borne");
+		queryManager.setTable("BORNE");
 		queryManager.setParam(Long.toString(id));
 		String response = queryManager.executeQuery();
 		

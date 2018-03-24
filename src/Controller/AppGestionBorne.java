@@ -53,16 +53,6 @@ private ClientZoneDAO zoneDAO;
 		//Areas list initialization
 		listeZone = zoneDAO.getAllZones(); 
 		listeBorne = borneDAO.getAllBornes();
-		for(Borne p : listeBorne){
-			System.out.println("Borne "+p.getId()+" "+p.getZone().getDescription());
-			/*if(p.getZone().getId() == selectZone.getId()){
-				JLabel label = new JLabel("Borne "+p.getId());
-				label.addMouseListener(new ListenerBorne(this,p));
-				panelBorne.add(label);
-				px++;
-			}*/
-			
-		}
 
 		updateListeZone();
 		
