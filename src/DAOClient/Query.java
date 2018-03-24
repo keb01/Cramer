@@ -15,6 +15,9 @@ public class Query {
     private InputStreamReader in;
     private BufferedReader is;
 
+    //private ArrayList<String> param; 
+    
+    
     public Query(){
     	try {
 			Socket s = new Socket("localhost", 5001);
@@ -30,7 +33,9 @@ public class Query {
         
         this.queryType = "";
         this.table = "";
+        
         this.param = "";
+        //this.param = new ArrayList<String>();
     }
     
     

@@ -93,6 +93,22 @@ public ArrayList<Borne> getAllBornes(){
 		return borne;
 
 	}
+	
+	public void createBorne(long idBorne, long idZone){
+		//ArrayList unusual
+		
+		queryManager.setQueryType("INSERT");
+		queryManager.setTable("BORNE");
+		queryManager.setParam("{\"id\": \""+Long.toString(idBorne)+"\",\"idZone\":"+Long.toString(idZone)+"\"}");
+		
+		//queryManager.getParam().get(0)=Long.toString(idBorne);
+		//queryManager.getParam().get(1)=Long.toString(idZone);
+		
+		String response = queryManager.executeQuery();
+		
+		
+
+	}
 
 
 }
