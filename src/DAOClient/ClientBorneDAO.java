@@ -59,8 +59,8 @@ public ArrayList<Borne> getAllBornes(){
 		ArrayList<Borne> listBorne = new ArrayList<Borne>();
 		
 		try {
-			Borne[] tab = objectMapper.readValue(response, Borne[].class);
-			listBorne = new ArrayList<Borne>();
+			Borne[] array = objectMapper.readValue(response, Borne[].class);
+			listBorne = new ArrayList<Borne>(Arrays.asList(array));
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
