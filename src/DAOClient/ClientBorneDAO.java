@@ -21,25 +21,72 @@ public class ClientBorneDAO extends ClientDAO<Borne> {
 
 	@Override
 	public Borne find(long id) {
-		// TODO Auto-generated method stub
-		return null;
+		//ArrayList unusual
+		
+				queryManager.setQueryType("FIND");
+				queryManager.setTable("BORNE");
+				queryManager.setParam(Long.toString(id));
+				String response = queryManager.executeQuery();
+				
+				ObjectMapper objectMapper = new ObjectMapper();
+				Borne borne = new Borne();
+				
+				try {
+					borne = objectMapper.readValue(response, Borne.class);
+					
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+				return borne;
 	}
 
 	@Override
 	public Borne create(Borne obj) {
-		// TODO Auto-generated method stub
-		return null;
+		//ArrayList unusual
+		
+				queryManager.setQueryType("INSERT");
+				queryManager.setTable("BORNE");
+				queryManager.setParam("{\"id\": \""+Long.toString(obj.getId())+"\",\"idZone\":"+Long.toString(obj.getZone().getId())+"\"}");
+				
+				//queryManager.getParam().get(0)=Long.toString(obj.getId());
+				//queryManager.getParam().get(1)=Long.toString(obj.getZone().getId());
+				
+				String response = queryManager.executeQuery();
+				
+				return obj;
 	}
 
 	@Override
 	public Borne update(Borne obj) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		queryManager.setQueryType("UPDATE");
+		queryManager.setTable("BORNE");
+		queryManager.setParam("{\"id\": \""+Long.toString(obj.getId())+"\",\"idZone\":"+Long.toString(obj.getZone().getId())+"\"}");
+		
+		//queryManager.getParam().get(0)=Long.toString(obj.getId());
+		//queryManager.getParam().get(1)=Long.toString(obj.getZone().getId());
+		
+		String response = queryManager.executeQuery();
+		
+		return obj;
+		
 	}
 
 	@Override
 	public void delete(Borne obj) {
-		// TODO Auto-generated method stub
+		
+		queryManager.setQueryType("DELETE");
+		queryManager.setTable("BORNE");
+		queryManager.setParam(Long.toString(obj.getId()));
+		
+		//queryManager.getParam().get(0)=Long.toString(idBorne);
+		//queryManager.getParam().get(1)=Long.toString(idZone);
+		
+		String response = queryManager.executeQuery();
+		
+	
 		
 	}
 
