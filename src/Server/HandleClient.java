@@ -84,16 +84,94 @@ public class HandleClient implements Runnable,AppProtocol{
 	
 	public void askZone(long id) throws IOException {
 		ZoneDAO zoneDAO = new ZoneDAO();
-		Zone listeZone = new Zone();
-		listeZone = zoneDAO.find(id);
+		Zone zone = new Zone();
+		zone = zoneDAO.find(id);
 		/**** JSON MAPPER ****/
 		ObjectMapper mapper = new ObjectMapper();
-		String json = mapper.writeValueAsString(listeZone);
+		String json = mapper.writeValueAsString(zone);
         out.sendListZones(json);
 		
 	}
+	
+	    @Override
+	public void askBorne(long id) throws IOException {
+	    	BorneDAO borneDAO = new BorneDAO();
+			Borne borne = new Borne();
+			borne = borneDAO.find(id);
+			/**** JSON MAPPER ****/
+			ObjectMapper mapper = new ObjectMapper();
+			String json = mapper.writeValueAsString(borne);
+	        out.sendListZones(json);
+		
+	}
 
-    @Override
+	@Override
+		public void delZone(Zone zone) throws IOException {
+			ZoneDAO zDAO = new ZoneDAO();
+			zDAO.delete(zone);
+			/**** JSON MAPPER ****/
+			ObjectMapper mapper = new ObjectMapper();
+			String json = mapper.writeValueAsString(zone);
+			out.sendListZones(json);
+			
+		}
+
+		@Override
+		public void delBorne(Borne borne) throws IOException {
+			BorneDAO borneDAO = new BorneDAO();
+			borneDAO.delete(borne);
+			/**** JSON MAPPER ****/
+			ObjectMapper mapper = new ObjectMapper();
+			String json = mapper.writeValueAsString(borne);
+	        out.sendListZones(json);
+			
+		}
+
+		@Override
+		public void createZone(Zone zone) throws IOException {
+			ZoneDAO zDAO = new ZoneDAO();
+			zone = 	zDAO.create(zone);
+			/**** JSON MAPPER ****/
+			ObjectMapper mapper = new ObjectMapper();
+			String json = mapper.writeValueAsString(zone);
+	        out.sendListZones(json);
+			
+		}
+
+		@Override
+		public void createBorne(Borne borne) throws IOException {
+			BorneDAO borneDAO = new BorneDAO();
+			borne = borneDAO.create(borne);
+			/**** JSON MAPPER ****/
+			ObjectMapper mapper = new ObjectMapper();
+			String json = mapper.writeValueAsString(borne);
+	        out.sendListZones(json);
+			
+		}
+
+		@Override
+		public void updateZone(Zone zone) throws IOException {
+			ZoneDAO zDAO = new ZoneDAO();
+			zone = zDAO.update(zone);
+			/**** JSON MAPPER ****/
+			ObjectMapper mapper = new ObjectMapper();
+			String json = mapper.writeValueAsString(zone);
+	        out.sendListZones(json);
+			
+		}
+
+		@Override
+		public void updateBorne(Borne borne) throws IOException {
+			BorneDAO borneDAO = new BorneDAO();
+			borne = borneDAO.update(borne);
+			/**** JSON MAPPER ****/
+			ObjectMapper mapper = new ObjectMapper();
+			String json = mapper.writeValueAsString(borne);
+	        out.sendListZones(json);
+			
+		}
+
+	@Override
 	public void sendListZones(String s) {
 
 	}

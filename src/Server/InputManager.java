@@ -47,7 +47,7 @@ public class InputManager {
 						handler.askZone(Long.parseLong(query.getParam()));
 						break;
 					case "BORNE":
-						handler.askListBornes();
+						handler.askBorne(Long.parseLong(query.getParam()));
 						break;
 					default:
 						break;
@@ -56,11 +56,44 @@ public class InputManager {
 					break;	
 				case "DELETE":
 					
+					switch (query.getTable()) {
+					case "ZONE":
+						//handler.delZone(Long.parseLong(query.getParam()));
+						break;
+					case "BORNE":
+						//handler.delBorne(Long.parseLong(query.getParam()));
+						break;
+					default:
+						break;
+					}
+					
 					break;
 				case "INSERT":
 					
+					switch (query.getTable()) {
+					case "ZONE":
+						//handler.createZone(Long.parseLong(query.getParam()));
+						break;
+					case "BORNE":
+						//handler.createBorne(Long.parseLong(query.getParam()));
+						break;
+					default:
+						break;
+					}
+					
 					break;
 				case "UPDATE":
+					
+					switch (query.getTable()) {
+					case "ZONE":
+						//handler.updateZone(Long.parseLong(query.getParam()));
+						break;
+					case "BORNE":
+						//handler.updateBorne(Long.parseLong(query.getParam()));
+						break;
+					default:
+						break;
+					}
 					
 					break;
 				default:

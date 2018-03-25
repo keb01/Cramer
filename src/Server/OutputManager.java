@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 
+import Model.Borne;
+import Model.Zone;
+
 public class OutputManager implements AppProtocol{
 	PrintWriter ow;
 	
@@ -19,6 +22,50 @@ public class OutputManager implements AppProtocol{
 
     @Override
 	public void askZone(long id) throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public void delZone(Zone zone) throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void delBorne(Borne borne) throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void createZone(Zone zone) throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void createBorne(Borne borne) throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateZone(Zone zone) throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateBorne(Borne borne) throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void askBorne(long id) throws IOException {
 		// TODO Auto-generated method stub
 		
 	}
