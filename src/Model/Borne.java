@@ -1,23 +1,23 @@
 package Model;
 
 public class Borne {
-	private int id;
+	private long id;
 	private Zone zone;
 
 
 	public Borne () {
 	}
 
-	public Borne(int id, Zone zone) {
+	public Borne(long id, Zone zone) {
 	this.id = id;
 	this.zone = zone;
 	}
 
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

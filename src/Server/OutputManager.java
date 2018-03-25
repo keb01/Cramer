@@ -29,37 +29,37 @@ public class OutputManager implements AppProtocol{
 
 
 	@Override
-	public void delZone(Zone zone) throws IOException {
+	public void delZone(long id) throws IOException {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void delBorne(Borne borne) throws IOException {
+	public void delBorne(long id) throws IOException {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void createZone(Zone zone) throws IOException {
+	public void createZone(long id) throws IOException {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void createBorne(Borne borne) throws IOException {
+	public void createBorne(long id) throws IOException {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void updateZone(Zone zone) throws IOException {
+	public void updateZone(long id) throws IOException {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void updateBorne(Borne borne) throws IOException {
+	public void updateBorne(long id) throws IOException {
 		// TODO Auto-generated method stub
 		
 	}

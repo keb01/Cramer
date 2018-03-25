@@ -106,8 +106,9 @@ public class HandleClient implements Runnable,AppProtocol{
 	}
 
 	@Override
-		public void delZone(Zone zone) throws IOException {
+		public void delZone(long id) throws IOException {
 			ZoneDAO zDAO = new ZoneDAO();
+			Zone zone = new Zone(id, "", "", 0);
 			zDAO.delete(zone);
 			/**** JSON MAPPER ****/
 			ObjectMapper mapper = new ObjectMapper();
@@ -117,8 +118,9 @@ public class HandleClient implements Runnable,AppProtocol{
 		}
 
 		@Override
-		public void delBorne(Borne borne) throws IOException {
+		public void delBorne(long id) throws IOException {
 			BorneDAO borneDAO = new BorneDAO();
+			Borne borne = new Borne(id,new Zone());
 			borneDAO.delete(borne);
 			/**** JSON MAPPER ****/
 			ObjectMapper mapper = new ObjectMapper();
@@ -128,8 +130,9 @@ public class HandleClient implements Runnable,AppProtocol{
 		}
 
 		@Override
-		public void createZone(Zone zone) throws IOException {
+		public void createZone(long id) throws IOException {
 			ZoneDAO zDAO = new ZoneDAO();
+			Zone zone = new Zone(id, "", "", 0);
 			zone = 	zDAO.create(zone);
 			/**** JSON MAPPER ****/
 			ObjectMapper mapper = new ObjectMapper();
@@ -139,8 +142,9 @@ public class HandleClient implements Runnable,AppProtocol{
 		}
 
 		@Override
-		public void createBorne(Borne borne) throws IOException {
+		public void createBorne(long id) throws IOException {
 			BorneDAO borneDAO = new BorneDAO();
+			Borne borne = new Borne(id,new Zone());
 			borne = borneDAO.create(borne);
 			/**** JSON MAPPER ****/
 			ObjectMapper mapper = new ObjectMapper();
@@ -150,8 +154,9 @@ public class HandleClient implements Runnable,AppProtocol{
 		}
 
 		@Override
-		public void updateZone(Zone zone) throws IOException {
+		public void updateZone(long id) throws IOException {
 			ZoneDAO zDAO = new ZoneDAO();
+			Zone zone = new Zone(id, "", "", 0);
 			zone = zDAO.update(zone);
 			/**** JSON MAPPER ****/
 			ObjectMapper mapper = new ObjectMapper();
@@ -161,8 +166,9 @@ public class HandleClient implements Runnable,AppProtocol{
 		}
 
 		@Override
-		public void updateBorne(Borne borne) throws IOException {
+		public void updateBorne(long id) throws IOException {
 			BorneDAO borneDAO = new BorneDAO();
+			Borne borne = new Borne(id,new Zone());
 			borne = borneDAO.update(borne);
 			/**** JSON MAPPER ****/
 			ObjectMapper mapper = new ObjectMapper();

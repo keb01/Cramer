@@ -16,12 +16,12 @@ public interface AppProtocol {
     public void askZone(long id) throws IOException;
     public void askBorne(long id) throws IOException;
     
-    public void delZone(Zone zone) throws IOException;
-    public void delBorne(Borne borne) throws IOException;
-    public void createZone(Zone zone) throws IOException;
-    public void createBorne(Borne borne) throws IOException;
-    public void updateZone(Zone zone) throws IOException;
-    public void updateBorne(Borne borne) throws IOException;
+    public void delZone(long id) throws IOException;
+    public void delBorne(long id) throws IOException;
+    public void createZone(long id) throws IOException;
+    public void createBorne(long id)throws IOException;
+    public void updateZone(long id) throws IOException;
+    public void updateBorne(long id) throws IOException;
     
 
     //ANSWERS
