@@ -41,6 +41,10 @@ public class Database {
 			}		
 			return connect;	
 		}
+		
+		public static void releaseConnection(Connection c){
+			
+		}
 	}
 
 

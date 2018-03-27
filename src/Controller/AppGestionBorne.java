@@ -51,8 +51,8 @@ private ClientZoneDAO zoneDAO;
 		
 		
 		//Areas list initialization
-		listeZone = zoneDAO.getAllZones(); 
-		listeBorne = borneDAO.getAllBornes();
+		/*listeZone = zoneDAO.getAllZones(); 
+		listeBorne = borneDAO.getAllBornes();*/
 
 		updateListeZone();
 		

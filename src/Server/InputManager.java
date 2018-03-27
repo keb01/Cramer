@@ -1,6 +1,7 @@
 package Server;
 
 import java.io.BufferedReader;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -26,6 +27,7 @@ public class InputManager {
 			while ((line = is.readLine()) != null) {
 				System.out.println("CLIENT ASKING : "+line);
 				InputQuery query = mapper.readValue(line, InputQuery.class);
+				System.out.println("not ok");
 				
                 switch (query.getQueryType()) {
 				case "LIST":

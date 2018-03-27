@@ -12,11 +12,15 @@ public class ClientTest {
         try {
             Socket s  = new Socket("localhost", 5001);
             PrintStream printStream = new PrintStream(s.getOutputStream());
-            printStream.print("toto\n");
+            printStream.print("LIST BORNE\n");
+            
             try (BufferedReader is = new BufferedReader(new InputStreamReader(s.getInputStream()))) {
                 while (true) {
-                    String line = is.readLine();
-                    System.out.println(line);
+                    //System.out.println(s.isInputShutdown());
+                	String line = is.readLine();
+                    
+
+                   //System.out.println(line);
                 }
             }
 

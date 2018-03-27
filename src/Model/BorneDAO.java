@@ -118,6 +118,7 @@ private DAO<Zone> DAOzone = new ZoneDAO();
 			st = this.connect.createStatement();
 			String sql = "SELECT * FROM Borne ";
 			rs = st.executeQuery(sql);
+			DAOzone.setConnection(connect);  
 			
 			while(rs.next()) {
 				liste.add(new Borne(rs.getInt("id"),

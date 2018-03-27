@@ -47,14 +47,15 @@ public class AppGestionProduit {
 		fenetreModif = new FenetreModificationArticle();
 		// DAOs initialization
 		this.listeMag = new ArrayList<Magasin>();
-		this.magasinDAO = new MagasinDAO();
+		
+/*		this.magasinDAO = new MagasinDAO();
 		this.produitDAO = new ArticleDAO();
 		
 		
 		//Stores list initialization
 		listeMag = magasinDAO.getAllMagasins();
 		updateListeMagasin();
-		
+*/		
 	}
 	
 	

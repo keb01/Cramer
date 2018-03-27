@@ -10,6 +10,7 @@ import Model.ZoneDAO;
 import org.codehaus.jackson.map.ObjectMapper;
 import java.io.IOException;
 import java.net.Socket;
+import java.sql.Connection;
 import java.util.ArrayList;
 
 public class HandleClient implements Runnable,AppProtocol{
@@ -18,11 +19,13 @@ public class HandleClient implements Runnable,AppProtocol{
 	private OutputManager out;
 	private boolean stop = false;
 	private LoggerWriter logger;
+	private Connection c;
 	
 	
-	public HandleClient(Socket s ,LoggerWriter logger ) throws IOException {
+	public HandleClient(Socket s, LoggerWriter logger, Connection c ) throws IOException {
 		this.s = s;
 		this.logger = logger;
+		this.c = c;
 	}
 	
 	public void run() {
@@ -34,6 +37,10 @@ public class HandleClient implements Runnable,AppProtocol{
 			if (!stop) {
 				finish();
 			}
+		}
+		finally
+		{
+			ServerCore.pool.releaseConnection(c);
 		}
 	}
 	
@@ -51,6 +58,7 @@ public class HandleClient implements Runnable,AppProtocol{
     @Override
     public void askListMagasin() throws IOException {
         MagasinDAO magasinDAO = new MagasinDAO();
+        magasinDAO.setConnection(c);
         ArrayList<Magasin> listeMag = new ArrayList<Magasin>();
         listeMag = magasinDAO.getAllMagasins();
         /**** JSON MAPPER ****/
@@ -62,6 +70,7 @@ public class HandleClient implements Runnable,AppProtocol{
 	@Override
 	public void askListBornes() throws IOException {
 		BorneDAO borneDAO = new BorneDAO();
+		borneDAO.setConnection(c);
 		ArrayList<Borne> listeBorne = new ArrayList<Borne>();
 		listeBorne = borneDAO.getAllBornes();
 		/**** JSON MAPPER ****/
@@ -73,6 +82,7 @@ public class HandleClient implements Runnable,AppProtocol{
 	@Override
 	public void askListZones() throws IOException {
 		ZoneDAO zoneDAO = new ZoneDAO();
+		zoneDAO.setConnection(c);
 		ArrayList<Zone> listeZone = new ArrayList<Zone>();
 		listeZone = zoneDAO.getAllZones();
 		/**** JSON MAPPER ****/
@@ -84,6 +94,7 @@ public class HandleClient implements Runnable,AppProtocol{
 	
 	public void askZone(long id) throws IOException {
 		ZoneDAO zoneDAO = new ZoneDAO();
+		zoneDAO.setConnection(c);
 		Zone zone = new Zone();
 		zone = zoneDAO.find(id);
 		/**** JSON MAPPER ****/
@@ -96,6 +107,7 @@ public class HandleClient implements Runnable,AppProtocol{
 	    @Override
 	public void askBorne(long id) throws IOException {
 	    	BorneDAO borneDAO = new BorneDAO();
+	    	borneDAO.setConnection(c);
 			Borne borne = new Borne();
 			borne = borneDAO.find(id);
 			/**** JSON MAPPER ****/
@@ -108,6 +120,7 @@ public class HandleClient implements Runnable,AppProtocol{
 	@Override
 		public void delZone(long id) throws IOException {
 			ZoneDAO zDAO = new ZoneDAO();
+			zDAO.setConnection(c);
 			Zone zone = new Zone(id, "", "", 0);
 			zDAO.delete(zone);
 			/**** JSON MAPPER ****/
@@ -120,6 +133,7 @@ public class HandleClient implements Runnable,AppProtocol{
 		@Override
 		public void delBorne(long id) throws IOException {
 			BorneDAO borneDAO = new BorneDAO();
+			borneDAO.setConnection(c);
 			Borne borne = new Borne(id,new Zone());
 			borneDAO.delete(borne);
 			/**** JSON MAPPER ****/
@@ -132,6 +146,7 @@ public class HandleClient implements Runnable,AppProtocol{
 		@Override
 		public void createZone(long id) throws IOException {
 			ZoneDAO zDAO = new ZoneDAO();
+			zDAO.setConnection(c);
 			Zone zone = new Zone(id, "", "", 0);
 			zone = 	zDAO.create(zone);
 			/**** JSON MAPPER ****/
@@ -144,6 +159,7 @@ public class HandleClient implements Runnable,AppProtocol{
 		@Override
 		public void createBorne(long id) throws IOException {
 			BorneDAO borneDAO = new BorneDAO();
+			borneDAO.setConnection(c);
 			Borne borne = new Borne(id,new Zone());
 			borne = borneDAO.create(borne);
 			/**** JSON MAPPER ****/
@@ -156,6 +172,7 @@ public class HandleClient implements Runnable,AppProtocol{
 		@Override
 		public void updateZone(long id) throws IOException {
 			ZoneDAO zDAO = new ZoneDAO();
+			zDAO.setConnection(c);
 			Zone zone = new Zone(id, "", "", 0);
 			zone = zDAO.update(zone);
 			/**** JSON MAPPER ****/
@@ -168,6 +185,7 @@ public class HandleClient implements Runnable,AppProtocol{
 		@Override
 		public void updateBorne(long id) throws IOException {
 			BorneDAO borneDAO = new BorneDAO();
+			borneDAO.setConnection(c);
 			Borne borne = new Borne(id,new Zone());
 			borne = borneDAO.update(borne);
 			/**** JSON MAPPER ****/

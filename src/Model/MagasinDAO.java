@@ -17,6 +17,7 @@ public class MagasinDAO extends DAO<Magasin>{
 		
 		Magasin magasin = new Magasin();
 		
+		
 		Statement st =null;
 		ResultSet rs =null;
 		
