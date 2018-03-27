@@ -11,6 +11,7 @@ import DAOClient.ClientZoneDAO;
 import DAOClient.Query;
 import Model.Borne;
 import Model.Zone;
+import View.ItemList;
 import View.PanelArticle;
 import View.PanelDetailBorne;
 import View.PanelListe;
@@ -64,12 +65,13 @@ private ClientZoneDAO zoneDAO;
 		panelZone.removeAll();
 		int px = 0;
 		for(Zone m : listeZone){
-			JLabel label = new JLabel(m.getNom()+" "+m.getDescription());
+			ItemList label = new ItemList(m.getNom()+" "+m.getDescription());
 			label.addMouseListener(new ListenerZone(this,m));
+			label.setMaximumSize(new Dimension(300, 37));
 			panelZone.add(label);
 			px++;
 		}
-		panelZone.setPreferredSize(new Dimension(300, px*16));
+		panelZone.setPreferredSize(new Dimension(300, px*37));
 		panelZone.revalidate();
 		panelZone.repaint();
 	}
@@ -80,21 +82,21 @@ private ClientZoneDAO zoneDAO;
 		for(Borne p : listeBorne){
 			//System.out.println("Borne "+p.getId()+" "+p.getZone().getDescription());
 			if(p.getZone().getId() == selectZone.getId()){
-				JLabel label = new JLabel("Borne "+p.getId());
+				ItemList label = new ItemList("Borne "+p.getId());
+				label.setMaximumSize(new Dimension(2000, 37));
 				label.addMouseListener(new ListenerBorne(this,p));
 				panelBorne.add(label);
 				px++;
 			}
 		
 		}
-		panelBorne.setPreferredSize(new Dimension(300, px*16));
+		panelBorne.setPreferredSize(new Dimension(300, px*37));
 		panelBorne.revalidate();
 		panelBorne.repaint();
 	}
 	
 
 	public void selectedZone(Zone m) {
-		System.out.println("toto"+m.getNom());
 		panelDetailBorne.setVisible(false);
 		selectZone = m;
 		updateListeBorne();

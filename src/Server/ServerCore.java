@@ -12,12 +12,13 @@ public class ServerCore extends Thread{
 	private boolean stop = false;
 	private ServerSocket ss;
 	private LoggerWriter logger;
-	public static MySQLConnectionPool pool = new MySQLConnectionPool();
+	public static MySQLConnectionPool pool;
 	
 	public ServerCore(int port) throws IOException {
 		this.port = port;
 		this.logger = new LoggerWriter();
 		this.logger.setMessageLog("Server started...");
+		pool = new MySQLConnectionPool();
 		this.start();
 	}
 	

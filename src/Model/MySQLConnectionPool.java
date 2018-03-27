@@ -16,7 +16,7 @@ public class MySQLConnectionPool
   private LinkedBlockingDeque<Connection> pool;
   public MySQLConnectionPool()
   {
-	int nb_connections = 1;
+	int nb_connections = 10;
     pool = new LinkedBlockingDeque<>(nb_connections);
     for(int i= 0; i<nb_connections; i++){
     	pool.addLast(createConnection());

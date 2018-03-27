@@ -8,6 +8,7 @@ import java.awt.event.MouseListener;
 import javax.swing.JLabel;
 
 import Model.Borne;
+import View.ItemList;
 
 public class ListenerBorne implements MouseListener{
 
@@ -22,11 +23,14 @@ public class ListenerBorne implements MouseListener{
 	
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
-		JLabel l = (JLabel) arg0.getSource();
+		ItemList l = (ItemList) arg0.getSource();
 		for(Component la : l.getParent().getComponents()){
-			la.setForeground(Color.BLACK);
+			ItemList item = (ItemList) la;
+			item.setBackground(Color.WHITE);
+			item.setColorText(Color.BLACK);
 		}
-		l.setForeground(Color.RED);
+		l.setBackground(Color.GRAY);
+		l.setColorText(Color.WHITE);
 	c.selectedBorne(p);
 		
 		

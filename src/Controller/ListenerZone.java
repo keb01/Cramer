@@ -8,6 +8,7 @@ import java.awt.event.MouseListener;
 import javax.swing.JLabel;
 
 import Model.Zone;
+import View.ItemList;
 
 public class ListenerZone implements MouseListener {
 
@@ -22,11 +23,14 @@ public class ListenerZone implements MouseListener {
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		JLabel l = (JLabel) e.getSource();
+		ItemList l = (ItemList) e.getSource();
 		for(Component la : l.getParent().getComponents()){
-			la.setForeground(Color.BLACK);
+			ItemList item = (ItemList) la;
+			item.setBackground(Color.WHITE);
+			item.setColorText(Color.BLACK);
 		}
-		l.setForeground(Color.RED);
+		l.setBackground(Color.GRAY);
+		l.setColorText(Color.WHITE);
 		c.selectedZone(m);
 		
 	}
