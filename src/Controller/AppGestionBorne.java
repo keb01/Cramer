@@ -12,11 +12,12 @@ import DAOClient.Query;
 import Model.Borne;
 import Model.Zone;
 import View.PanelArticle;
+import View.PanelDetailBorne;
 import View.PanelListe;
 
 public class AppGestionBorne {
 	private PanelListe panelZone,panelBorne;
-	private PanelArticle panelDetailBorne;
+	private PanelDetailBorne panelDetailBorne;
 	private JPanel tabPanel;
 	private ArrayList<Zone> listeZone;
 	private ArrayList<Borne> listeBorne;
@@ -33,7 +34,7 @@ private ClientZoneDAO zoneDAO;
 		this.tabPanel.setLayout(new BorderLayout());
 		panelZone = new PanelListe();
 		panelBorne = new PanelListe();
-		panelDetailBorne = new PanelArticle();
+		panelDetailBorne = new PanelDetailBorne();
 		tabPanel.add(panelZone,BorderLayout.WEST);
 		JScrollPane scroll = new JScrollPane(panelZone);
 		scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
@@ -51,8 +52,8 @@ private ClientZoneDAO zoneDAO;
 		
 		
 		//Areas list initialization
-		/*listeZone = zoneDAO.getAllZones(); 
-		listeBorne = borneDAO.getAllBornes();*/
+		listeZone = zoneDAO.getAllZones(); 
+		listeBorne = borneDAO.getAllBornes();
 
 		updateListeZone();
 		
@@ -102,10 +103,15 @@ private ClientZoneDAO zoneDAO;
 
 	public void selectedBorne(Borne p) {
 		selectBorne = p;
-		//panelDetailBorne.update(p.getNom(),p.getDescription(),p.getUrlImage(),p.getProvenance(),p.getPoids(),p.getPrix());
+		ArrayList<String> array = new ArrayList<>();
+		for(Zone z : listeZone){
+			array.add(z.getNom()+" "+z.getDescription());
+		}
+			
+		panelDetailBorne.update("Borne "+p.getId(),p.getZone().getNom()+" "+p.getZone().getDescription(), array.toArray(new String[array.size()]));
 		//panelDetailBorne.setListenerModifButton(new ListenerModifArticle(this));
 		//panelDetailBorne.setListenerSuppButton(new ListenerDelArticle(this));
-		//panelDetailBorne.setVisible(true);
+		panelDetailBorne.setVisible(true);
 	}
 
 	public void afficherFenetreModif(){
