@@ -48,7 +48,7 @@ public class ClientBorneDAO extends ClientDAO<Borne> {
 		
 				queryManager.setQueryType("INSERT");
 				queryManager.setTable("BORNE");
-				queryManager.setParam("{\"id\": \""+Long.toString(obj.getId())+"\",\"idZone\":"+Long.toString(obj.getZone().getId())+"\"}");
+				queryManager.setParam("{\"id\":"+Long.toString(obj.getId())+",\"idZone\":"+Long.toString(obj.getZone().getId())+"}");
 				
 				//queryManager.getParam().get(0)=Long.toString(obj.getId());
 				//queryManager.getParam().get(1)=Long.toString(obj.getZone().getId());
@@ -63,7 +63,7 @@ public class ClientBorneDAO extends ClientDAO<Borne> {
 		
 		queryManager.setQueryType("UPDATE");
 		queryManager.setTable("BORNE");
-		queryManager.setParam("{\"id\": \""+Long.toString(obj.getId())+"\",\"idZone\":"+Long.toString(obj.getZone().getId())+"\"}");
+		queryManager.setParam("{\"id\":"+Long.toString(obj.getId())+",\"idZone\":"+Long.toString(obj.getZone().getId())+"}");
 		
 		//queryManager.getParam().get(0)=Long.toString(obj.getId());
 		//queryManager.getParam().get(1)=Long.toString(obj.getZone().getId());
@@ -146,7 +146,7 @@ public ArrayList<Borne> getAllBornes(){
 		
 		queryManager.setQueryType("INSERT");
 		queryManager.setTable("BORNE");
-		queryManager.setParam("{\"id\": \""+Long.toString(idBorne)+"\",\"idZone\":"+Long.toString(idZone)+"\"}");
+		queryManager.setParam("{\"id\":"+Long.toString(idBorne)+",\"idZone\":"+Long.toString(idZone)+"}");
 		
 		//queryManager.getParam().get(0)=Long.toString(idBorne);
 		//queryManager.getParam().get(1)=Long.toString(idZone);

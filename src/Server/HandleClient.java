@@ -8,6 +8,8 @@ import Model.MagasinDAO;
 import Model.Zone;
 import Model.ZoneDAO;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.json.JSONException;
+
 import java.io.IOException;
 import java.net.Socket;
 import java.sql.Connection;
@@ -33,7 +35,7 @@ public class HandleClient implements Runnable,AppProtocol{
 			out = new OutputManager(s1.getOutputStream());
 			in = new InputManager(s1.getInputStream(), this);
 			in.doRun();
-		} catch (IOException ex) {
+		} catch (IOException | JSONException ex) {
 			if (!stop) {
 				finish();
 			}
@@ -183,10 +185,9 @@ public class HandleClient implements Runnable,AppProtocol{
 		}
 
 		@Override
-		public void updateBorne(long id) throws IOException {
+		public void updateBorne(Borne borne) throws IOException {
 			BorneDAO borneDAO = new BorneDAO();
 			borneDAO.setConnection(c);
-			Borne borne = new Borne(id,new Zone());
 			borne = borneDAO.update(borne);
 			/**** JSON MAPPER ****/
 			ObjectMapper mapper = new ObjectMapper();

@@ -21,7 +21,7 @@ public interface AppProtocol {
     public void createZone(long id) throws IOException;
     public void createBorne(long id)throws IOException;
     public void updateZone(long id) throws IOException;
-    public void updateBorne(long id) throws IOException;
+    public void updateBorne(Borne borne) throws IOException;
     
 
     //ANSWERS

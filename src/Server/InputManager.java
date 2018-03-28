@@ -7,6 +7,11 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 import org.codehaus.jackson.map.ObjectMapper;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import Model.Borne;
+import Model.Zone;
 
 public class InputManager {
 	AppProtocol handler;
@@ -18,7 +23,7 @@ public class InputManager {
 	}
 	
 	
-	public void doRun() throws IOException {
+	public void doRun() throws IOException, JSONException {
 		String json;
 		String line = null;
 		ObjectMapper mapper = new ObjectMapper();
@@ -91,7 +96,11 @@ public class InputManager {
 						handler.updateZone(Long.parseLong(query.getParam()));
 						break;
 					case "BORNE":
-						handler.updateBorne(Long.parseLong(query.getParam()));
+						
+						JSONObject param = new JSONObject(query.getParam());
+						Borne borne = new Borne(param.getInt("id"),new Zone(param.getInt("idZone"), "", "", 0));
+						// update to updateBorne(Borne borne)
+						handler.updateBorne(borne);
 						break;
 					default:
 						break;

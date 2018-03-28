@@ -59,7 +59,7 @@ public class OutputManager implements AppProtocol{
 	}
 
 	@Override
-	public void updateBorne(long id) throws IOException {
+	public void updateBorne(Borne borne) throws IOException {
 		// TODO Auto-generated method stub
 		
 	}
