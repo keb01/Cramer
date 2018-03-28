@@ -79,10 +79,15 @@ public class InputManager {
 					
 					switch (query.getTable()) {
 					case "ZONE":
-						handler.createZone(Long.parseLong(query.getParam()));
+						JSONObject createZone = new JSONObject(query.getParam());
+						Zone zone = new Zone(createZone.getLong("id"),createZone.getString("nom"),createZone.getString("description"),createZone.getDouble("coefP"));
+						handler.createZone(zone);
 						break;
 					case "BORNE":
-						handler.createBorne(Long.parseLong(query.getParam()));
+						
+						JSONObject createBorne = new JSONObject(query.getParam());
+						Borne borne = new Borne(createBorne.getInt("id"),new Zone(createBorne.getInt("idZone"), "", "", 0));
+						handler.createBorne(borne);
 						break;
 					default:
 						break;
@@ -93,12 +98,15 @@ public class InputManager {
 					
 					switch (query.getTable()) {
 					case "ZONE":
-						handler.updateZone(Long.parseLong(query.getParam()));
+						
+						JSONObject updateZone = new JSONObject(query.getParam());
+						Zone zone = new Zone(updateZone.getLong("id"),updateZone.getString("nom"),updateZone.getString("description"),updateZone.getDouble("coefP"));
+						handler.updateZone(zone);
 						break;
 					case "BORNE":
 						
-						JSONObject param = new JSONObject(query.getParam());
-						Borne borne = new Borne(param.getInt("id"),new Zone(param.getInt("idZone"), "", "", 0));
+						JSONObject updateBorne = new JSONObject(query.getParam());
+						Borne borne = new Borne(updateBorne.getInt("id"),new Zone(updateBorne.getInt("idZone"), "", "", 0));
 						// update to updateBorne(Borne borne)
 						handler.updateBorne(borne);
 						break;

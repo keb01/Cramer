@@ -44,7 +44,7 @@ public class ClientZoneDAO extends ClientDAO<Zone>{
 		
 		queryManager.setQueryType("INSERT");
 		queryManager.setTable("ZONE");
-		queryManager.setParam("{\"id\": \""+Long.toString(obj.getId())+"\"}");
+		queryManager.setParam("{\"id\":"+Long.toString(obj.getId())+",\"nom\":\""+obj.getNom()+"\",\"description\":\""+obj.getDescription()+"\",\"coefP\":"+obj.getCoefP()+"}");
 		
 		
 		//queryManager.getParam().get(0)=Long.toString(idZone);
@@ -61,7 +61,7 @@ public class ClientZoneDAO extends ClientDAO<Zone>{
 		
 		queryManager.setQueryType("UPDATE");
 		queryManager.setTable("ZONE");
-		queryManager.setParam("{\"id\": \""+Long.toString(obj.getId())+"\"}");
+		queryManager.setParam("{\"id\":"+Long.toString(obj.getId())+",\"nom\":\""+obj.getNom()+"\",\"description\":\""+obj.getDescription()+"\",\"coefP\":"+obj.getCoefP()+"}");
 		
 		
 		String answer = queryManager.executeQuery();

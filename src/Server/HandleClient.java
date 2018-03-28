@@ -146,10 +146,9 @@ public class HandleClient implements Runnable,AppProtocol{
 		}
 
 		@Override
-		public void createZone(long id) throws IOException {
+		public void createZone(Zone zone) throws IOException {
 			ZoneDAO zDAO = new ZoneDAO();
 			zDAO.setConnection(c);
-			Zone zone = new Zone(id, "", "", 0);
 			zone = 	zDAO.create(zone);
 			/**** JSON MAPPER ****/
 			ObjectMapper mapper = new ObjectMapper();
@@ -159,10 +158,9 @@ public class HandleClient implements Runnable,AppProtocol{
 		}
 
 		@Override
-		public void createBorne(long id) throws IOException {
+		public void createBorne(Borne borne) throws IOException {
 			BorneDAO borneDAO = new BorneDAO();
 			borneDAO.setConnection(c);
-			Borne borne = new Borne(id,new Zone());
 			borne = borneDAO.create(borne);
 			/**** JSON MAPPER ****/
 			ObjectMapper mapper = new ObjectMapper();
@@ -172,10 +170,9 @@ public class HandleClient implements Runnable,AppProtocol{
 		}
 
 		@Override
-		public void updateZone(long id) throws IOException {
+		public void updateZone(Zone zone) throws IOException {
 			ZoneDAO zDAO = new ZoneDAO();
 			zDAO.setConnection(c);
-			Zone zone = new Zone(id, "", "", 0);
 			zone = zDAO.update(zone);
 			/**** JSON MAPPER ****/
 			ObjectMapper mapper = new ObjectMapper();
