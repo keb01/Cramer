@@ -41,8 +41,19 @@ private DAO<Zone> DAOzone = new ZoneDAO();
 
 	@Override
 	public Borne create(Borne obj) {
-		// TODO Auto-generated method stub
-		return null;
+		Statement st =null;
+		ResultSet rs =null;
+		
+		
+		try {
+			st = this.connect.createStatement();
+			String sql = "INSERT INTO Borne values("+obj.getZone().getId()+")";
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return obj;
 	}
 
 	@Override
