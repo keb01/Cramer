@@ -2,6 +2,8 @@ package Controller;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -56,7 +58,16 @@ private ClientZoneDAO zoneDAO;
 		listeZone = zoneDAO.getAllZones(); 
 		listeBorne = borneDAO.getAllBornes();
 
+
+		panelDetailBorne.setListenerSuppButton(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				deleteBorne();
+			}
+		});
+
 		updateListeZone();
+
+
 		
 	}
 	
@@ -133,11 +144,11 @@ private ClientZoneDAO zoneDAO;
 		
 	}
 
-	public void supprimerArticle(){
-		//produitDAO.deleteInMagasin(selectProduit, selectMag.getId());
-		//selectProduit = null;
-		//panelDetailArt.setVisible(false);
-		//magasinDAO.chargerListeProduit(selectMag);
-		//updateListeProduit();
+	public void deleteBorne(){
+		borneDAO.delete(selectBorne);
+		selectBorne = null;
+		panelDetailBorne.setVisible(false);
+		listeBorne = borneDAO.getAllBornes();
+		updateListeBorne();
 	}
 }
