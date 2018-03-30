@@ -25,7 +25,7 @@ public class ClientBorneDAO extends ClientDAO<Borne> {
 		
 				queryManager.setQueryType("FIND");
 				queryManager.setTable("BORNE");
-				queryManager.setParam(Long.toString(id));
+				queryManager.setParam("{\"id\":\""+Long.toString(id)+"\"}");
 				String response = queryManager.executeQuery();
 				
 				ObjectMapper objectMapper = new ObjectMapper();
@@ -79,7 +79,7 @@ public class ClientBorneDAO extends ClientDAO<Borne> {
 		
 		queryManager.setQueryType("DELETE");
 		queryManager.setTable("BORNE");
-		queryManager.setParam(Long.toString(obj.getId()));
+		queryManager.setParam("{\"id\":\""+Long.toString(obj.getId())+"\"}");
 		
 		//queryManager.getParam().get(0)=Long.toString(idBorne);
 		//queryManager.getParam().get(1)=Long.toString(idZone);
@@ -99,7 +99,7 @@ public ArrayList<Borne> getAllBornes(){
 		
 		queryManager.setQueryType("LIST");
 		queryManager.setTable("BORNE");
-		queryManager.setParam("");
+		queryManager.setParam("{}");
 		String response = queryManager.executeQuery();
 		
 		ObjectMapper objectMapper = new ObjectMapper();
@@ -123,7 +123,7 @@ public ArrayList<Borne> getAllBornes(){
 		
 		queryManager.setQueryType("FIND");
 		queryManager.setTable("BORNE");
-		queryManager.setParam(Long.toString(id));
+		queryManager.setParam("{\"id\":\""+Long.toString(id)+"\"}");
 		String response = queryManager.executeQuery();
 		
 		ObjectMapper objectMapper = new ObjectMapper();

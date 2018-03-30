@@ -20,7 +20,7 @@ public class Query {
     
     public Query(){
     	try {
-			Socket s = new Socket("localhost", 5001);
+			Socket s = new Socket("localhost", 5000);
 			out = new PrintStream(s.getOutputStream());
 			in = new InputStreamReader(s.getInputStream());
 			is = new BufferedReader(in);
@@ -44,7 +44,7 @@ public class Query {
     	String query = "{";
         query += "\"queryType\": \""+queryType+"\",";
         query += "\"table\": \""+table+"\",";
-        query += "\"param\": \""+param+"\"";
+        query += "\"param\": "+param;
         query += "}\n";
         System.out.println("CLIENT QUERY : "+query);
         out.print(query);

@@ -65,6 +65,15 @@ private ClientZoneDAO zoneDAO;
 			}
 		});
 
+        panelDetailBorne.setListenerModifButton(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                updateBorne();
+            }
+        });
+
+
+
+
 		updateListeZone();
 
 
@@ -118,10 +127,10 @@ private ClientZoneDAO zoneDAO;
 		selectBorne = p;
 		ArrayList<String> array = new ArrayList<>();
 		for(Zone z : listeZone){
-			array.add(z.getNom()+" "+z.getDescription());
+			array.add(z.getId()+": "+z.getNom()+" "+z.getDescription());
 		}
 			
-		panelDetailBorne.update("Borne "+p.getId(),p.getZone().getNom()+" "+p.getZone().getDescription(), array.toArray(new String[array.size()]));
+		panelDetailBorne.update("Borne "+p.getId(),p.getZone().getId()+": "+p.getZone().getNom()+" "+p.getZone().getDescription(), array.toArray(new String[array.size()]));
 		//panelDetailBorne.setListenerModifButton(new ListenerModifArticle(this));
 		//panelDetailBorne.setListenerSuppButton(new ListenerDelArticle(this));
 		panelDetailBorne.setVisible(true);
@@ -134,13 +143,17 @@ private ClientZoneDAO zoneDAO;
 	}
 
 
-	public void updateArticle() {
-		//selectProduit.setNom(fenetreModif.getJtf1().getText());
-		//panelDetailArt.update(selectProduit.getNom(),selectProduit.getDescription(),selectProduit.getUrlImage(),selectProduit.getProvenance(),selectProduit.getPoids(),selectProduit.getPrix());
-		//produitDAO.update(selectProduit);
-		//magasinDAO.chargerListeProduit(selectMag);
-		//updateListeProduit();
-		//fenetreModif.dispose();
+	public void updateBorne() {
+        String selectedZone = panelDetailBorne.getSelectedZone();
+        String[] parts = selectedZone.split(":");
+        System.out.println(parts[0]);
+        for(Zone z : listeZone){
+            if(z.getId() == Integer.parseInt(parts[0])){
+                selectBorne.setZone(z);
+            }
+        }
+        borneDAO.update(selectBorne);
+        updateListeBorne();
 		
 	}
 

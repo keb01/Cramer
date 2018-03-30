@@ -58,16 +58,14 @@ private DAO<Zone> DAOzone = new ZoneDAO();
 
 	@Override
 	public Borne update(Borne obj) {
-
+		//System.out.println(obj.getId()+"   :   to zone "+obj.getZone().getId());
 		Statement st =null;
 		
 		try {
 			st = this.connect.createStatement();
-			String sql = "UPDATE Borne SET Zone = '"+obj.getZone()+"' WHERE id ="+obj.getId();
+			String sql = "UPDATE Borne SET idZone = '"+obj.getZone().getId()+"' WHERE id ="+obj.getId();
 			System.out.println(sql);
 			st.executeUpdate(sql);
-			obj = this.find(obj.getId());
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

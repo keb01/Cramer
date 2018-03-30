@@ -22,7 +22,7 @@ public class ClientZoneDAO extends ClientDAO<Zone>{
 		
 				queryManager.setQueryType("FIND");
 				queryManager.setTable("ZONE");
-				queryManager.setParam(Long.toString(id));
+				queryManager.setParam("{\"id\":\""+Long.toString(id)+"\"}");
 				String answer = queryManager.executeQuery();
 				
 				ObjectMapper objectMapper = new ObjectMapper();
@@ -75,7 +75,7 @@ public class ClientZoneDAO extends ClientDAO<Zone>{
 		
 		queryManager.setQueryType("DELETE");
 		queryManager.setTable("ZONE");
-		queryManager.setParam(Long.toString(obj.getId()));
+		queryManager.setParam("{\"id\":\""+Long.toString(obj.getId())+"\"}");
 		
 		String answer = queryManager.executeQuery();
 		
@@ -90,7 +90,7 @@ public class ClientZoneDAO extends ClientDAO<Zone>{
 		
 		queryManager.setQueryType("LIST");
 		queryManager.setTable("ZONE");
-		queryManager.setParam("");
+		queryManager.setParam("{}");
 		String answer = queryManager.executeQuery();
 		
 		ObjectMapper objectMapper = new ObjectMapper();
@@ -114,7 +114,7 @@ public class ClientZoneDAO extends ClientDAO<Zone>{
 		
 		queryManager.setQueryType("FIND");
 		queryManager.setTable("ZONE");
-		queryManager.setParam(Long.toString(id));
+		queryManager.setParam("{\"id\":\""+Long.toString(id)+"\"}");
 		String answer = queryManager.executeQuery();
 		
 		ObjectMapper objectMapper = new ObjectMapper();

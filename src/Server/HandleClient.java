@@ -185,11 +185,9 @@ public class HandleClient implements Runnable,AppProtocol{
 		public void updateBorne(Borne borne) throws IOException {
 			BorneDAO borneDAO = new BorneDAO();
 			borneDAO.setConnection(c);
-			borne = borneDAO.update(borne);
+			borneDAO.update(borne);
 			/**** JSON MAPPER ****/
-			ObjectMapper mapper = new ObjectMapper();
-			String json = mapper.writeValueAsString(borne);
-	        out.sendListZones(json);
+			out.sendListBornes("ok");
 			
 		}
 

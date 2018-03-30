@@ -109,5 +109,7 @@ public class PanelDetailBorne extends JPanel{
 		this.repaint();
 	}
 	
-
+	public String getSelectedZone(){
+		return comboZone.getSelectedItem().toString();
+	}
 }
