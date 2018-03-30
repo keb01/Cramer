@@ -8,27 +8,26 @@ public abstract class DAO<T> {
 	public Connection connect;
 	
 	/**
-	 * Permet de r�cup�rer un objet via son ID
+	 * Allow to get an object by his ID
 	 * @param id
 	 * @return
 	 */
 	public abstract T find(long id);
 	
 	/**
-	 * Permet de cr�er une entr�e dans la base de donn�es
-	 * par rapport � un objet
+	 * Allow to create an entry in the database with an object
 	 * @param obj
 	 */
 	public abstract T create(T obj);
 	
 	/**
-	 * Permet de mettre � jour les donn�es d'une entr�e dans la base 
+	 * Allow to update the data of an entry into the database  
 	 * @param obj
 	 */
 	public abstract T update(T obj);
 	
 	/**
-	 * Permet la suppression d'une entr�e de la base
+	 * Allow to delete an entry from the database
 	 * @param obj
 	 */
 	public abstract void delete(T obj);

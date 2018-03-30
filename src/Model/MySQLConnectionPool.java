@@ -47,12 +47,12 @@ public class MySQLConnectionPool
   
   
   /*
-  Chaque connexion doit avoir une liste de preparedstatement
+  Every connection needs to have a list of preparedstatement
   
-  Un preparedstatement c('est quoi ?
-  C'est : une requète sql "pré-compilée". 
+  A preparedstatement is an already compiled sql request 
+  The connexion come with its PreparedStatement which will be used by the DAO
   
-  La connexion vient donc avec ses PreparedStatement que les DAO vont utiliser
+  
   
   
   
