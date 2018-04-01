@@ -47,8 +47,8 @@ private DAO<Zone> DAOzone = new ZoneDAO();
 		
 		try {
 			st = this.connect.createStatement();
-			String sql = "INSERT INTO Borne values("+obj.getZone().getId()+")";
-			
+			String sql = "INSERT INTO Borne values(NULL,"+obj.getZone().getId()+")";
+			st.executeUpdate(sql);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

@@ -104,7 +104,7 @@ public class PanelDetailBorne extends JPanel{
 		comboZone.setModel(new DefaultComboBoxModel<String>(listZone));
 		comboZone.setSelectedItem(zone);
 		this.nom.setText(nom);;
-		this.zone.setText("Zone : "+zone);
+		this.zone.setText("Zone "+zone);
 		this.revalidate();
 		this.repaint();
 	}

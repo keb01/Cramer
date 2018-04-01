@@ -163,9 +163,7 @@ public class HandleClient implements Runnable,AppProtocol{
 			borneDAO.setConnection(c);
 			borne = borneDAO.create(borne);
 			/**** JSON MAPPER ****/
-			ObjectMapper mapper = new ObjectMapper();
-			String json = mapper.writeValueAsString(borne);
-	        out.sendListZones(json);
+			out.sendListBornes("ok");
 			
 		}
 

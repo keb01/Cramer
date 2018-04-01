@@ -90,7 +90,8 @@ public class InputManager {
 						handler.createZone(zone);
 						break;
 					case "BORNE":
-						Borne borne = new Borne(param.getInt("id"),new Zone(param.getInt("idZone"), "", "", 0));
+						Borne borne = new Borne(-1,new Zone(param.getInt("idZone"), "", "", 0));
+						System.out.println("BORNE TO ADD :  "+param.getInt("idZone"));
 						handler.createBorne(borne);
 						break;
 					default:

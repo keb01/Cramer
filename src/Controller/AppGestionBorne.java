@@ -21,6 +21,7 @@ import DAOClient.ClientZoneDAO;
 import DAOClient.Query;
 import Model.Borne;
 import Model.Zone;
+import View.AddBorneWindow;
 import View.ItemList;
 import View.PanelArticle;
 import View.PanelDetailBorne;
@@ -37,6 +38,8 @@ private ClientZoneDAO zoneDAO;
 	private Borne selectBorne;
 	private Zone selectZone;
 	private Query qManager;
+	private AddBorneWindow addWindow;
+	private JLabel borneCounter;
 	
 	public AppGestionBorne(JPanel tabPanel,Query q){
 		
@@ -86,19 +89,41 @@ private ClientZoneDAO zoneDAO;
         });
 
 
-      //Search bar and options
-    	
+      //*****************Search bar and options*****************
+    		// Bar panel settings
     		JPanel searchBar = new JPanel();
     		searchBar.setLayout(new FlowLayout(FlowLayout.LEFT));
     		searchBar.setPreferredSize(new Dimension(600, 40));
     		Border border = searchBar.getBorder();
     		Border margin = new EmptyBorder(0,0,10,0);
     		searchBar.setBorder(new CompoundBorder(border, margin));
-    		searchBar.add(new JLabel(listeBorne.size()+" bornes"));
-    		searchBar.add(new JButton("Ajouter"));
+    		
+    		
+    		// Display nb bornes available
+    		borneCounter = new JLabel(listeBorne.size()+" bornes");
+    		searchBar.add(borneCounter);
+    		JButton addButton = new JButton("Ajouter");
+    		searchBar.add(addButton);
+    		
+    		
+    		
+    		//init add Borne window with listZone parameter
+    		ArrayList<String> array = new ArrayList<>();
+    		for(Zone z : listeZone){
+    			array.add(z.getId()+": "+z.getNom()+" "+z.getDescription());
+    		}
+    		addWindow = new AddBorneWindow(this, array.toArray(new String[array.size()]));
+    		addButton.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					addWindow.setVisible(true);
+				}
+			});
+    		
+    		// display Bar panel
     		tabPanel.add(searchBar,BorderLayout.NORTH);
     		
-    		
+    	//*******************************************************	
 
 		updateListeZone();
 
@@ -111,6 +136,7 @@ private ClientZoneDAO zoneDAO;
 		panelZone.removeAll();
 		int px = 1;
 		Zone touteZone = new Zone(0, "Toutes", "les Zones", 1);
+		selectZone = touteZone;
 		ItemList lbl = new ItemList(touteZone.getNom()+" "+touteZone.getDescription());
 		lbl.addMouseListener(new ListenerZone(this,touteZone));
 		lbl.setMaximumSize(new Dimension(300, 37));
@@ -130,6 +156,7 @@ private ClientZoneDAO zoneDAO;
 	public void updateListeBorne(){
 		panelBorne.removeAll();
 		int px = 0;
+		borneCounter.setText(listeBorne.size()+" bornes");
 		if(selectZone.getId() == 0){
 			for(Borne p : listeBorne){
 					ItemList label = new ItemList("Borne "+p.getId());
@@ -185,7 +212,6 @@ private ClientZoneDAO zoneDAO;
 	public void updateBorne() {
         String selectedZone = panelDetailBorne.getSelectedZone();
         String[] parts = selectedZone.split(":");
-        System.out.println(parts[0]);
         for(Zone z : listeZone){
             if(z.getId() == Integer.parseInt(parts[0])){
                 selectBorne.setZone(z);
@@ -194,6 +220,14 @@ private ClientZoneDAO zoneDAO;
         borneDAO.update(selectBorne);
         updateListeBorne();
 		
+	}
+	
+	public void addBorne(String zone){
+		String[] parts = zone.split(":");
+		borneDAO.create(new Borne(-1, new Zone(Integer.parseInt(parts[0]), "", "",1)));
+		listeBorne = borneDAO.getAllBornes();
+	    updateListeBorne();
+	    addWindow.dispose();
 	}
 
 	public void deleteBorne(){
