@@ -2,12 +2,20 @@ package Controller;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.border.Border;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EmptyBorder;
+
 import DAOClient.ClientBorneDAO;
 import DAOClient.ClientZoneDAO;
 import DAOClient.Query;
@@ -41,9 +49,15 @@ private ClientZoneDAO zoneDAO;
 		tabPanel.add(panelZone,BorderLayout.WEST);
 		JScrollPane scroll = new JScrollPane(panelZone);
 		scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		
+		
+		panelZone.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+		
 		tabPanel.add(scroll,BorderLayout.WEST);
 		tabPanel.add(panelBorne,BorderLayout.CENTER);
 		tabPanel.add(panelDetailBorne,BorderLayout.EAST);
+		
+				
 		
 		// DAOs initialization
 		this.qManager = q;
@@ -72,7 +86,19 @@ private ClientZoneDAO zoneDAO;
         });
 
 
-
+      //Search bar and options
+    	
+    		JPanel searchBar = new JPanel();
+    		searchBar.setLayout(new FlowLayout(FlowLayout.LEFT));
+    		searchBar.setPreferredSize(new Dimension(600, 40));
+    		Border border = searchBar.getBorder();
+    		Border margin = new EmptyBorder(0,0,10,0);
+    		searchBar.setBorder(new CompoundBorder(border, margin));
+    		searchBar.add(new JLabel(listeBorne.size()+" bornes"));
+    		searchBar.add(new JButton("Ajouter"));
+    		tabPanel.add(searchBar,BorderLayout.NORTH);
+    		
+    		
 
 		updateListeZone();
 
@@ -83,7 +109,12 @@ private ClientZoneDAO zoneDAO;
 	
 	public void updateListeZone(){
 		panelZone.removeAll();
-		int px = 0;
+		int px = 1;
+		Zone touteZone = new Zone(0, "Toutes", "les Zones", 1);
+		ItemList lbl = new ItemList(touteZone.getNom()+" "+touteZone.getDescription());
+		lbl.addMouseListener(new ListenerZone(this,touteZone));
+		lbl.setMaximumSize(new Dimension(300, 37));
+		panelZone.add(lbl);
 		for(Zone m : listeZone){
 			ItemList label = new ItemList(m.getNom()+" "+m.getDescription());
 			label.addMouseListener(new ListenerZone(this,m));
@@ -99,16 +130,24 @@ private ClientZoneDAO zoneDAO;
 	public void updateListeBorne(){
 		panelBorne.removeAll();
 		int px = 0;
-		for(Borne p : listeBorne){
-			//System.out.println("Borne "+p.getId()+" "+p.getZone().getDescription());
-			if(p.getZone().getId() == selectZone.getId()){
-				ItemList label = new ItemList("Borne "+p.getId());
-				label.setMaximumSize(new Dimension(2000, 37));
-				label.addMouseListener(new ListenerBorne(this,p));
-				panelBorne.add(label);
-				px++;
+		if(selectZone.getId() == 0){
+			for(Borne p : listeBorne){
+					ItemList label = new ItemList("Borne "+p.getId());
+					label.setMaximumSize(new Dimension(2000, 37));
+					label.addMouseListener(new ListenerBorne(this,p));
+					panelBorne.add(label);
+					px++;
 			}
-		
+		}else{
+			for(Borne p : listeBorne){
+				if(p.getZone().getId() == selectZone.getId()){
+					ItemList label = new ItemList("Borne "+p.getId());
+					label.setMaximumSize(new Dimension(2000, 37));
+					label.addMouseListener(new ListenerBorne(this,p));
+					panelBorne.add(label);
+					px++;
+				}
+			}
 		}
 		panelBorne.setPreferredSize(new Dimension(300, px*37));
 		panelBorne.revalidate();
