@@ -33,7 +33,7 @@ private DAO<CategorieArticle> DAOca = new CategorieArticleDAO();
 										rs.getString("image"), 
 										rs.getInt("poids"), 
 										rs.getString("provenance"), 
-										DAOca.find(rs.getInt("idcategorie")),  //DAO CategorieArticle � faire
+										DAOca.find(rs.getInt("idcategorie")),  
 										0.0); 
 			}	
 		} catch (SQLException e) {

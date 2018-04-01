@@ -28,7 +28,7 @@ public class PanelArticle extends JPanel{
 		this.setLayout(new BorderLayout());
 		this.setBorder(new LineBorder(Color.GRAY));
 		
-		//**************Partie Information de l'article***********************
+		//**************Information about the product***********************
 		this.imgArticle = new ImageArticle("Pictures/Articles/pasdimage.png");
 		this.nom = new JLabel("");
 		this.description = createArea("pas de description", true, 0, null);
@@ -44,7 +44,7 @@ public class PanelArticle extends JPanel{
 		info.add(description,BorderLayout.CENTER);
 		//********************************************************************
 		
-		//********************Partie Prix et Poids****************************
+		//********************Price et weight****************************
 		JPanel cadreprix = new JPanel();
 		cadreprix.setLayout(new BorderLayout());
 		cadreprix.add(poids, BorderLayout.WEST);
@@ -54,7 +54,7 @@ public class PanelArticle extends JPanel{
 		//********************************************************************
 		
 		
-		//***********************Partie Boutons*******************************
+		//*********************** Buttons*******************************
 		suppButton = new JButton("Supprimer");
 		modifButton = new JButton("Modifier");
 		JPanel cadreButton = new JPanel();
@@ -103,7 +103,7 @@ public class PanelArticle extends JPanel{
 	
 	
 	
-	// Création du textArea sur mersure
+	// Textarea made to measure
 	private JTextArea createArea(
             String text,
             boolean lineWrap, 

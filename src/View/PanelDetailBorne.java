@@ -56,7 +56,7 @@ public class PanelDetailBorne extends JPanel{
         info.add(lbl,BorderLayout.WEST);
         info.add(infoText,BorderLayout.CENTER);
         
-        //***********************Zone modification*******************************
+        //***********************Area modification*******************************
         JPanel modifZone = new JPanel();
         modifZone.setBorder(BorderFactory.createMatteBorder(1, 0, 0, 0, Color.GRAY));
         modifZone.setLayout(new BorderLayout());

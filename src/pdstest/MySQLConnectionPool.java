@@ -27,8 +27,8 @@ public class MySQLConnectionPool
   
   public MySQLConnection acquireConnection()
   {
-	    // pollFirst renvoi "null" ou le premier element de la liste.
-	    // donc pas d'exception, pas de bloquage.
+	    // pollFirst send "null" or the first element of the list
+	    // no exception, no bug
     MySQLConnection result = pool.pollFirst();
     if ( result == null )
       result = createConnection();
@@ -87,7 +87,7 @@ public class MySQLConnectionPool
 	    {
 	      int id= rs.getInt("id");
 	      String nom= rs.getString("nom");
-	      //, idPersonne, blabla, blablabla
+	      // idPersonne
 	      System.out.println(id);
 	      //System.out.println(nom);
 	    }

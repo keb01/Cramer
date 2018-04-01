@@ -123,7 +123,7 @@ public class MagasinDAO extends DAO<Magasin>{
 		return liste;
 	}
 
-//*************************************R�cup�re liste magasin en fonction cat�gorie selectionn�e********************************
+//*************************************Get list of shops according to the category selected*************************************
 public ArrayList<CategorieMagasin> getCategorieMagasin(){
 		
 		ArrayList<CategorieMagasin> liste = new ArrayList<CategorieMagasin>();

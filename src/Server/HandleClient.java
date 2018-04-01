@@ -207,7 +207,7 @@ public class HandleClient implements Runnable,AppProtocol{
 
 
 
-	// IMPLEMENT METHODES DU PROTOCOL EN UTILISANT NOTRE 'OUT'
+	// IMPLEMENT METHODS OF PROTOCOL BY USING 'OUT'
 	
 	
 }
