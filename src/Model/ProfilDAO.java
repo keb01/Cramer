@@ -78,7 +78,7 @@ public class ProfilDAO extends DAO<Profil>{
 		
 		try {
 			st = this.connect.createStatement();
-			String sql = "UPDATE Profil SET id = '"+obj.getId()+"' WHERE id ="+obj.getId();
+			String sql = "UPDATE Profil SET id ='"+obj.getId()+"',nomProfil='"+obj.getNomProfil()+"' WHERE id ="+obj.getId();
 			System.out.println(sql);
 			st.executeUpdate(sql);
 		} catch (SQLException e) {

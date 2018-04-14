@@ -288,7 +288,9 @@ public class HandleClient implements Runnable,AppProtocol{
 		}
 
 		@Override
-		public void sendListMagasin(String s) throws IOException {}
+		public void sendListMagasin(String s) throws IOException {
+			
+		}
 
 	
 

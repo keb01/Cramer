@@ -86,7 +86,7 @@ public class PersonneDAO extends DAO<Personne>{
 		
 		try {
 			st = this.connect.createStatement();
-			String sql = "UPDATE Personne SET id = '"+obj.getId()+"' WHERE id ="+obj.getId();
+			String sql = "UPDATE Personne SET id='"+obj.getId()+"',nom='"+obj.getNom()+"',prenom='"+obj.getPrenom()+"',age='"+obj.getAge()+"',adresse='"+obj.getAdresse()+"',codepostal='"+obj.getCodePostal()+"',ville='"+obj.getVille()+"',idProfil='"+obj.getIdProfil()+"' WHERE id ="+obj.getId();
 			System.out.println(sql);
 			st.executeUpdate(sql);
 		} catch (SQLException e) {
