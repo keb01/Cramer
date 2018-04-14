@@ -5,6 +5,7 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 
 import Model.Borne;
+import Model.Personne;
 import Model.Profil;
 import Model.Zone;
 
@@ -51,6 +52,12 @@ public class OutputManager implements AppProtocol{
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void askPersonne(long id) throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
     
     // -------------------------------------------------------delete--------------------------------------------------------\\
 	@Override
@@ -67,6 +74,12 @@ public class OutputManager implements AppProtocol{
 	
 	@Override
 	public void delProfil(long id) throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	@Override
+	public void delPersonne(long id) throws IOException {
 		// TODO Auto-generated method stub
 		
 	}
@@ -90,6 +103,12 @@ public class OutputManager implements AppProtocol{
 		
 	}
 
+	@Override
+	public void createPersonne(Personne personne) throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
+
 	// -------------------------------------------------------update--------------------------------------------------------\\
 	@Override
 	public void updateZone(Zone zone) throws IOException {
@@ -109,6 +128,11 @@ public class OutputManager implements AppProtocol{
 		
 	}
 
+	@Override
+	public void updatePersonne(Personne personne) throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
 
 	// -------------------------------------------------------answer list--------------------------------------------------------\\
 	@Override

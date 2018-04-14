@@ -3,6 +3,7 @@ package Server;
 import java.io.IOException;
 
 import Model.Borne;
+import Model.Personne;
 import Model.Profil;
 import Model.Zone;
 
@@ -19,21 +20,25 @@ public interface AppProtocol {
     public void askZone(long id) throws IOException;
     public void askBorne(long id) throws IOException;
     public void askProfil(long id) throws IOException;
+    public void askPersonne(long id) throws IOException;
     
     //-------------------------------------------------------delete--------------------------------------------------------\\
     public void delZone(long id) throws IOException;
     public void delBorne(long id) throws IOException;
     public void delProfil(long id) throws IOException;
+    public void delPersonne(long id) throws IOException;
     
     //-------------------------------------------------------insert--------------------------------------------------------\\
     public void createZone(Zone zone) throws IOException;
     public void createBorne(Borne borne)throws IOException;
     public void createProfil(Profil profil)throws IOException;
+    public void createPersonne(Personne personne)throws IOException;
     
     //-------------------------------------------------------update--------------------------------------------------------\\
     public void updateZone(Zone zone) throws IOException;
     public void updateBorne(Borne borne) throws IOException;
     public void updateProfil(Profil profil) throws IOException;
+    public void updatePersonne(Personne personne) throws IOException;
     
     
     

@@ -5,6 +5,8 @@ import Model.Borne;
 import Model.BorneDAO;
 import Model.Magasin;
 import Model.MagasinDAO;
+import Model.Personne;
+import Model.PersonneDAO;
 import Model.Profil;
 import Model.ProfilDAO;
 import Model.Zone;
@@ -100,6 +102,7 @@ public class HandleClient implements Runnable,AppProtocol{
 	
 	//-------------------------------------------------------find--------------------------------------------------------\\
 	
+	@Override
 	public void askZone(long id) throws IOException {
 		ZoneDAO zoneDAO = new ZoneDAO();
 		zoneDAO.setConnection(c);
@@ -131,6 +134,17 @@ public class HandleClient implements Runnable,AppProtocol{
 			out.sendListBornes("ok");
 		
 	}
+	    
+	    @Override
+		public void askPersonne(long id) throws IOException {
+	    		PersonneDAO personneDAO = new PersonneDAO();
+		    	personneDAO.setConnection(c);
+		    	Personne personne = new Personne();
+		    	personne = personneDAO.find(id);
+				/**** JSON MAPPER ****/
+				out.sendListBornes("ok");
+			
+		}
 
 	  //-------------------------------------------------------delete--------------------------------------------------------\\
 	    
@@ -162,6 +176,17 @@ public class HandleClient implements Runnable,AppProtocol{
 			profilDAO.setConnection(c);
 			Profil profil = new Profil(id,"");
 			profilDAO.delete(profil);
+			/**** JSON MAPPER ****/
+	        out.sendListZones("ok");
+			
+		}
+		
+		@Override
+		public void delPersonne(long id) throws IOException {
+			PersonneDAO personneDAO = new PersonneDAO();
+			personneDAO.setConnection(c);
+			Personne personne = new Personne(id,"", null, 0, null, 0, null, 0);
+			personneDAO.delete(personne);
 			/**** JSON MAPPER ****/
 	        out.sendListZones("ok");
 			
@@ -198,6 +223,16 @@ public class HandleClient implements Runnable,AppProtocol{
 			out.sendListBornes("ok");
 			
 		}
+		
+		@Override
+		public void createPersonne(Personne personne) throws IOException {
+			PersonneDAO personneDAO = new PersonneDAO();
+			personneDAO.setConnection(c);
+			personne = personneDAO.create(personne);
+			/**** JSON MAPPER ****/
+			out.sendListBornes("ok");
+			
+		}
 
 		//-------------------------------------------------------update--------------------------------------------------------\\
 		
@@ -230,7 +265,17 @@ public class HandleClient implements Runnable,AppProtocol{
 			out.sendListBornes("ok");
 			
 		}
-
+		
+		@Override
+		public void updatePersonne(Personne personne) throws IOException {
+			PersonneDAO personneDao = new PersonneDAO();
+			personneDao.setConnection(c);
+			personneDao.update(personne);
+			/**** JSON MAPPER ****/
+			out.sendListBornes("ok");
+			
+		}
+		
 		//-------------------------------------------------------list--------------------------------------------------------\\
 		@Override
 		public void sendListZones(String s) {

@@ -22,7 +22,7 @@ public class ClientPersonneDAO extends ClientDAO<Personne> {
 		
 		queryManager.setQueryType("UPDATE");
 		queryManager.setTable("PERSONNE");
-		queryManager.setParam("{ \"id\":"+obj.getId()+", \"nom\":\""+obj.getNom()+"\", \"prenom\":\""+obj.getPrenom()+"\", \"age\":"+obj.getAge()+", \"adresse\":\""+obj.getAdresse()+"\", \"codepostal\":"+obj.getCodePostal()+", \"ville\":\""+obj.getVille()+"\" , \"idProfil\":"+obj.getIdProfil()+"}");
+		queryManager.setParam("{ \"id\":"+obj.getId()+", \"nom\":\""+obj.getNom()+"\", \"prenom\":\""+obj.getPrenom()+"\", \"age\":"+obj.getAge()+", \"adresse\":\""+obj.getAdresse()+"\", \"codePostal\":"+obj.getCodePostal()+", \"ville\":\""+obj.getVille()+"\" , \"idProfil\":"+obj.getIdProfil()+"}");
 		
 		
 		String answer = queryManager.executeQuery();
@@ -36,7 +36,7 @@ public class ClientPersonneDAO extends ClientDAO<Personne> {
 		
 		queryManager.setQueryType("INSERT");
 		queryManager.setTable("PERSONNE");
-		queryManager.setParam("{ \"id\":"+obj.getId()+", \"nom\":\""+obj.getNom()+"\", \"prenom\":\""+obj.getPrenom()+"\", \"age\":"+obj.getAge()+", \"adresse\":\""+obj.getAdresse()+"\", \"codepostal\":"+obj.getCodePostal()+", \"ville\":\""+obj.getVille()+"\" , \"idProfil\":"+obj.getIdProfil()+"}");
+		queryManager.setParam("{ \"id\":"+obj.getId()+", \"nom\":\""+obj.getNom()+"\", \"prenom\":\""+obj.getPrenom()+"\", \"age\":"+obj.getAge()+", \"adresse\":\""+obj.getAdresse()+"\", \"codePostal\":"+obj.getCodePostal()+", \"ville\":\""+obj.getVille()+"\" , \"idProfil\":"+obj.getIdProfil()+"}");
 		
 		
 		String answer = queryManager.executeQuery();
@@ -83,8 +83,8 @@ public class ClientPersonneDAO extends ClientDAO<Personne> {
 		//ArrayList unusual
 		
 		queryManager.setQueryType("UPDATE");
-		queryManager.setTable("PERSONNE");
-		queryManager.setParam("{ \"id\":"+obj.getId()+", \"nom\":\" \", \"prenom\":\" \", \"age\":0, \"adresse\":\" \", \"codepostal\":0, \"ville\":\" \",\"idProfil\":"+obj.getIdProfil()+"}");
+		queryManager.setTable("PERSONNEPROFIL");
+		queryManager.setParam("{ \"id\":"+obj.getId()+", \"nom\":\" \", \"prenom\":\" \", \"age\":0, \"adresse\":\" \", \"codePostal\":0, \"ville\":\" \",\"idProfil\":"+obj.getIdProfil()+"}");
 		
 		
 		String answer = queryManager.executeQuery();
