@@ -11,6 +11,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import Model.Borne;
+import Model.Profil;
 import Model.Zone;
 
 public class InputManager {
@@ -63,6 +64,9 @@ public class InputManager {
 					case "BORNE":
 						handler.askBorne(param.getLong("id"));
 						break;
+					case "PROFIL":
+						handler.askProfil(param.getLong("id"));
+						break;
 					default:
 						break;
 					}
@@ -76,6 +80,9 @@ public class InputManager {
 						break;
 					case "BORNE":
 						handler.delBorne(param.getLong("id"));
+						break;
+					case "PROFIL":
+						handler.delProfil(param.getLong("id"));
 						break;
 					default:
 						break;
@@ -94,6 +101,10 @@ public class InputManager {
 						System.out.println("BORNE TO ADD :  "+param.getInt("idZone"));
 						handler.createBorne(borne);
 						break;
+					case "PROFIL":
+						Profil profil = new Profil(param.getLong("id"),param.getString("nomProfil"));
+						handler.createProfil(profil);
+						break;
 					default:
 						break;
 					}
@@ -107,10 +118,12 @@ public class InputManager {
 						handler.updateZone(zone);
 						break;
 					case "BORNE":
-						System.out.println("toto");
 						Borne borne = new Borne(param.getLong("id"),new Zone(param.getLong("idZone"), "", "", 0));
-						// update to updateBorne(Borne borne)
 						handler.updateBorne(borne);
+						break;
+					case "PROFIL":
+						Profil profil = new Profil(param.getLong("id"),param.getString("nomProfil"));
+						handler.updateProfil(profil);
 						break;
 					default:
 						break;

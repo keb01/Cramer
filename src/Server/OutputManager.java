@@ -5,6 +5,7 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 
 import Model.Borne;
+import Model.Profil;
 import Model.Zone;
 
 public class OutputManager implements AppProtocol{
@@ -15,19 +16,43 @@ public class OutputManager implements AppProtocol{
 		this.ow = new PrintWriter(out, true);
 	}
 
+	//-------------------------------------------------------list--------------------------------------------------------\\
     @Override
     public void askListMagasin() throws IOException {
 
     }
+	
+    @Override
+	public void askListBornes() throws IOException {
+		
+	}
 
+	@Override
+	public void askListZones() throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	//-------------------------------------------------------find--------------------------------------------------------\\
     @Override
 	public void askZone(long id) throws IOException {
 		// TODO Auto-generated method stub
 		
 	}
-
-
-
+    
+    @Override
+	public void askBorne(long id) throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
+    
+    @Override
+	public void askProfil(long id) throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
+    
+    // -------------------------------------------------------delete--------------------------------------------------------\\
 	@Override
 	public void delZone(long id) throws IOException {
 		// TODO Auto-generated method stub
@@ -39,7 +64,14 @@ public class OutputManager implements AppProtocol{
 		// TODO Auto-generated method stub
 		
 	}
+	
+	@Override
+	public void delProfil(long id) throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
 
+	// -------------------------------------------------------insert--------------------------------------------------------\\
 	@Override
 	public void createZone(Zone zone) throws IOException {
 		// TODO Auto-generated method stub
@@ -51,7 +83,14 @@ public class OutputManager implements AppProtocol{
 		// TODO Auto-generated method stub
 		
 	}
+	
+	@Override
+	public void createProfil(Profil profil) throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
 
+	// -------------------------------------------------------update--------------------------------------------------------\\
 	@Override
 	public void updateZone(Zone zone) throws IOException {
 		// TODO Auto-generated method stub
@@ -65,11 +104,13 @@ public class OutputManager implements AppProtocol{
 	}
 
 	@Override
-	public void askBorne(long id) throws IOException {
+	public void updateProfil(Profil profil) throws IOException {
 		// TODO Auto-generated method stub
 		
 	}
 
+
+	// -------------------------------------------------------answer list--------------------------------------------------------\\
 	@Override
 	public void sendListZones(String s) {
 		ow.println(s);
@@ -87,16 +128,7 @@ public class OutputManager implements AppProtocol{
         //System.out.println(s);
 	}
 
-	@Override
-	public void askListBornes() throws IOException {
-		
-	}
 
-	@Override
-	public void askListZones() throws IOException {
-		// TODO Auto-generated method stub
-		
-	}
 
 
 	// IMPLEMENT METHODS OF PROTOCOL FOR SENDING JSON TO CLIENT
