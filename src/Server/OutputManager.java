@@ -7,6 +7,7 @@ import java.io.PrintWriter;
 import Model.Borne;
 import Model.Personne;
 import Model.Profil;
+import Model.Vente;
 import Model.Zone;
 
 public class OutputManager implements AppProtocol{
@@ -30,6 +31,12 @@ public class OutputManager implements AppProtocol{
 
 	@Override
 	public void askListZones() throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	@Override
+	public void askListVentesClientX(long id) throws IOException {
 		// TODO Auto-generated method stub
 		
 	}
@@ -58,6 +65,17 @@ public class OutputManager implements AppProtocol{
 		// TODO Auto-generated method stub
 		
 	}
+	
+	@Override
+	public void askVente(long id) throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void askCategorieMagasinVenteX(long id) throws IOException {
+		// TODO Auto-generated method stub
+	}
     
     // -------------------------------------------------------delete--------------------------------------------------------\\
 	@Override
@@ -80,6 +98,12 @@ public class OutputManager implements AppProtocol{
 	
 	@Override
 	public void delPersonne(long id) throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	@Override
+	public void delVente(long id) throws IOException {
 		// TODO Auto-generated method stub
 		
 	}
@@ -108,6 +132,12 @@ public class OutputManager implements AppProtocol{
 		// TODO Auto-generated method stub
 		
 	}
+	
+	@Override
+	public void createVente(Vente vente) throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
 
 	// -------------------------------------------------------update--------------------------------------------------------\\
 	@Override
@@ -133,6 +163,12 @@ public class OutputManager implements AppProtocol{
 		// TODO Auto-generated method stub
 		
 	}
+	
+	@Override
+	public void updateVente(Vente vente) throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
 
 	// -------------------------------------------------------answer list--------------------------------------------------------\\
 	@Override
@@ -150,6 +186,12 @@ public class OutputManager implements AppProtocol{
 	public void sendListMagasin(String s) {
 		ow.println(s);
         //System.out.println(s);
+	}
+
+	@Override
+	public void sendListVentesClientX(String s) throws IOException {
+		// TODO Auto-generated method stub
+		
 	}
 
 

@@ -32,7 +32,7 @@ public class VenteDAO extends DAO<Vente>{
 										rs.getLong("idClient"),
 										rs.getLong("quantite"),
 										rs.getLong("prix"),
-										rs.getTimestamp("dateVente")); 
+										rs.getString("dateVente")); 
 			}	
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -50,7 +50,7 @@ public class VenteDAO extends DAO<Vente>{
 		
 		try {
 			st = this.connect.createStatement();
-			String sql = "INSERT longO Vente values("+obj.getIdArticle()+","+obj.getIdEmploye()+","+obj.getIdClient()+","+obj.getQuantite()+","+obj.getPrix()+","+obj.getDateVente()+")";
+			String sql = "INSERT INTO Vente values("+obj.getIdArticle()+","+obj.getIdEmploye()+","+obj.getIdClient()+","+obj.getQuantite()+","+obj.getPrix()+","+obj.getDateVente()+")";
 			st.executeUpdate(sql);
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -100,7 +100,7 @@ public class VenteDAO extends DAO<Vente>{
 	
 
 
-	public CategorieMagasin findCategorieMagasin(long id) {
+	public CategorieMagasin findCategorieMagasinVenteX(long id) {
 		CategorieMagasin catMag = new CategorieMagasin();
 		
 		Statement st =null;
@@ -124,7 +124,7 @@ public class VenteDAO extends DAO<Vente>{
 		return catMag;
 	}
 	
-	public ArrayList<Vente> getAllVentes(long idClient){
+	public ArrayList<Vente> getAllVentesClientX(long idClient){
 		
 		ArrayList<Vente> liste = new ArrayList<Vente>();
 		
@@ -136,9 +136,7 @@ public class VenteDAO extends DAO<Vente>{
 		try {
 			st = this.connect.createStatement();
 			String sql = "SELECT * FROM Vente where idClient='"+idClient;
-			rs = st.executeQuery(sql);
-			DAOmagasin.setConnection(connect);  
-			
+			rs = st.executeQuery(sql);			
 			while(rs.next()) {
 				liste.add(new Vente(rs.getLong("id"),
 						rs.getLong("idArticle"),
@@ -146,7 +144,7 @@ public class VenteDAO extends DAO<Vente>{
 						rs.getLong("idClient"),
 						rs.getLong("quantite"),
 						rs.getLong("prix"),
-						rs.getTimestamp("dateVente")));
+						rs.getString("dateVente")));
 			}	
 		} catch (SQLException e) {
 			e.printStackTrace();

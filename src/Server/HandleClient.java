@@ -3,12 +3,15 @@ package Server;
 
 import Model.Borne;
 import Model.BorneDAO;
+import Model.CategorieMagasin;
 import Model.Magasin;
 import Model.MagasinDAO;
 import Model.Personne;
 import Model.PersonneDAO;
 import Model.Profil;
 import Model.ProfilDAO;
+import Model.Vente;
+import Model.VenteDAO;
 import Model.Zone;
 import Model.ZoneDAO;
 import org.codehaus.jackson.map.ObjectMapper;
@@ -100,6 +103,22 @@ public class HandleClient implements Runnable,AppProtocol{
 		
 	}
 	
+	@Override
+	public void askListVentesClientX(long idClient) throws IOException {
+		VenteDAO venteDAO = new VenteDAO();
+		venteDAO.setConnection(c);
+		ArrayList<Vente> listeVente = new ArrayList<Vente>();
+		listeVente = venteDAO.getAllVentesClientX(idClient);
+		/**** JSON MAPPER ****/
+		ObjectMapper mapper = new ObjectMapper();
+		String json = mapper.writeValueAsString(listeVente);
+        out.sendListVentesClientX(json);
+		
+	}
+	
+	
+	
+	
 	//-------------------------------------------------------find--------------------------------------------------------\\
 	
 	@Override
@@ -109,7 +128,7 @@ public class HandleClient implements Runnable,AppProtocol{
 		Zone zone = new Zone();
 		zone = zoneDAO.find(id);
 		/**** JSON MAPPER ****/
-		out.sendListBornes("ok");
+		
 		
 	}
 	
@@ -120,7 +139,7 @@ public class HandleClient implements Runnable,AppProtocol{
 			Borne borne = new Borne();
 			borne = borneDAO.find(id);
 			/**** JSON MAPPER ****/
-			out.sendListBornes("ok");
+			
 		
 	}
 	
@@ -131,7 +150,7 @@ public class HandleClient implements Runnable,AppProtocol{
 	    	Profil profil = new Profil();
 			profil = profilDAO.find(id);
 			/**** JSON MAPPER ****/
-			out.sendListBornes("ok");
+			
 		
 	}
 	    
@@ -142,8 +161,29 @@ public class HandleClient implements Runnable,AppProtocol{
 		    	Personne personne = new Personne();
 		    	personne = personneDAO.find(id);
 				/**** JSON MAPPER ****/
-				out.sendListBornes("ok");
+				
 			
+		}
+	    
+	    @Override
+		public void askVente(long id) throws IOException {
+	    		VenteDAO venteDAO = new VenteDAO();
+	    		venteDAO.setConnection(c);
+		    	Vente vente = new Vente();
+		    	vente = venteDAO.find(id);
+				/**** JSON MAPPER ****/
+				
+			
+		}
+	    
+	    @Override
+		public void askCategorieMagasinVenteX(long id) throws IOException {
+			VenteDAO venteDAO = new VenteDAO();
+			venteDAO.setConnection(c);
+			CategorieMagasin cat = new CategorieMagasin();
+			cat = venteDAO.findCategorieMagasinVenteX(id);
+			/**** JSON MAPPER ****/
+					
 		}
 
 	  //-------------------------------------------------------delete--------------------------------------------------------\\
@@ -155,7 +195,7 @@ public class HandleClient implements Runnable,AppProtocol{
 			Zone zone = new Zone(id, "", "", 0);
 			zDAO.delete(zone);
 			/**** JSON MAPPER ****/
-			out.sendListBornes("ok");;
+			;
 			
 		}
 
@@ -191,6 +231,17 @@ public class HandleClient implements Runnable,AppProtocol{
 	        out.sendListZones("ok");
 			
 		}
+		
+		@Override
+		public void delVente(long id) throws IOException {
+			VenteDAO venteDAO = new VenteDAO();
+			venteDAO.setConnection(c);
+			Vente vente = new Vente(id, 0, 0, 0, 0, 0, null);
+			venteDAO.delete(vente);
+			/**** JSON MAPPER ****/
+	        out.sendListZones("ok");
+			
+		}
 
 		//-------------------------------------------------------insert--------------------------------------------------------\\
 		
@@ -200,7 +251,7 @@ public class HandleClient implements Runnable,AppProtocol{
 			zDAO.setConnection(c);
 			zone = 	zDAO.create(zone);
 			/**** JSON MAPPER ****/
-			out.sendListBornes("ok");
+			
 			
 		}
 
@@ -210,7 +261,7 @@ public class HandleClient implements Runnable,AppProtocol{
 			borneDAO.setConnection(c);
 			borne = borneDAO.create(borne);
 			/**** JSON MAPPER ****/
-			out.sendListBornes("ok");
+			
 			
 		}
 		
@@ -220,7 +271,7 @@ public class HandleClient implements Runnable,AppProtocol{
 			profilDAO.setConnection(c);
 			profil = profilDAO.create(profil);
 			/**** JSON MAPPER ****/
-			out.sendListBornes("ok");
+			
 			
 		}
 		
@@ -230,7 +281,17 @@ public class HandleClient implements Runnable,AppProtocol{
 			personneDAO.setConnection(c);
 			personne = personneDAO.create(personne);
 			/**** JSON MAPPER ****/
-			out.sendListBornes("ok");
+			
+			
+		}
+		
+		@Override
+		public void createVente(Vente vente) throws IOException {
+			VenteDAO venteDAO = new VenteDAO();
+			venteDAO.setConnection(c);
+			vente = venteDAO.create(vente);
+			/**** JSON MAPPER ****/
+			
 			
 		}
 
@@ -242,7 +303,7 @@ public class HandleClient implements Runnable,AppProtocol{
 			zDAO.setConnection(c);
 			zone = zDAO.update(zone);
 			/**** JSON MAPPER ****/
-			out.sendListBornes("ok");
+			
 			
 		}
 
@@ -252,7 +313,7 @@ public class HandleClient implements Runnable,AppProtocol{
 			borneDAO.setConnection(c);
 			borneDAO.update(borne);
 			/**** JSON MAPPER ****/
-			out.sendListBornes("ok");
+			
 			
 		}
 		
@@ -262,7 +323,7 @@ public class HandleClient implements Runnable,AppProtocol{
 			profilDao.setConnection(c);
 			profilDao.update(profil);
 			/**** JSON MAPPER ****/
-			out.sendListBornes("ok");
+			
 			
 		}
 		
@@ -272,7 +333,17 @@ public class HandleClient implements Runnable,AppProtocol{
 			personneDao.setConnection(c);
 			personneDao.update(personne);
 			/**** JSON MAPPER ****/
-			out.sendListBornes("ok");
+			
+			
+		}
+		
+		@Override
+		public void updateVente(Vente vente) throws IOException {
+			VenteDAO venteDao = new VenteDAO();
+			venteDao.setConnection(c);
+			venteDao.update(vente);
+			/**** JSON MAPPER ****/
+			
 			
 		}
 		
@@ -289,6 +360,11 @@ public class HandleClient implements Runnable,AppProtocol{
 
 		@Override
 		public void sendListMagasin(String s) throws IOException {
+			
+		}
+		
+		@Override
+		public void sendListVentesClientX(String s) throws IOException {
 			
 		}
 

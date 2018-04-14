@@ -8,13 +8,13 @@ public class Vente {
 	private long idClient;
 	private long quantite;
 	private double prix;
-	private Timestamp dateVente;
+	private String dateVente;
 
 	public Vente(){
 		
 	}
 	
-	public Vente(long id, long idArticle, long idEmploye, long idClient, long quantite, double prix, Timestamp dateVente) {
+	public Vente(long id, long idArticle, long idEmploye, long idClient, long quantite, double prix, String dateVente) {
 		super();
 		this.id = id;
 		this.idArticle = idArticle;
@@ -86,12 +86,12 @@ public class Vente {
 	}
 
 
-	public Timestamp getDateVente() {
+	public String getDateVente() {
 		return dateVente;
 	}
 
 
-	public void setDateVente(Timestamp dateVente) {
+	public void setDateVente(String dateVente) {
 		this.dateVente = dateVente;
 	}
 

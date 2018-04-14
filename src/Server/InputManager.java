@@ -13,6 +13,7 @@ import org.json.JSONObject;
 import Model.Borne;
 import Model.Personne;
 import Model.Profil;
+import Model.Vente;
 import Model.Zone;
 
 public class InputManager {
@@ -52,6 +53,9 @@ public class InputManager {
 					case "BORNE":
 						handler.askListBornes();
 						break;
+					case "VENTECLIENTX":
+						handler.askListVentesClientX(param.getLong("id"));
+						break;
 					default:
 						break;
 					}
@@ -70,6 +74,12 @@ public class InputManager {
 						break;
 					case "PERSONNE":
 						handler.askPersonne(param.getLong("id"));
+						break;
+					case "VENTE":
+						handler.askVente(param.getLong("id"));
+						break;
+					case "CATEGORIEVENTEX":
+						handler.askVente(param.getLong("id"));
 						break;
 					default:
 						break;
@@ -90,6 +100,9 @@ public class InputManager {
 						break;
 					case "PERSONNE":
 						handler.delPersonne(param.getLong("id"));
+						break;
+					case "VENTE":
+						handler.delVente(param.getLong("id"));
 						break;
 					default:
 						break;
@@ -116,6 +129,10 @@ public class InputManager {
 						Personne personne = new Personne(param.getLong("id"), param.getString("nom"), param.getString("prenom"), param.getLong("age"), param.getString("adresse"), param.getLong("codePostal"), param.getString("ville"), param.getLong("idProfil"));
 						handler.createPersonne(personne);
 						break;
+					case "VENTE":
+						Vente vente = new Vente(param.getLong("id"),param.getLong("idArticle"),param.getLong("idEmploye"),param.getLong("idClient"),param.getLong("quantite"),param.getLong("prix"),param.getString("dateVente"));
+						handler.createVente(vente);
+						break;
 					default:
 						break;
 					}
@@ -139,6 +156,10 @@ public class InputManager {
 					case "PERSONNE":
 						Personne personne = new Personne(param.getLong("id"), param.getString("nom"), param.getString("prenom"), param.getLong("age"), param.getString("adresse"), param.getLong("codePostal"), param.getString("ville"), param.getLong("idProfil"));
 						handler.updatePersonne(personne);
+						break;
+					case "VENTE":
+						Vente vente = new Vente(param.getLong("id"),param.getLong("idArticle"),param.getLong("idEmploye"),param.getLong("idClient"),param.getLong("quantite"),param.getLong("prix"),param.getString("dateVente"));
+						handler.updateVente(vente);
 						break;
 					default:
 						break;
