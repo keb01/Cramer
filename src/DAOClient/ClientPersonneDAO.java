@@ -92,5 +92,27 @@ public class ClientPersonneDAO extends ClientDAO<Personne> {
 		return obj;
 
 	}
+	
+	public ArrayList<Client> getAllClients(){
+			
+			queryManager.setQueryType("LIST");
+			queryManager.setTable("CLIENT");
+			queryManager.setParam("{}");
+			String response = queryManager.executeQuery();
+			
+			ObjectMapper objectMapper = new ObjectMapper();
+			ArrayList<Client> listClient = new ArrayList<Client>();
+			
+			try {
+				Client[] array = objectMapper.readValue(response, Client[].class);
+				listClient = new ArrayList<Client>(Arrays.asList(array));
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
+			return listClient;
+
+		}
     
 }
