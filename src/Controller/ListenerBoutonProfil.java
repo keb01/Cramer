@@ -7,17 +7,20 @@ import java.util.Random;
 
 import DAOClient.ClientPersonneDAO;
 import Model.Personne;
+import Model.Profil;
 
 public class ListenerBoutonProfil implements ActionListener {
 
 	
 	private AppGestionProfil c;
 	private ArrayList<Personne> m;
+	private ArrayList<Profil> p;
 	private ClientPersonneDAO dao;
 	
-	public ListenerBoutonProfil(AppGestionProfil c, ArrayList<Personne> m,ClientPersonneDAO dao) {
+	public ListenerBoutonProfil(AppGestionProfil c, ArrayList<Personne> m,ClientPersonneDAO dao, ArrayList<Profil> p) {
 	this.c = c;
 	this.m=m;
+	this.p=p;
 	this.dao=dao;
 	
 	}
@@ -28,16 +31,16 @@ public class ListenerBoutonProfil implements ActionListener {
 		for (int i =0 ; i< m.size()-1; i++) {
 			
 			Random rand = new Random();
-			int randomNum = rand.nextInt(10);
+			int randomNum = rand.nextInt(p.size());
 			
 			m.get(i).setIdProfil(randomNum);
 			
 			this.dao.updateProfil(m.get(i));
 			
-			//c.updatePanelProfil();
+			
 		}
 		
-
+		//c.updatePanelProfil();
 	}
 
 }
