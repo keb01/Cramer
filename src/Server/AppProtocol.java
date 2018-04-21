@@ -17,7 +17,8 @@ public interface AppProtocol {
     public void askListBornes() throws IOException;
     public void askListZones() throws IOException;
     public void askListVentesClientX(long id) throws IOException;
-    public void askAllClient() throws IOException;    
+    public void askAllClient() throws IOException;   
+    public void askAllProfils() throws IOException;   
     
     //-------------------------------------------------------find--------------------------------------------------------\\
     public void askZone(long id) throws IOException;
@@ -46,15 +47,14 @@ public interface AppProtocol {
     public void updateBorne(Borne borne) throws IOException;
     public void updateProfil(Profil profil) throws IOException;
     public void updatePersonne(Personne personne) throws IOException;
-    public void updateVente(Vente vente) throws IOException;
-    
-    
-    
+    public void updatePersonneProfil(Personne personne) throws IOException;
+    public void updateVente(Vente vente) throws IOException;    
 
     //-------------------------------------------------------Answers List--------------------------------------------------------\\
     public void sendListZones(String s);
     public void sendListBornes(String s);
     public void sendListMagasin(String s) throws IOException;
     public void sendListVentesClientX(String s) throws IOException;
-    public void sendAllClients(String s) throws IOException;
+    public void sendAllClients(String s) throws IOException; 
+    public void sendAllProfils(String s) throws IOException; 
 }

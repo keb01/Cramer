@@ -128,11 +128,23 @@ public class HandleClient implements Runnable,AppProtocol{
         out.sendAllClients(json);
 		
 	}
+
+	@Override
+	public void askAllProfils() throws IOException {
+		ProfilDAO profilDAO = new ProfilDAO();
+		profilDAO.setConnection(c);
+		ArrayList<Profil> listeProfils = new ArrayList<Profil>();
+		listeProfils = profilDAO.getAllProfils();
+		/**** JSON MAPPER ****/
+		ObjectMapper mapper = new ObjectMapper();
+		String json = mapper.writeValueAsString(listeProfils);
+        out.sendAllProfils(json);
+	}
+	
 	
 	
 	//-------------------------------------------------------find--------------------------------------------------------\\
 	
-
 	@Override
 	public void askZone(long id) throws IOException {
 		ZoneDAO zoneDAO = new ZoneDAO();
@@ -350,6 +362,16 @@ public class HandleClient implements Runnable,AppProtocol{
 		}
 		
 		@Override
+		public void updatePersonneProfil(Personne personne) throws IOException {
+			PersonneDAO personneDao = new PersonneDAO();
+			personneDao.setConnection(c);
+			personneDao.updateProfil(personne);
+			/**** JSON MAPPER ****/
+			
+			
+		}
+		
+		@Override
 		public void updateVente(Vente vente) throws IOException {
 			VenteDAO venteDao = new VenteDAO();
 			venteDao.setConnection(c);
@@ -382,6 +404,12 @@ public class HandleClient implements Runnable,AppProtocol{
 
 		@Override
 		public void sendAllClients(String s) throws IOException {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void sendAllProfils(String s) throws IOException {
 			// TODO Auto-generated method stub
 			
 		}

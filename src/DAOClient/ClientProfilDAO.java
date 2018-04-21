@@ -78,5 +78,28 @@ public class ClientProfilDAO extends ClientDAO<Profil> {
 		
 	}	
 	
+	public ArrayList<Profil> getAllProfils() {
+
+		queryManager.setQueryType("LIST");
+		queryManager.setTable("PROFIL");
+		queryManager.setParam("{}");
+
+		String answer = queryManager.executeQuery();
+		
+		ObjectMapper objectMapper = new ObjectMapper();
+		ArrayList<Profil> listProfil = new ArrayList<Profil>();
+		
+		try {
+			Profil[] tab = objectMapper.readValue(answer, Profil[].class);
+			listProfil = new ArrayList<Profil>(Arrays.asList(tab));
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		return listProfil;
+		
+	}
+	
     
 }

@@ -98,7 +98,7 @@ public class PersonneDAO extends DAO<Personne>{
 	}
 
 	
-	public Personne updateIdProfil(Personne obj) {
+	public Personne updateProfil(Personne obj) {
 
 		Statement st =null;
 		

@@ -5,6 +5,7 @@ package Model;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import Model.Borne;
 
@@ -86,6 +87,30 @@ public class ProfilDAO extends DAO<Profil>{
 		}
 		
 		return obj;
+	}
+	
+	public ArrayList<Profil> getAllProfils() {
+		
+		ArrayList<Profil> profils = new ArrayList<Profil>();		
+		
+		Statement st =null;
+		ResultSet rs =null;
+		
+		
+		try {
+			st = this.connect.createStatement();
+			String sql = "SELECT * FROM Profil ";
+			rs = st.executeQuery(sql);
+			
+			while(rs.next()){
+				Profil profil = new Profil(rs.getLong("id"),rs.getString("nomProfil"));
+				profils.add(profil);
+			}	
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return profils;
 	}
 	
 	
