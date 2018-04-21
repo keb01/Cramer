@@ -59,6 +59,9 @@ public class InputManager {
 					case "CLIENT":
 						handler.askAllClient();
 						break;
+					case "PROFIL":
+						handler.askAllProfils();
+						break;
 					default:
 						break;
 					}
