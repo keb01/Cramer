@@ -164,6 +164,10 @@ public class InputManager {
 						Vente vente = new Vente(param.getLong("id"),param.getLong("idArticle"),param.getLong("idEmploye"),param.getLong("idClient"),param.getLong("quantite"),param.getLong("prix"),param.getString("dateVente"));
 						handler.updateVente(vente);
 						break;
+					case "PERSONNEPROFIL":
+						Personne personnePro = new Personne(param.getLong("id"), param.getString("nom"), param.getString("prenom"), param.getLong("age"), param.getString("adresse"), param.getLong("codePostal"), param.getString("ville"), param.getLong("idProfil"));
+						handler.updatePersonneProfil(personnePro);
+						break;
 					default:
 						break;
 					}

@@ -41,6 +41,12 @@ public class OutputManager implements AppProtocol{
 		
 	}
 	
+	@Override
+	public void askAllProfils() throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
+
 	//-------------------------------------------------------find--------------------------------------------------------\\
     @Override
 	public void askZone(long id) throws IOException {
@@ -171,11 +177,17 @@ public class OutputManager implements AppProtocol{
 	}
 	
 	@Override
-	public void updateVente(Vente vente) throws IOException {
+	public void updatePersonneProfil(Personne personne) throws IOException {
 		// TODO Auto-generated method stub
 		
 	}
 
+	@Override
+	public void updateVente(Vente vente) throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
+	
 	// -------------------------------------------------------answer list--------------------------------------------------------\\
 	@Override
 	public void sendListZones(String s) {
@@ -196,12 +208,20 @@ public class OutputManager implements AppProtocol{
 
 	@Override
 	public void sendListVentesClientX(String s) throws IOException {
+		ow.println(s);
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void sendAllClients(String s) throws IOException {
+		ow.println(s);
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void sendAllProfils(String s) throws IOException {
 		ow.println(s);
 		// TODO Auto-generated method stub
 		
