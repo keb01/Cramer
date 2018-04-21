@@ -21,11 +21,11 @@ import DAOClient.ClientPersonneDAO;
 import DAOClient.ClientDAO;
 import DAOClient.Query;
 import Model.Profil;
+import Model.Zone;
 import Model.Personne;
 import Model.Client;
 import View.AddBorneWindow;
 import View.ItemList;
-//import View.PanelArticle;
 import View.PanelDetailProfil;
 import View.PanelListe;
 
@@ -136,13 +136,23 @@ public class AppGestionProfil {
 		panelProfil.repaint();
 	}
 	
-
+	
 	public void selectedClient(Personne m) {
 		panelDetailProfil.setVisible(false);
 		selectClient = m;
-		updateListeProfil();
+		updateListeClient();
 		
 	}
+
+	public void selectedProfil() {
+		ArrayList<String> array = new ArrayList<>();
+		for(Personne p : listeClient){
+			array.add(p.getId()+": "+p.getNom()+" "+p.getPrenom());
+		}
+
+		panelDetailProfil.setVisible(true);
+	}
+	
 
 	public void afficherFenetreModif(){
 		//fenetreModif.update(selectProduit.getNom());

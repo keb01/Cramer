@@ -31,7 +31,7 @@ public class ListenerProfil implements MouseListener{
 		}
 		l.setBackground(Color.GRAY);
 		l.setColorText(Color.WHITE);
-	//c.selectedProfil(p);
+		c.selectedProfil();
 		
 		
 	}
