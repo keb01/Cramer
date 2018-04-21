@@ -5,6 +5,7 @@ package Model;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import Model.Borne;
 
@@ -113,5 +114,35 @@ public class PersonneDAO extends DAO<Personne>{
 		return obj;
 	}
 	
+	public ArrayList<Personne> getAllClients(){
+		
+		ArrayList<Personne> personnes =new  ArrayList<Personne>();
+		Statement st =null;
+		ResultSet rs =null;
+		
+		try {
+			st = this.connect.createStatement();
+			String sql = "SELECT * from Personne where id in (select idPersonne from Client)";
+			rs = st.executeQuery(sql);
+			
+			while(rs.next()) {
+				Personne personne = new Personne(rs.getInt("id"),
+										rs.getString("nom"), 
+										rs.getString("prenom"), 
+										rs.getInt("age"), 
+										rs.getString("adresse"), 
+										rs.getInt("codePostal"), 
+										rs.getString("ville"),  
+										rs.getInt("idProfil"));
+				personnes.add(personne);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return personnes;
+		
+	}
 	
 }

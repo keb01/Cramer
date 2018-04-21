@@ -56,6 +56,9 @@ public class InputManager {
 					case "VENTECLIENTX":
 						handler.askListVentesClientX(param.getLong("id"));
 						break;
+					case "CLIENT":
+						handler.askAllClient();
+						break;
 					default:
 						break;
 					}

@@ -17,6 +17,7 @@ public interface AppProtocol {
     public void askListBornes() throws IOException;
     public void askListZones() throws IOException;
     public void askListVentesClientX(long id) throws IOException;
+    public void askAllClient() throws IOException;    
     
     //-------------------------------------------------------find--------------------------------------------------------\\
     public void askZone(long id) throws IOException;
@@ -55,4 +56,5 @@ public interface AppProtocol {
     public void sendListBornes(String s);
     public void sendListMagasin(String s) throws IOException;
     public void sendListVentesClientX(String s) throws IOException;
+    public void sendAllClients(String s) throws IOException;
 }

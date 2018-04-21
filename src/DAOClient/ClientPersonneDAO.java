@@ -93,7 +93,7 @@ public class ClientPersonneDAO extends ClientDAO<Personne> {
 
 	}
 	
-	public ArrayList<Client> getAllClients(){
+	public ArrayList<Personne> getAllClients(){
 			
 			queryManager.setQueryType("LIST");
 			queryManager.setTable("CLIENT");
@@ -101,11 +101,11 @@ public class ClientPersonneDAO extends ClientDAO<Personne> {
 			String response = queryManager.executeQuery();
 			
 			ObjectMapper objectMapper = new ObjectMapper();
-			ArrayList<Client> listClient = new ArrayList<Client>();
+			ArrayList<Personne> listClient = new ArrayList<Personne>();
 			
 			try {
-				Client[] array = objectMapper.readValue(response, Client[].class);
-				listClient = new ArrayList<Client>(Arrays.asList(array));
+				Personne[] array = objectMapper.readValue(response, Personne[].class);
+				listClient = new ArrayList<Personne>(Arrays.asList(array));
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();

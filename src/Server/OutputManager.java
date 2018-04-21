@@ -77,7 +77,13 @@ public class OutputManager implements AppProtocol{
 		// TODO Auto-generated method stub
 	}
     
-    // -------------------------------------------------------delete--------------------------------------------------------\\
+    @Override
+	public void askAllClient() throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	// -------------------------------------------------------delete--------------------------------------------------------\\
 	@Override
 	public void delZone(long id) throws IOException {
 		// TODO Auto-generated method stub
@@ -193,6 +199,13 @@ public class OutputManager implements AppProtocol{
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void sendAllClients(String s) throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
+	
 
 
 
