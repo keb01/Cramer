@@ -94,7 +94,7 @@ public class ClientPersonneDAO extends ClientDAO<Personne> {
 	}
 	
 	public ArrayList<Personne> getAllClients(){
-			
+			System.out.println("ICI");
 			queryManager.setQueryType("LIST");
 			queryManager.setTable("CLIENT");
 			queryManager.setParam("{}");

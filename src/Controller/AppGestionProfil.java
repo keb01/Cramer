@@ -71,7 +71,7 @@ public class AppGestionProfil {
 			
 		//Areas list initialization
 		listeClient = clientPersonneDAO.getAllClients(); 
-		listeProfil = profilDAO.getAllProfils();
+		//listeProfil = profilDAO.getAllProfils();
  
 
 		//*****************Search bar and options*****************
@@ -106,6 +106,7 @@ public class AppGestionProfil {
 		int px = 1;
 		
 		for(Personne m : listeClient){
+			System.out.println(m);
 			ItemList label = new ItemList(m.getId() +":"+m.getNom()+" "+m.getPrenom());
 			label.addMouseListener(new ListenerClient(this,m));
 			label.setMaximumSize(new Dimension(300, 37));
@@ -121,7 +122,7 @@ public class AppGestionProfil {
 		panelProfil.removeAll();
 		int px = 0;
 		profilCounter.setText(listeProfil.size()+" profil");
-		if(selectClient.getId() == 0){
+		if(selectClient.getId() != 0){
 			for(Profil p : listeProfil){
 					ItemList label = new ItemList("Profil "+p.getId());
 					label.setMaximumSize(new Dimension(2000, 37));
