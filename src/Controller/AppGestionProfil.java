@@ -76,7 +76,7 @@ public class AppGestionProfil {
 		//Areas list initialization
 		listeClient = clientPersonneDAO.getAllClients(); 
 		//listeProfil = ClientProfilDAO.getAllProfil();
-
+ 
 
       //*****************Search bar and options*****************
     		// Bar panel settings
