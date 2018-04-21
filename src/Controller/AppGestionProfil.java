@@ -75,7 +75,7 @@ public class AppGestionProfil {
 		
 		//Areas list initialization
 		listeClient = clientPersonneDAO.getAllClients(); 
-		//listeProfil = ClientProfilDAO.getAllProfil();
+		listeProfil = profilDAO.getAllProfil();
  
 
       //*****************Search bar and options*****************
@@ -121,7 +121,7 @@ public class AppGestionProfil {
 		panelClient.repaint();
 	}
 	
-	/*public void updateListeProfil(){
+	public void updateListeProfil(){
 		panelProfil.removeAll();
 		int px = 0;
 		profilCounter.setText(listeProfil.size()+" profil");
@@ -133,42 +133,19 @@ public class AppGestionProfil {
 					panelProfil.add(label);
 					px++;
 			}
-		}else{
-			for(Profil p : listeProfil){
-				if(p.getClient().getId() == selectClient.getId()){
-					ItemList label = new ItemList("Profil "+p.getId());
-					label.setMaximumSize(new Dimension(2000, 37));
-					label.addMouseListener(new ListenerProfil(this,p));
-					panelProfil.add(label);
-					px++;
-				}
-			}
 		}
 		panelProfil.setPreferredSize(new Dimension(300, px*37));
 		panelProfil.revalidate();
 		panelProfil.repaint();
-	}*/
+	}
 	
 
-	/*public void selectedClient(Personne m) {
+	public void selectedClient(Personne m) {
 		panelDetailProfil.setVisible(false);
 		selectClient = m;
 		updateListeProfil();
 		
 	}
-
-	public void selectedClient(Profil p) {
-		selectProfil = p;
-		ArrayList<String> array = new ArrayList<>();
-		for(Personne z : listeClient){
-			array.add(z.getId()+": "+z.getNom()+" "+z.getPrenom()+" "+z.getAdresse()+" "+z.getCodePostal());
-		}
-			
-		panelDetailProfil.update("Profil"+p.getClient().getNom()+" "+p.getClient().getPrenom(), array.toArray(new String[array.size()]));
-		//panelDetailBorne.setListenerModifButton(new ListenerModifArticle(this));
-		//panelDetailBorne.setListenerSuppButton(new ListenerDelArticle(this));
-		panelDetailProfil.setVisible(true);
-	}*/
 
 	public void afficherFenetreModif(){
 		//fenetreModif.update(selectProduit.getNom());

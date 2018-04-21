@@ -31,7 +31,7 @@ public class ListenerClient implements MouseListener {
 		}
 		l.setBackground(Color.GRAY);
 		l.setColorText(Color.WHITE);
-		//c.selectedClient(m);
+		c.selectedClient(m);
 		
 	}
 	@Override

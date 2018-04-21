@@ -1,4 +1,4 @@
-/*package Controller;
+package Controller;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -7,7 +7,6 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JLabel;
 
-import Model.Borne;
 import Model.Profil;
 import View.ItemList;
 
@@ -32,7 +31,7 @@ public class ListenerProfil implements MouseListener{
 		}
 		l.setBackground(Color.GRAY);
 		l.setColorText(Color.WHITE);
-	c.selectedProfil(p);
+	//c.selectedProfil(p);
 		
 		
 	}
@@ -57,5 +56,5 @@ public class ListenerProfil implements MouseListener{
 		
 	}
 	
-
-}*/
+	
+}

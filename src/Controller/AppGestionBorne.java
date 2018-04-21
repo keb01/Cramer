@@ -34,7 +34,7 @@ public class AppGestionBorne {
 	private ArrayList<Zone> listeZone;
 	private ArrayList<Borne> listeBorne;
 	private ClientBorneDAO borneDAO;
-private ClientZoneDAO zoneDAO;
+	private ClientZoneDAO zoneDAO;
 	private Borne selectBorne;
 	private Zone selectZone;
 	private Query qManager;

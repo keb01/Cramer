@@ -1,7 +1,5 @@
 package View;
 
-
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -103,7 +101,7 @@ public class PanelDetailBorne extends JPanel{
 	public void update(String nom,String zone, String[] listZone){
 		comboZone.setModel(new DefaultComboBoxModel<String>(listZone));
 		comboZone.setSelectedItem(zone);
-		this.nom.setText(nom);;
+		this.nom.setText(nom);
 		this.zone.setText("Zone "+zone);
 		this.revalidate();
 		this.repaint();
