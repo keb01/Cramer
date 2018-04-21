@@ -55,14 +55,11 @@ public class AppGestionProfil {
 		JScrollPane scroll = new JScrollPane(panelClient);
 		scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		
-		
 		panelClient.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
 		
 		tabPanel.add(scroll,BorderLayout.WEST);
 		tabPanel.add(panelProfil,BorderLayout.CENTER);
-		tabPanel.add(panelDetailProfil,BorderLayout.EAST);
-		
-				
+		tabPanel.add(panelDetailProfil,BorderLayout.EAST);			
 		
 		// DAOs initialization
 		this.qManager = q;
@@ -71,14 +68,13 @@ public class AppGestionProfil {
 		this.listeProfil = new ArrayList<Profil>();
 		this.profilDAO = new ClientProfilDAO(qManager);
 		this.clientPersonneDAO = new ClientPersonneDAO(qManager);
-		
-		
+			
 		//Areas list initialization
 		listeClient = clientPersonneDAO.getAllClients(); 
-		listeProfil = profilDAO.getAllProfil();
+		listeProfil = profilDAO.getAllProfils();
  
 
-      //*****************Search bar and options*****************
+		//*****************Search bar and options*****************
     		// Bar panel settings
     		JPanel searchBar = new JPanel();
     		searchBar.setLayout(new FlowLayout(FlowLayout.LEFT));
