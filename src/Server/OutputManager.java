@@ -202,6 +202,7 @@ public class OutputManager implements AppProtocol{
 
 	@Override
 	public void sendAllClients(String s) throws IOException {
+		ow.println(s);
 		// TODO Auto-generated method stub
 		
 	}

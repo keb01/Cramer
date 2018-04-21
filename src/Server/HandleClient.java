@@ -125,7 +125,7 @@ public class HandleClient implements Runnable,AppProtocol{
 		/**** JSON MAPPER ****/
 		ObjectMapper mapper = new ObjectMapper();
 		String json = mapper.writeValueAsString(listePersonne);
-        out.sendListVentesClientX(json);
+        out.sendAllClients(json);
 		
 	}
 	

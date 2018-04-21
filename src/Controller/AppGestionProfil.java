@@ -108,14 +108,9 @@ public class AppGestionProfil {
 	public void updateListeClient(){
 		panelClient.removeAll();
 		int px = 1;
-		Personne tousClients = new Personne();
-		selectClient = tousClients;
-		ItemList lbl = new ItemList(tousClients.getNom()+" "+tousClients.getPrenom()+" "+tousClients.getAdresse()+" "+tousClients.getCodePostal());
-		lbl.addMouseListener(new ListenerClient(this,tousClients));
-		lbl.setMaximumSize(new Dimension(300, 37));
-		panelClient.add(lbl);
+		
 		for(Personne m : listeClient){
-			ItemList label = new ItemList(m.getNom()+" "+m.getPrenom()+" "+m.getAdresse()+" "+m.getCodePostal());
+			ItemList label = new ItemList(m.getId() +":"+m.getNom()+" "+m.getPrenom());
 			label.addMouseListener(new ListenerClient(this,m));
 			label.setMaximumSize(new Dimension(300, 37));
 			panelClient.add(label);
