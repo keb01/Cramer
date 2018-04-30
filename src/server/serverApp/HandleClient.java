@@ -136,6 +136,7 @@ public class HandleClient implements Runnable,AppProtocol{
 		profilDAO.setConnection(c);
 		ArrayList<Profil> listeProfils = new ArrayList<Profil>();
 		listeProfils = profilDAO.getAllProfils();
+		System.out.println(listeProfils);
 		/**** JSON MAPPER ****/
 		ObjectMapper mapper = new ObjectMapper();
 		String json = mapper.writeValueAsString(listeProfils);

@@ -72,7 +72,7 @@ public class AppGestionProfil {
 		//Areas list initialization
 		listeClient = clientPersonneDAO.getAllClients(); 
 		listeProfil = profilDAO.getAllProfils();
- 
+		System.out.println(listeProfil.get(0).getNomProfil());
 
 		//*****************Search bar and options*****************
     		// Bar panel settings
@@ -122,7 +122,7 @@ public class AppGestionProfil {
 	public void updateListeProfil(){
 		panelProfil.removeAll();
 		int px = 0;
-		profilCounter.setText(listeProfil.size()+" profil");
+		System.out.println(listeProfil.get(0).getNomProfil());
 		if(selectClient.getId() != 0){
 			for(Profil p : listeProfil){
 					ItemList label = new ItemList("Profil "+p.getId());
