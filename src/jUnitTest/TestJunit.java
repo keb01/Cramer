@@ -2,9 +2,10 @@ package jUnitTest;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
-import Model.MagasinDAO;
-import Model.ArticleDAO;
-import Model.BorneDAO;
+
+import model.ArticleDAO;
+import model.BorneDAO;
+import model.MagasinDAO;
 
 
 public class TestJunit {
