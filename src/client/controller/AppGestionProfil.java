@@ -24,6 +24,7 @@ import client.view.AddBorneWindow;
 import client.view.ItemList;
 import client.view.PanelDetailProfil;
 import client.view.PanelListe;
+import common.Borne;
 import common.Client;
 import common.Personne;
 import common.Profil;
@@ -42,6 +43,7 @@ public class AppGestionProfil {
 	private Query qManager;
 	private AddBorneWindow addWindow;
 	private JLabel profilCounter;
+	
 	
 	public AppGestionProfil(JPanel tabPanel,Query q){
 		
@@ -72,7 +74,7 @@ public class AppGestionProfil {
 		//Areas list initialization
 		listeClient = clientPersonneDAO.getAllClients(); 
 		listeProfil = profilDAO.getAllProfils();
-		System.out.println(listeProfil.get(0).getNomProfil());
+		System.out.println(listeClient.get(0).getIdProfil());
 
 		//*****************Search bar and options*****************
     		// Bar panel settings
@@ -122,15 +124,16 @@ public class AppGestionProfil {
 	public void updateListeProfil(){
 		panelProfil.removeAll();
 		int px = 0;
-		System.out.println(listeProfil.get(0).getNomProfil());
-		if(selectClient.getId() != 0){
+		if(selectClient.getId()!=0) {
 			for(Profil p : listeProfil){
-					ItemList label = new ItemList("Profil "+p.getId());
+				if(selectClient.getIdProfil() == p.getId()){
+					ItemList label = new ItemList(selectProfil.getNomProfil());
 					label.setMaximumSize(new Dimension(2000, 37));
-					label.addMouseListener(new ListenerProfil(this,p));
+					label.addMouseListener(new ListenerProfil(this,selectProfil));
 					panelProfil.add(label);
 					px++;
-			}
+				}
+			}	
 		}
 		panelProfil.setPreferredSize(new Dimension(300, px*37));
 		panelProfil.revalidate();
@@ -146,10 +149,7 @@ public class AppGestionProfil {
 	}
 
 	public void selectedProfil(Profil profil) {
-		ArrayList<String> array = new ArrayList<>();
-		for(Personne p : listeClient){
-			array.add(p.getId()+": "+p.getNom()+" "+p.getPrenom());
-		}
+		selectProfil=profil;
 
 		panelDetailProfil.setVisible(true);
 	}
