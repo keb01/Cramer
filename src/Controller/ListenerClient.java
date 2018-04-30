@@ -29,6 +29,7 @@ public class ListenerClient implements MouseListener {
 			item.setBackground(Color.WHITE);
 			item.setColorText(Color.BLACK);
 		}
+		System.out.println(l.getText());
 		l.setBackground(Color.GRAY);
 		l.setColorText(Color.WHITE);
 		c.selectedClient(m);

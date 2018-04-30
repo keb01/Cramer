@@ -106,7 +106,6 @@ public class AppGestionProfil {
 		int px = 1;
 		
 		for(Personne m : listeClient){
-			System.out.println(m);
 			ItemList label = new ItemList(m.getId() +":"+m.getNom()+" "+m.getPrenom());
 			label.addMouseListener(new ListenerClient(this,m));
 			label.setMaximumSize(new Dimension(300, 37));
@@ -117,6 +116,8 @@ public class AppGestionProfil {
 		panelClient.revalidate();
 		panelClient.repaint();
 	}
+	
+	
 	
 	public void updateListeProfil(){
 		panelProfil.removeAll();
@@ -138,13 +139,13 @@ public class AppGestionProfil {
 	
 	
 	public void selectedClient(Personne m) {
-		panelDetailProfil.setVisible(false);
+		panelDetailProfil.setVisible(true);
 		selectClient = m;
-		updateListeClient();
+		updateListeProfil();
 		
 	}
 
-	public void selectedProfil() {
+	public void selectedProfil(Profil profil) {
 		ArrayList<String> array = new ArrayList<>();
 		for(Personne p : listeClient){
 			array.add(p.getId()+": "+p.getNom()+" "+p.getPrenom());

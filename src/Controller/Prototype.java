@@ -29,14 +29,14 @@ public class Prototype {
 			
 			//Adding AppGestionBornePanel to the main Window and starting the core
 			Query q = new Query();
-			//JPanel AppGestionBornePanel = new JPanel();
+			JPanel AppGestionBornePanel = new JPanel();
 			
 			JPanel AppGestionProfilPanel = new JPanel();
 			
-			//tabbedPane.add("Gestion Bornes", AppGestionBornePanel);
+			tabbedPane.add("Gestion Bornes", AppGestionBornePanel);
 			tabbedPane.add("Gestion Profil",AppGestionProfilPanel);
 			
-			//new AppGestionBorne(AppGestionBornePanel,q);
+			new AppGestionBorne(AppGestionBornePanel,q);
 			new AppGestionProfil(AppGestionProfilPanel,q);
 		
 		
