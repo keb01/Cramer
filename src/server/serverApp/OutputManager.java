@@ -89,6 +89,12 @@ public class OutputManager implements AppProtocol{
 		
 	}
 
+	@Override
+	public void askMagasinProfil(Profil p) throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
+
 	// -------------------------------------------------------delete--------------------------------------------------------\\
 	@Override
 	public void delZone(long id) throws IOException {
@@ -223,6 +229,12 @@ public class OutputManager implements AppProtocol{
 	@Override
 	public void sendAllProfils(String s) throws IOException {
 		ow.println(s);
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void sendMagasinProfil(String s) throws IOException {
 		// TODO Auto-generated method stub
 		
 	}

@@ -143,6 +143,19 @@ public class HandleClient implements Runnable,AppProtocol{
         out.sendAllProfils(json);
 	}
 	
+
+	@Override
+	public void askMagasinProfil(Profil p) throws IOException {
+		MagasinDAO magasinDAO = new MagasinDAO();
+		magasinDAO.setConnection(c);
+		ArrayList<Magasin> listeMagasins = new ArrayList<Magasin>();
+		listeMagasins = magasinDAO.getMagasin(p);
+		System.out.println(listeMagasins);
+		/**** JSON MAPPER ****/
+		ObjectMapper mapper = new ObjectMapper();
+		String json = mapper.writeValueAsString(listeMagasins);
+        out.sendAllProfils(json);
+	}
 	
 	
 	//-------------------------------------------------------find--------------------------------------------------------\\
@@ -412,6 +425,13 @@ public class HandleClient implements Runnable,AppProtocol{
 
 		@Override
 		public void sendAllProfils(String s) throws IOException {
+			// TODO Auto-generated method stub
+			
+		}
+
+
+		@Override
+		public void sendMagasinProfil(String s) throws IOException {
 			// TODO Auto-generated method stub
 			
 		}

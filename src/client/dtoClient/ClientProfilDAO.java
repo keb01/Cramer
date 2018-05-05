@@ -6,6 +6,7 @@ import java.util.Arrays;
 
 import org.codehaus.jackson.map.ObjectMapper;
 
+import common.Magasin;
 import common.Profil;
 
 
@@ -101,5 +102,27 @@ public class ClientProfilDAO extends ClientDAO<Profil> {
 		
 	}
 	
+	public ArrayList<Magasin> getMagasins(Profil p) {
+
+		queryManager.setQueryType("LIST");
+		queryManager.setTable("MAGASINSPROFIL");
+		queryManager.setParam("{ \"id\":"+p.getId()+", \"nomProfil\":\""+p.getNomProfil()+"\"}");
+
+		String answer = queryManager.executeQuery();
+		
+		ObjectMapper objectMapper = new ObjectMapper();
+		ArrayList<Magasin> listMagasin = new ArrayList<Magasin>();
+		
+		try {
+			Magasin[] tab = objectMapper.readValue(answer, Magasin[].class);
+			listMagasin = new ArrayList<Magasin>(Arrays.asList(tab));
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		return listMagasin;
+		
+	}
     
 }

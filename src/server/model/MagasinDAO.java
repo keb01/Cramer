@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import common.Article;
 import common.Magasin;
+import common.Profil;
 
 public class MagasinDAO extends DAO<Magasin>{
 	private DAO<CategorieArticle> DAOca = new CategorieArticleDAO();	
@@ -174,6 +175,32 @@ public ArrayList<CategorieMagasin> getCategorieMagasin(){
 						rs.getString("description"), 
 						rs.getInt("idEmplacement"), 
 						rs.getInt("idCategorieMagasin")));
+			}	
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return liste;
+	}
+
+	public ArrayList<Magasin> getMagasin(Profil p){
+		
+		ArrayList<Magasin> liste = new ArrayList<Magasin>();
+		
+		
+		Statement st = null;
+		ResultSet rs = null;
+		
+		
+		try {
+			st = this.connect.createStatement();
+			String sql = "SELECT * FROM CategorieMagasin ";
+			rs = st.executeQuery(sql);
+			
+			while(rs.next()) {
+				
+				liste.add(new Magasin(rs.getInt("id"),
+									  rs.getString("nom"), "", "", rs.getInt("idEmplacement"), 0)
+										); 
 			}	
 		} catch (SQLException e) {
 			e.printStackTrace();

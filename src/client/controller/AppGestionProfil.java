@@ -127,7 +127,7 @@ public class AppGestionProfil {
 		if(selectClient.getId()!=0) {
 			for(Profil p : listeProfil){
 				if(selectClient.getIdProfil() == p.getId()){
-					ItemList label = new ItemList(p.getNomProfil());
+					ItemList label = new ItemList(p.getNomProfil() +"parcours");
 					label.setMaximumSize(new Dimension(2000, 37));
 					label.addMouseListener(new ListenerProfil(this,p));
 					panelProfil.add(label);

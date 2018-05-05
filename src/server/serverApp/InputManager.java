@@ -62,6 +62,10 @@ public class InputManager {
 					case "PROFIL":
 						handler.askAllProfils();
 						break;
+					case "MAGASINSPROFIL":
+						Profil p = new Profil(param.getLong("id"),param.getString("nomProfil"));
+						handler.askMagasinProfil(p);
+						break;
 					default:
 						break;
 					}
