@@ -199,7 +199,7 @@ public ArrayList<CategorieMagasin> getCategorieMagasin(){
 			while(rs.next()) {
 				
 				liste.add(new Magasin(rs.getInt("id"),
-									  rs.getString("nom"), "", "", rs.getInt("idEmplacement"), 0)
+									  "", rs.getString("nom"), "", rs.getInt("idEmplacement"), 0)
 										); 
 			}	
 		} catch (SQLException e) {

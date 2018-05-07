@@ -234,7 +234,10 @@ public class HandleClient implements Runnable,AppProtocol{
 		    	Magasin magasin = new Magasin();
 		    	magasin = magasinDAO.find(id);
 				/**** JSON MAPPER ****/
-				
+
+				ObjectMapper mapper = new ObjectMapper();
+				String json = mapper.writeValueAsString(magasin);
+		        out.sendAllProfils(json);
 			
 		}
 	    

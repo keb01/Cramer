@@ -22,7 +22,7 @@ public class ClientMagasinDAO extends ClientDAO<Magasin> {
 			
 			queryManager.setQueryType("FIND");
 			queryManager.setTable("MAGASIN");
-			queryManager.setParam("{ \"id\":"+id+"}");
+			queryManager.setParam("{\"id\":"+id+"}");
 			
 			
 			String answer = queryManager.executeQuery();

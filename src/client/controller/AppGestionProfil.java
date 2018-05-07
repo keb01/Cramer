@@ -59,15 +59,18 @@ public class AppGestionProfil {
 		panelProfil = new PanelListe();
 		panelDetailProfil = new PanelListe();
 		tabPanel.add(panelClient,BorderLayout.WEST);
+		tabPanel.add(panelDetailProfil,BorderLayout.EAST);
 		JScrollPane scroll = new JScrollPane(panelClient);
+		JScrollPane scrolla = new JScrollPane(panelDetailProfil);
 		scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		scrolla.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		
 		panelClient.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+		panelDetailProfil.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
 		
 		tabPanel.add(scroll,BorderLayout.WEST);
 		tabPanel.add(panelProfil,BorderLayout.CENTER);
-		tabPanel.add(panelDetailProfil,BorderLayout.EAST);			
-		
+		tabPanel.add(scrolla,BorderLayout.EAST);
 		// DAOs initialization
 		this.qManager = q;
 		
@@ -112,7 +115,9 @@ public class AppGestionProfil {
 	
 	
 	public void updateListeClient(){
+		panelProfil.removeAll();
 		panelClient.removeAll();
+		panelDetailProfil.removeAll();
 		int px = 1;
 		
 		for(Personne m : listeClient){
@@ -131,11 +136,12 @@ public class AppGestionProfil {
 	
 	public void updateListeProfil(){
 		panelProfil.removeAll();
+		panelDetailProfil.removeAll();
 		int px = 0;
 		if(selectClient.getId()!=0) {
 			for(Profil p : listeProfil){
 				if(selectClient.getIdProfil() == p.getId()){
-					ItemList label = new ItemList(p.getNomProfil() +"parcours");
+					ItemList label = new ItemList("Voir les parcours");
 					label.setMaximumSize(new Dimension(2000, 37));
 					label.addMouseListener(new ListenerProfil(this,p));
 					panelProfil.add(label);
@@ -157,15 +163,36 @@ public class AppGestionProfil {
 	}
 
 	public void selectedProfil(Profil profil) {
+		panelProfil.removeAll();
+		panelDetailProfil.removeAll();
 		selectProfil=profil;
 		ArrayList<Magasin> magasinProfil = new ArrayList<Magasin>();
-		int [] tab= new int[10];
+		long [] tab= new long[10];
 		if(profil.getId()!=1 && profil.getId() != 5){
 			magasinProfil = profilDAO.getMagasins(profil);
+			
+			ArrayList<Long> idMag=new ArrayList<Long>();
+			for (Magasin m : magasinProfil) {
+				long id =m.getId();
+				idMag.add(id);
+			}
+
+			triBulleCroissant(tab);
+			
+			magasinProfil = new ArrayList<Magasin>();
+			for (int i=0; i<idMag.size()-1;i++) {
+				Magasin mag = clientMagasinDAO.find(idMag.get(i));
+				magasinProfil.add(mag);
+				System.out.println(mag.getNom());
+			}
+			
 		}else {
 			for (int i=0; i<tab.length;i++) {
 				Random rand = new Random();
 				int randomNum = rand.nextInt(tousMagasins.size());
+				if(randomNum==0) {
+					randomNum++;
+				}
 				tab[i] = randomNum;
 				System.out.println(tab[i]);
 			}
@@ -175,6 +202,7 @@ public class AppGestionProfil {
 			for (int i=0; i<tab.length;i++) {
 				Magasin mag = clientMagasinDAO.find(tab[i]);
 				magasinProfil.add(mag);
+				System.out.println(mag.getNom());
 			}
 		}
 		
@@ -189,6 +217,7 @@ public class AppGestionProfil {
 			
 			
 		}*/
+		updateParcours(magasinProfil);
 		panelDetailProfil.setVisible(true);
 	}
 	
@@ -196,7 +225,7 @@ public class AppGestionProfil {
 		panelDetailProfil.removeAll();
 		int px = 0;
 			for(Magasin m : magasins){
-					ItemList label = new ItemList(m.getNom()+" emplacement : "+ m.getIdEmplacement());
+					ItemList label = new ItemList(" Emplacement : "+ m.getIdEmplacement()+", "+m.getNom());
 					label.setMaximumSize(new Dimension(2000, 37));
 					panelDetailProfil.add(label);
 					px++;
@@ -207,9 +236,9 @@ public class AppGestionProfil {
 		panelDetailProfil.repaint();
 	}
 	
-	public static void triBulleCroissant(int tableau[]) {
+	public static void triBulleCroissant(long tableau[]) {
 		int longueur = tableau.length;
-		int tampon = 0;
+		long tampon = 0;
 		boolean permut;
  
 		do {
