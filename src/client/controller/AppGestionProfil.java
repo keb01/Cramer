@@ -173,6 +173,7 @@ public class AppGestionProfil {
 		ArrayList<Magasin> magasinProfil = new ArrayList<Magasin>();
 		long [] tab= new long[10];
 		if(profil.getId()!=1 && profil.getId() != 5){
+			
 			magasinProfil = profilDAO.getMagasins(profil);
 			
 			ArrayList<Long> idMag=new ArrayList<Long>();
@@ -180,14 +181,14 @@ public class AppGestionProfil {
 				long id =m.getId();
 				idMag.add(id);
 			}
-
-			triBulleCroissant(tab);
+			
+			triBulleCroissant(idMag);
 			
 			magasinProfil = new ArrayList<Magasin>();
 			for (int i=0; i<idMag.size()-1;i++) {
 				Magasin mag = clientMagasinDAO.find(idMag.get(i));
 				magasinProfil.add(mag);
-				System.out.println(mag.getNom());
+				System.out.println(mag.getId());
 			}
 			
 		}else {
@@ -252,6 +253,24 @@ public class AppGestionProfil {
 					tampon = tableau[i];
 					tableau[i] = tableau[i + 1];
 					tableau[i + 1] = tampon;
+					permut = true;
+				}
+			}
+		} while (permut);
+	}
+	
+	public static void triBulleCroissant(ArrayList<Long> tableau) {
+		int longueur = tableau.size();
+		long tampon = 0;
+		boolean permut;
+ 
+		do {
+			permut = false;
+			for (int i = 0; i < longueur - 1; i++) {
+				if (tableau.get(i) > tableau.get(i + 1)) {
+					tampon = tableau.get(i);
+					tableau.set(i, tableau.get(i + 1));
+					tableau.set(i+1,tampon);
 					permut = true;
 				}
 			}
