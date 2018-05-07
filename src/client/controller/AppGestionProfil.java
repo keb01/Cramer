@@ -118,6 +118,8 @@ public class AppGestionProfil {
 		panelProfil.removeAll();
 		panelClient.removeAll();
 		panelDetailProfil.removeAll();
+		panelDetailProfil.revalidate();
+		panelDetailProfil.repaint();
 		int px = 1;
 		
 		for(Personne m : listeClient){
@@ -137,6 +139,8 @@ public class AppGestionProfil {
 	public void updateListeProfil(){
 		panelProfil.removeAll();
 		panelDetailProfil.removeAll();
+		panelDetailProfil.revalidate();
+		panelDetailProfil.repaint();
 		int px = 0;
 		if(selectClient.getId()!=0) {
 			for(Profil p : listeProfil){

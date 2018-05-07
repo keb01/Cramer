@@ -408,7 +408,10 @@ public class HandleClient implements Runnable,AppProtocol{
 			personneDao.setConnection(c);
 			personneDao.updateProfil(personne);
 			/**** JSON MAPPER ****/
-			
+
+			ObjectMapper mapper = new ObjectMapper();
+			String json = mapper.writeValueAsString(personne);
+	        out.sendAllProfils(json);
 			
 		}
 		
