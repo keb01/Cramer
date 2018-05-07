@@ -207,6 +207,11 @@ public class OutputManager implements AppProtocol{
 	}
 	
 	// -------------------------------------------------------answer list--------------------------------------------------------\\
+	public void sendListFournisseurs(String s) {
+		ow.println(s);
+	}
+	
+	
 	@Override
 	public void sendListZones(String s) {
 		ow.println(s);
@@ -254,6 +259,12 @@ public class OutputManager implements AppProtocol{
 	@Override
 	public void sendAllMagasins(String s) throws IOException {
 		ow.println(s);
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void askListFournisseurs() throws IOException {
 		// TODO Auto-generated method stub
 		
 	}

@@ -5,6 +5,7 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.json.JSONException;
 
 import common.Borne;
+import common.Fournisseur;
 import common.Magasin;
 import common.Personne;
 import common.Profil;
@@ -12,6 +13,7 @@ import common.Vente;
 import common.Zone;
 import server.model.BorneDAO;
 import server.model.CategorieMagasin;
+import server.model.FournisseurDAO;
 import server.model.MagasinDAO;
 import server.model.PersonneDAO;
 import server.model.ProfilDAO;
@@ -66,7 +68,18 @@ public class HandleClient implements Runnable,AppProtocol{
 	}
 
 	//-------------------------------------------------------list--------------------------------------------------------\\
-	
+    @Override
+    public void askListFournisseurs() throws IOException {
+        FournisseurDAO fournisseursDAO = new FournisseurDAO();
+        fournisseursDAO.setConnection(c);
+        ArrayList<Fournisseur> listeMag = new ArrayList<>();
+        listeMag = fournisseursDAO.getAllFournisseurs();
+        /**** JSON MAPPER ****/
+        ObjectMapper mapper = new ObjectMapper();
+		String json = mapper.writeValueAsString(listeMag);
+		out.sendListFournisseurs(json);
+    }
+    
     @Override
     public void askListMagasin() throws IOException {
         MagasinDAO magasinDAO = new MagasinDAO();

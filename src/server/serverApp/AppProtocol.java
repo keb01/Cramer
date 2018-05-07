@@ -61,6 +61,7 @@ public interface AppProtocol {
     public void sendAllClients(String s) throws IOException; 
     public void sendAllProfils(String s) throws IOException;
     public void sendAllMagasins(String s) throws IOException;  
-    public void sendMagasinProfil(String s) throws IOException;  
+    public void sendMagasinProfil(String s) throws IOException;
+	public void askListFournisseurs() throws IOException;  
     
 }

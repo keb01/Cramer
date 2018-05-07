@@ -47,6 +47,9 @@ public class InputManager {
                 switch (queryType) {
 				case "LIST":
 					switch (table) {
+					case "FOURNISSEUR":
+						handler.askListFournisseurs();
+						break;
 					case "ZONE":
 						handler.askListZones();
 						break;
