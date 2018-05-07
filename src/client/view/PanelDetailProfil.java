@@ -25,8 +25,6 @@ import javax.swing.border.LineBorder;
 public class PanelDetailProfil extends JPanel{
 	private JLabel nom;
 	private JLabel client;
-	private JButton suppButton;
-	private JButton modifButton;
 	private JComboBox<String> comboClient;
 	
 	public PanelDetailProfil(){
@@ -60,33 +58,4 @@ public class PanelDetailProfil extends JPanel{
 				
 	}
 	
-	
-	
-	
-	public void setListenerSuppButton(ActionListener a) {
-		this.suppButton.addActionListener(a);
-	}
-
-
-
-
-	public void setListenerModifButton(ActionListener a) {
-		this.modifButton.addActionListener(a);
-	}
-
-
-
-
-	public void update(String nom,String client, String[] listClient){
-		comboClient.setModel(new DefaultComboBoxModel<String>(listClient));
-		comboClient.setSelectedItem(client);
-		this.nom.setText(nom);;
-		this.client.setText("Client "+client);
-		this.revalidate();
-		this.repaint();
-	}
-	
-	public String getSelectedClient(){
-		return comboClient.getSelectedItem().toString();
-	}
 }

@@ -157,6 +157,18 @@ public class HandleClient implements Runnable,AppProtocol{
         out.sendAllProfils(json);
 	}
 	
+	@Override
+	public void askAllMagasins() throws IOException{
+		MagasinDAO magasinDAO = new MagasinDAO();
+		magasinDAO.setConnection(c);
+		ArrayList<Magasin> listeMagasins = new ArrayList<Magasin>();
+		listeMagasins = magasinDAO.getAllMagasins();
+		System.out.println(listeMagasins);
+		/**** JSON MAPPER ****/
+		ObjectMapper mapper = new ObjectMapper();
+		String json = mapper.writeValueAsString(listeMagasins);
+        out.sendAllProfils(json);
+	}
 	
 	//-------------------------------------------------------find--------------------------------------------------------\\
 	
@@ -210,6 +222,17 @@ public class HandleClient implements Runnable,AppProtocol{
 	    		venteDAO.setConnection(c);
 		    	Vente vente = new Vente();
 		    	vente = venteDAO.find(id);
+				/**** JSON MAPPER ****/
+				
+			
+		}
+	    
+	    @Override
+		public void askMagasin(long id) throws IOException {
+	    		MagasinDAO magasinDAO = new MagasinDAO();
+	    		magasinDAO.setConnection(c);
+		    	Magasin magasin = new Magasin();
+		    	magasin = magasinDAO.find(id);
 				/**** JSON MAPPER ****/
 				
 			
@@ -432,6 +455,12 @@ public class HandleClient implements Runnable,AppProtocol{
 
 		@Override
 		public void sendMagasinProfil(String s) throws IOException {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void sendAllMagasins(String s) throws IOException {
 			// TODO Auto-generated method stub
 			
 		}

@@ -193,7 +193,7 @@ public ArrayList<CategorieMagasin> getCategorieMagasin(){
 		
 		try {
 			st = this.connect.createStatement();
-			String sql = "SELECT * FROM CategorieMagasin ";
+			String sql = "Select M.id,M.nom,M.idEmplacement from Profil P, ProfilCat PC, Magasin M where P.id=PC.idProfil and P.id="+p.getId()+" and M.idCategorieMagasin=PC.idCategorieMagasin ";
 			rs = st.executeQuery(sql);
 			
 			while(rs.next()) {

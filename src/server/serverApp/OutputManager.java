@@ -47,6 +47,24 @@ public class OutputManager implements AppProtocol{
 		
 	}
 
+	@Override
+	public void askMagasinProfil(Profil p) throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void askAllMagasins() throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
+	
+    @Override
+	public void askAllClient() throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
+
 	//-------------------------------------------------------find--------------------------------------------------------\\
     @Override
 	public void askZone(long id) throws IOException {
@@ -82,15 +100,9 @@ public class OutputManager implements AppProtocol{
 	public void askCategorieMagasinVenteX(long id) throws IOException {
 		// TODO Auto-generated method stub
 	}
-    
-    @Override
-	public void askAllClient() throws IOException {
-		// TODO Auto-generated method stub
-		
-	}
-
+	
 	@Override
-	public void askMagasinProfil(Profil p) throws IOException {
+	public void askMagasin(long id) throws IOException {
 		// TODO Auto-generated method stub
 		
 	}
@@ -235,6 +247,13 @@ public class OutputManager implements AppProtocol{
 
 	@Override
 	public void sendMagasinProfil(String s) throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void sendAllMagasins(String s) throws IOException {
+		ow.println(s);
 		// TODO Auto-generated method stub
 		
 	}

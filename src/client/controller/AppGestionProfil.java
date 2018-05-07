@@ -6,6 +6,7 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Random;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -17,6 +18,7 @@ import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 
 import client.dtoClient.ClientDAO;
+import client.dtoClient.ClientMagasinDAO;
 import client.dtoClient.ClientPersonneDAO;
 import client.dtoClient.ClientProfilDAO;
 import client.dtoClient.Query;
@@ -26,18 +28,21 @@ import client.view.PanelDetailProfil;
 import client.view.PanelListe;
 import common.Borne;
 import common.Client;
+import common.Magasin;
 import common.Personne;
 import common.Profil;
 import common.Zone;
 
 public class AppGestionProfil {
 	private PanelListe panelClient,panelProfil;
-	private PanelDetailProfil panelDetailProfil;
+	private PanelListe panelDetailProfil;
 	private JPanel tabPanel;
 	private ArrayList<Personne> listeClient;
 	private ArrayList<Profil> listeProfil;
+	private ArrayList<Magasin> tousMagasins;
 	private ClientProfilDAO profilDAO;
 	private ClientPersonneDAO clientPersonneDAO;
+	private ClientMagasinDAO clientMagasinDAO;
 	private Profil selectProfil;
 	private Personne selectClient;
 	private Query qManager;
@@ -52,7 +57,7 @@ public class AppGestionProfil {
 		this.tabPanel.setLayout(new BorderLayout());
 		panelClient = new PanelListe();
 		panelProfil = new PanelListe();
-		panelDetailProfil = new PanelDetailProfil();
+		panelDetailProfil = new PanelListe();
 		tabPanel.add(panelClient,BorderLayout.WEST);
 		JScrollPane scroll = new JScrollPane(panelClient);
 		scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
@@ -69,11 +74,14 @@ public class AppGestionProfil {
 		this.listeClient = new ArrayList<Personne>();
 		this.listeProfil = new ArrayList<Profil>();
 		this.profilDAO = new ClientProfilDAO(qManager);
+		this.clientMagasinDAO =new ClientMagasinDAO(qManager);
 		this.clientPersonneDAO = new ClientPersonneDAO(qManager);
 			
 		//Areas list initialization
 		listeClient = clientPersonneDAO.getAllClients(); 
 		listeProfil = profilDAO.getAllProfils();
+
+		tousMagasins = clientMagasinDAO.getAllMagasins();
 		System.out.println(listeClient.get(0).getIdProfil());
 
 		//*****************Search bar and options*****************
@@ -150,11 +158,73 @@ public class AppGestionProfil {
 
 	public void selectedProfil(Profil profil) {
 		selectProfil=profil;
+		ArrayList<Magasin> magasinProfil = new ArrayList<Magasin>();
+		int [] tab= new int[10];
+		if(profil.getId()!=1 && profil.getId() != 5){
+			magasinProfil = profilDAO.getMagasins(profil);
+		}else {
+			for (int i=0; i<tab.length;i++) {
+				Random rand = new Random();
+				int randomNum = rand.nextInt(tousMagasins.size());
+				tab[i] = randomNum;
+				System.out.println(tab[i]);
+			}
+			
+			triBulleCroissant(tab);
 
+			for (int i=0; i<tab.length;i++) {
+				Magasin mag = clientMagasinDAO.find(tab[i]);
+				magasinProfil.add(mag);
+			}
+		}
+		
+	/*	for (int i =0 ; i< listeClient.size()-1; i++) {
+			
+			Random rand = new Random();
+			int randomNum = rand.nextInt(listeProfil.size());
+			
+			listeClient.get(i).setIdProfil(randomNum);
+			
+			clientPersonneDAO.updateProfil(listeClient.get(i));
+			
+			
+		}*/
 		panelDetailProfil.setVisible(true);
 	}
 	
-
+	public void updateParcours(ArrayList<Magasin> magasins) {
+		panelDetailProfil.removeAll();
+		int px = 0;
+			for(Magasin m : magasins){
+					ItemList label = new ItemList(m.getNom()+" emplacement : "+ m.getIdEmplacement());
+					label.setMaximumSize(new Dimension(2000, 37));
+					panelDetailProfil.add(label);
+					px++;
+			}	
+		
+		panelDetailProfil.setPreferredSize(new Dimension(400, px*37));
+		panelDetailProfil.revalidate();
+		panelDetailProfil.repaint();
+	}
+	
+	public static void triBulleCroissant(int tableau[]) {
+		int longueur = tableau.length;
+		int tampon = 0;
+		boolean permut;
+ 
+		do {
+			permut = false;
+			for (int i = 0; i < longueur - 1; i++) {
+				if (tableau[i] > tableau[i + 1]) {
+					tampon = tableau[i];
+					tableau[i] = tableau[i + 1];
+					tableau[i + 1] = tampon;
+					permut = true;
+				}
+			}
+		} while (permut);
+	}
+	
 	public void afficherFenetreModif(){
 		//fenetreModif.update(selectProduit.getNom());
 		//fenetreModif.setListenerRecButton(new ListenerRecArticle(this));

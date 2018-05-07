@@ -18,7 +18,8 @@ public interface AppProtocol {
     public void askListZones() throws IOException;
     public void askListVentesClientX(long id) throws IOException;
     public void askAllClient() throws IOException;   
-    public void askAllProfils() throws IOException;   
+    public void askAllProfils() throws IOException;
+    public void askAllMagasins() throws IOException;      
     public void askMagasinProfil(Profil p) throws IOException;   
     
     //-------------------------------------------------------find--------------------------------------------------------\\
@@ -27,6 +28,7 @@ public interface AppProtocol {
     public void askProfil(long id) throws IOException;
     public void askPersonne(long id) throws IOException;
     public void askVente(long id) throws IOException;
+    public void askMagasin(long id) throws IOException;
     public void askCategorieMagasinVenteX(long id) throws IOException;
     
     //-------------------------------------------------------delete--------------------------------------------------------\\
@@ -57,7 +59,8 @@ public interface AppProtocol {
     public void sendListMagasin(String s) throws IOException;
     public void sendListVentesClientX(String s) throws IOException;
     public void sendAllClients(String s) throws IOException; 
-    public void sendAllProfils(String s) throws IOException; 
+    public void sendAllProfils(String s) throws IOException;
+    public void sendAllMagasins(String s) throws IOException;  
     public void sendMagasinProfil(String s) throws IOException;  
     
 }

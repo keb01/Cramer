@@ -62,6 +62,9 @@ public class InputManager {
 					case "PROFIL":
 						handler.askAllProfils();
 						break;
+					case "MAGASIN":
+						handler.askAllMagasins();
+						break;
 					case "MAGASINSPROFIL":
 						Profil p = new Profil(param.getLong("id"),param.getString("nomProfil"));
 						handler.askMagasinProfil(p);
@@ -90,6 +93,9 @@ public class InputManager {
 						break;
 					case "CATEGORIEVENTEX":
 						handler.askVente(param.getLong("id"));
+						break;
+					case "MAGASIN":
+						handler.askMagasin(param.getLong("id"));
 						break;
 					default:
 						break;
