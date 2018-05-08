@@ -42,8 +42,16 @@ public class ClientMagasinDAO extends ClientDAO<Magasin> {
 
 	@Override
 	public Magasin create(Magasin obj) {
-		// TODO Auto-generated method stub
-		return null;
+		queryManager.setQueryType("INSERT");
+		queryManager.setTable("MAGASIN");
+		queryManager.setParam("{\"id\":"+Long.toString(obj.getId())+",\"logo\":"+obj.getLogo()+",\"nom\":"+obj.getNom()+",\"idEmplacement\":"+Long.toString(obj.getIdEmplacement())+",\"idCategorieMagasin\":"+Long.toString(obj.getIdCategorieMagasin())+",\"description\":"+obj.getDescription()+"}");
+		
+		//queryManager.getParam().get(0)=Long.toString(obj.getId());
+		//queryManager.getParam().get(1)=Long.toString(obj.getZone().getId());
+		
+		String response = queryManager.executeQuery();
+		
+		return obj;
 	}
 
 	@Override

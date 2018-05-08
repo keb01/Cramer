@@ -454,6 +454,14 @@ public class HandleClient implements Runnable,AppProtocol{
 			empDAO.create(emp);
 			
 		}
+		
+		@Override
+		public void createMagasin(Magasin magasin) throws IOException {
+			MagasinDAO magDAO = new MagasinDAO();
+			magDAO.setConnection(c);
+			magDAO.create(magasin);
+			
+		}
 
 		//-------------------------------------------------------update--------------------------------------------------------\\
 		
@@ -577,6 +585,8 @@ public class HandleClient implements Runnable,AppProtocol{
 			// TODO Auto-generated method stub
 			
 		}
+
+
 
 
 
