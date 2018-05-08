@@ -12,5 +12,9 @@ public class Fournisseur {
 		this.idCategorieArticle = idCategorieArticle;
 	}
 	
+	public Fournisseur(){
+		
+	}
+	
 	
 }

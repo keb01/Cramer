@@ -4,6 +4,7 @@ package server.serverApp;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.json.JSONException;
 
+import common.Achat;
 import common.Borne;
 import common.Fournisseur;
 import common.Magasin;
@@ -11,6 +12,7 @@ import common.Personne;
 import common.Profil;
 import common.Vente;
 import common.Zone;
+import server.model.AchatDAO;
 import server.model.BorneDAO;
 import server.model.CategorieMagasin;
 import server.model.FournisseurDAO;
@@ -68,16 +70,28 @@ public class HandleClient implements Runnable,AppProtocol{
 	}
 
 	//-------------------------------------------------------list--------------------------------------------------------\\
-    @Override
+	@Override
+ 	public void askListAchats() throws IOException {
+        AchatDAO achatsDAO = new AchatDAO();
+        achatsDAO.setConnection(c);
+        ArrayList<Achat> listeAchats = new ArrayList<>();
+        listeAchats = achatsDAO.getAllAchats();
+        /**** JSON MAPPER ****/
+        ObjectMapper mapper = new ObjectMapper();
+		String json = mapper.writeValueAsString(listeAchats);
+		out.sendList(json);
+    }
+
+	@Override
     public void askListFournisseurs() throws IOException {
         FournisseurDAO fournisseursDAO = new FournisseurDAO();
         fournisseursDAO.setConnection(c);
-        ArrayList<Fournisseur> listeMag = new ArrayList<>();
-        listeMag = fournisseursDAO.getAllFournisseurs();
+        ArrayList<Fournisseur> listefournisseur = new ArrayList<>();
+        listefournisseur = fournisseursDAO.getAllFournisseurs();
         /**** JSON MAPPER ****/
         ObjectMapper mapper = new ObjectMapper();
-		String json = mapper.writeValueAsString(listeMag);
-		out.sendListFournisseurs(json);
+		String json = mapper.writeValueAsString(listefournisseur);
+		out.sendList(json);
     }
     
     @Override
@@ -322,6 +336,15 @@ public class HandleClient implements Runnable,AppProtocol{
 		}
 
 		//-------------------------------------------------------insert--------------------------------------------------------\\
+	
+		@Override
+		public void createAchat(Achat achat) throws IOException {
+			AchatDAO aDAO = new AchatDAO();
+			aDAO.setConnection(c);
+			achat = aDAO.create(achat);
+			/**** JSON MAPPER ****/
+				
+		}
 		
 		@Override
 		public void createZone(Zone zone) throws IOException {

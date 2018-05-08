@@ -10,6 +10,7 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import common.Achat;
 import common.Borne;
 import common.Personne;
 import common.Profil;
@@ -19,6 +20,7 @@ import common.Zone;
 public class InputManager {
 	AppProtocol handler;
 	InputStream in;
+	private long idEmploye = 1;
 	
 	public InputManager(InputStream in, AppProtocol handler) throws IOException {
 		this.in = in;
@@ -47,6 +49,9 @@ public class InputManager {
                 switch (queryType) {
 				case "LIST":
 					switch (table) {
+					case "ACHAT":
+						handler.askListAchats();
+						break;
 					case "FOURNISSEUR":
 						handler.askListFournisseurs();
 						break;
@@ -131,6 +136,10 @@ public class InputManager {
 				case "INSERT":
 					
 					switch (table) {
+					case "ACHAT":
+						Achat achat = new Achat(-1,idEmploye,Long.toString(System.currentTimeMillis()),0,param.getInt("total"),param.getLong("id"));
+						handler.createAchat(achat);
+						break;
 					case "ZONE":
 						Zone zone = new Zone(param.getLong("id"),param.getString("nom"),param.getString("description"),param.getDouble("coefP"));
 						handler.createZone(zone);

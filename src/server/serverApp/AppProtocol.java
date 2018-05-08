@@ -2,6 +2,7 @@ package server.serverApp;
 
 import java.io.IOException;
 
+import common.Achat;
 import common.Borne;
 import common.Personne;
 import common.Profil;
@@ -20,7 +21,9 @@ public interface AppProtocol {
     public void askAllClient() throws IOException;   
     public void askAllProfils() throws IOException;
     public void askAllMagasins() throws IOException;      
-    public void askMagasinProfil(Profil p) throws IOException;   
+    public void askMagasinProfil(Profil p) throws IOException;
+	public void askListFournisseurs() throws IOException;
+	public void askListAchats() throws IOException;
     
     //-------------------------------------------------------find--------------------------------------------------------\\
     public void askZone(long id) throws IOException;
@@ -44,6 +47,7 @@ public interface AppProtocol {
     public void createProfil(Profil profil)throws IOException;
     public void createPersonne(Personne personne)throws IOException;
     public void createVente(Vente vente)throws IOException;
+    public void createAchat(Achat achat) throws IOException;
     
     //-------------------------------------------------------update--------------------------------------------------------\\
     public void updateZone(Zone zone) throws IOException;
@@ -62,6 +66,6 @@ public interface AppProtocol {
     public void sendAllProfils(String s) throws IOException;
     public void sendAllMagasins(String s) throws IOException;  
     public void sendMagasinProfil(String s) throws IOException;
-	public void askListFournisseurs() throws IOException;  
+	  
     
 }

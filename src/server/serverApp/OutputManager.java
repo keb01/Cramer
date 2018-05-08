@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 
+import common.Achat;
 import common.Borne;
 import common.Personne;
 import common.Profil;
@@ -19,6 +20,11 @@ public class OutputManager implements AppProtocol{
 	}
 
 	//-------------------------------------------------------list--------------------------------------------------------\\
+    @Override
+    public void askListAchats() throws IOException {
+
+    }
+    
     @Override
     public void askListMagasin() throws IOException {
 
@@ -207,7 +213,7 @@ public class OutputManager implements AppProtocol{
 	}
 	
 	// -------------------------------------------------------answer list--------------------------------------------------------\\
-	public void sendListFournisseurs(String s) {
+	public void sendList(String s) {
 		ow.println(s);
 	}
 	
@@ -265,6 +271,12 @@ public class OutputManager implements AppProtocol{
 
 	@Override
 	public void askListFournisseurs() throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void createAchat(Achat achat) throws IOException {
 		// TODO Auto-generated method stub
 		
 	}
