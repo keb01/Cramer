@@ -32,15 +32,17 @@ public class Prototype {
 			JPanel AppGestionBornePanel = new JPanel();
 			JPanel AppGestionProfilPanel = new JPanel();
 			JPanel AppGestionStockPanel = new JPanel();
+			JPanel AppGestionEmplacementPanel = new JPanel();
 			
 			tabbedPane.add("Gestion Bornes", AppGestionBornePanel);
 			tabbedPane.add("Gestion Profil",AppGestionProfilPanel);
 			tabbedPane.add("Gestion Stock", AppGestionStockPanel);
+			tabbedPane.add("Gestion Emplacement", AppGestionEmplacementPanel);
 			
 			new AppGestionBorne(AppGestionBornePanel,q);
 			new AppGestionProfil(AppGestionProfilPanel,q);
 			new AppGestionStock(AppGestionStockPanel, q);
-			
+			new AppGestionEmplacement(AppGestionEmplacementPanel, q);
 		
 		
 		fenetrePrincipale.setVisible(true);
