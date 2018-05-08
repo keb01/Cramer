@@ -36,9 +36,9 @@ public class Redevance {
     public Redevance(int id_redevance, Magasin id_magasin, Date date_redevance, float montant_redevance) {
         this.id_redevance = id_redevance;
         this.id_magasin = id_magasin;
-        this.date_redevance = date_redevance;
-        this.montant_redevance = montant_redevance;
         this.nom_magasin = id_magasin.getNom();
+        this.montant_redevance = montant_redevance;
+        this.date_redevance = date_redevance;
     }
 
     /**
