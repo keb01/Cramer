@@ -5,6 +5,7 @@ import java.io.IOException;
 import common.Achat;
 import common.Borne;
 import common.Emplacement;
+import common.Magasin;
 import common.Personne;
 import common.Profil;
 import common.Vente;
@@ -55,6 +56,7 @@ public interface AppProtocol {
     public void createVente(Vente vente)throws IOException;
     public void createAchat(Achat achat) throws IOException;
     public void createEmplacement(Emplacement emp) throws IOException;
+    public void createMagasin(Magasin magasin)throws IOException;
     
     //-------------------------------------------------------update--------------------------------------------------------\\
     public void updateZone(Zone zone) throws IOException;

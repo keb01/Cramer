@@ -7,6 +7,7 @@ import java.io.PrintWriter;
 import common.Achat;
 import common.Borne;
 import common.Emplacement;
+import common.Magasin;
 import common.Personne;
 import common.Profil;
 import common.Vente;
@@ -319,6 +320,12 @@ public class OutputManager implements AppProtocol{
 
 	@Override
 	public void askEmptyListEmplacement() throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void createMagasin(Magasin magasin) throws IOException {
 		// TODO Auto-generated method stub
 		
 	}

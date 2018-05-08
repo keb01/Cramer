@@ -13,6 +13,7 @@ import org.json.JSONObject;
 import common.Achat;
 import common.Borne;
 import common.Emplacement;
+import common.Magasin;
 import common.Personne;
 import common.Profil;
 import common.Vente;
@@ -177,6 +178,10 @@ public class InputManager {
 					case "EMPLACEMENT":
 						Emplacement emp = new Emplacement(param.getLong("id"),param.getDouble("price"),param.getInt("area"),new Zone(param.getInt("idZone"), "", "", 0),param.getInt("exitDistance"));
 						handler.createEmplacement(emp);
+						break;
+					case "MAGASIN":
+						Magasin magasin = new Magasin(param.getLong("id"), param.getString("logo"), param.getString("nom"), param.getString("description"), param.getLong("idEmplacement"), param.getLong("idCategorieMagasin"));
+						handler.createMagasin(magasin);
 						break;
 					default:
 						break;

@@ -51,19 +51,47 @@ public class MagasinDAO extends DAO<Magasin>{
 
 	@Override
 	public Magasin create(Magasin obj) {
-		// TODO Auto-generated method stub
-		return null;
+		Statement st =null;
+		try {
+			st = this.connect.createStatement();
+			String sql = "INSERT INTO Magasin values(NULL,NULL,'"+obj.getNom()+"',"+obj.getIdEmplacement()+","+obj.getIdCategorieMagasin()+",'"+obj.getDescription()+"')";
+			System.out.println(sql);
+			st.executeUpdate(sql);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return obj;
 	}
 
 	@Override
 	public Magasin update(Magasin obj) {
-		// TODO Auto-generated method stub
-		return null;
+		Statement st =null;
+		try {
+			st = this.connect.createStatement();
+			String sql = "Update Magasin set NULL,NULL,"+obj.getNom()+","+obj.getIdEmplacement()+","+obj.getIdCategorieMagasin()+","+obj.getDescription()+" where id="+obj.getId();
+			st.executeUpdate(sql);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return obj;
 	}
 
 	@Override
 	public void delete(Magasin obj) {
-		// TODO Auto-generated method stub
+		Statement st =null;
+		try {
+			st = this.connect.createStatement();
+			String sql = "DELETE FROM Magasin where id="+obj.getId();
+			st.executeUpdate(sql);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
 		
 	}
 	
