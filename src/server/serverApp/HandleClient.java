@@ -6,6 +6,7 @@ import org.json.JSONException;
 
 import common.Achat;
 import common.Borne;
+import common.Emplacement;
 import common.Fournisseur;
 import common.Magasin;
 import common.Personne;
@@ -15,6 +16,7 @@ import common.Zone;
 import server.model.AchatDAO;
 import server.model.BorneDAO;
 import server.model.CategorieMagasin;
+import server.model.EmplacementDAO;
 import server.model.FournisseurDAO;
 import server.model.MagasinDAO;
 import server.model.PersonneDAO;
@@ -70,6 +72,31 @@ public class HandleClient implements Runnable,AppProtocol{
 	}
 
 	//-------------------------------------------------------list--------------------------------------------------------\\
+	@Override
+	public void askListEmplacement() throws IOException {
+		EmplacementDAO empDAO = new EmplacementDAO();
+		empDAO.setConnection(c);
+		ArrayList<Emplacement> listeEmplacement = new ArrayList<>();
+		listeEmplacement = empDAO.getAllEmplacement();
+		 /**** JSON MAPPER ****/
+        ObjectMapper mapper = new ObjectMapper();
+		String json = mapper.writeValueAsString(listeEmplacement);
+		out.sendList(json); 
+	}
+	
+	@Override
+	public void askEmptyListEmplacement() throws IOException {
+		EmplacementDAO empDAO = new EmplacementDAO();
+		empDAO.setConnection(c);
+		ArrayList<Emplacement> listeEmplacement = new ArrayList<>();
+		listeEmplacement = empDAO.getEmptyEmplacement();
+		 /**** JSON MAPPER ****/
+        ObjectMapper mapper = new ObjectMapper();
+		String json = mapper.writeValueAsString(listeEmplacement);
+		out.sendList(json); 
+		
+	}
+	
 	@Override
  	public void askListAchats() throws IOException {
         AchatDAO achatsDAO = new AchatDAO();
@@ -198,6 +225,20 @@ public class HandleClient implements Runnable,AppProtocol{
 	}
 	
 	//-------------------------------------------------------find--------------------------------------------------------\\
+	
+	@Override
+	public void askEmplacement(long id) throws IOException {
+		EmplacementDAO empDAO = new EmplacementDAO();
+		empDAO.setConnection(c);
+    	Emplacement emp = new Emplacement();
+    	emp = empDAO.find(id);
+		/**** JSON MAPPER ****/
+
+		ObjectMapper mapper = new ObjectMapper();
+		String json = mapper.writeValueAsString(emp);
+        out.sendAllEmplacements(json);
+		
+	}
 	
 	@Override
 	public void askZone(long id) throws IOException {
@@ -334,6 +375,17 @@ public class HandleClient implements Runnable,AppProtocol{
 	        out.sendListZones("ok");
 			
 		}
+		
+		@Override
+		public void delEmplacement(long id) throws IOException {
+			EmplacementDAO empDAO = new EmplacementDAO();
+			empDAO.setConnection(c);
+			Emplacement emp = new Emplacement(id, 0.0, 0, null,0);
+			empDAO.delete(emp);
+			/**** JSON MAPPER ****/
+	        out.sendListZones("ok");
+			
+		}
 
 		//-------------------------------------------------------insert--------------------------------------------------------\\
 	
@@ -393,6 +445,13 @@ public class HandleClient implements Runnable,AppProtocol{
 			vente = venteDAO.create(vente);
 			/**** JSON MAPPER ****/
 			
+			
+		}
+		@Override
+		public void createEmplacement(Emplacement emp) throws IOException {
+			EmplacementDAO empDAO = new EmplacementDAO();
+			empDAO.setConnection(c);
+			empDAO.create(emp);
 			
 		}
 
@@ -460,6 +519,13 @@ public class HandleClient implements Runnable,AppProtocol{
 			
 			
 		}
+		@Override
+		public void updateEmplacement(Emplacement emp) throws IOException {
+			EmplacementDAO empDAO = new EmplacementDAO();
+			empDAO.setConnection(c);
+			empDAO.update(emp);
+			
+		}
 		
 		//-------------------------------------------------------list--------------------------------------------------------\\
 		@Override
@@ -487,16 +553,15 @@ public class HandleClient implements Runnable,AppProtocol{
 			// TODO Auto-generated method stub
 			
 		}
-
+		
 		@Override
-		public void sendAllProfils(String s) throws IOException {
+		public void sendAllEmplacements(String s) throws IOException {
 			// TODO Auto-generated method stub
 			
 		}
 
-
 		@Override
-		public void sendMagasinProfil(String s) throws IOException {
+		public void sendAllProfils(String s) throws IOException {
 			// TODO Auto-generated method stub
 			
 		}
@@ -506,6 +571,16 @@ public class HandleClient implements Runnable,AppProtocol{
 			// TODO Auto-generated method stub
 			
 		}
+
+		@Override
+		public void sendMagasinProfil(String s) throws IOException {
+			// TODO Auto-generated method stub
+			
+		}
+
+
+
+
 		
 
 	

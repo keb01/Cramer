@@ -23,9 +23,9 @@ public class Prototype {
 		
 			
 			//Adding AppGestionProduitPanel to the main Window and starting the core
-			//JPanel AppGestionProduitPanel = new JPanel();
-			//tabbedPane.add("Gestion Produits", AppGestionProduitPanel);
-			//new AppGestionProduit(AppGestionProduitPanel);
+			JPanel AppGestionProduitPanel = new JPanel();
+			tabbedPane.add("Gestion Produits", AppGestionProduitPanel);
+			new AppGestionProduit(AppGestionProduitPanel);
 			
 			//Adding AppGestionBornePanel to the main Window and starting the core
 			Query q = new Query();

@@ -10,12 +10,13 @@ import common.Emplacement;
 public class EmplacementDAO extends DAO<Emplacement> {
 	ZoneDAO zoneDao = new ZoneDAO();
 
+
 //*****************************************Extended methods of DAO*********************************************************	
 	
 	@Override
 	public Emplacement find(long id) {
 		Emplacement emp = new Emplacement();
-		
+		zoneDao.setConnection(this.connect);
 		Statement st =null;
 		ResultSet rs =null;
 		
@@ -29,7 +30,8 @@ public class EmplacementDAO extends DAO<Emplacement> {
 				emp = new Emplacement(rs.getLong("id"),
 								rs.getDouble("loyer"),
 								rs.getInt("superficie"),
-								zoneDao.find(rs.getInt("idZone"))); 
+								zoneDao.find(rs.getInt("idZone")),
+								rs.getInt("distancePorte")); 
 			}	
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -43,7 +45,7 @@ public class EmplacementDAO extends DAO<Emplacement> {
 		Statement st =null;
 		try {
 			st = this.connect.createStatement();
-			String sql = "INSERT INTO Emplacement values("+obj.getPrice()+","+obj.getArea()+","+obj.getZone().getId()+")";
+			String sql = "INSERT INTO Emplacement values("+obj.getPrice()+","+obj.getArea()+","+obj.getZone().getId()+","+obj.getExitDistance()+")";
 			st.executeUpdate(sql);
 			
 		} catch (SQLException e) {
@@ -58,7 +60,7 @@ public class EmplacementDAO extends DAO<Emplacement> {
 		Statement st =null;
 		try {
 			st = this.connect.createStatement();
-			String sql = "Update Emplacement set "+obj.getPrice()+","+obj.getArea()+","+obj.getZone().getId()+" where id="+obj.getId();
+			String sql = "Update Emplacement set "+obj.getPrice()+","+obj.getArea()+","+obj.getZone().getId()+","+obj.getExitDistance()+" where id="+obj.getId();
 			st.executeUpdate(sql);
 			
 		} catch (SQLException e) {
@@ -83,7 +85,7 @@ public class EmplacementDAO extends DAO<Emplacement> {
 	}
 	
 public ArrayList<Emplacement> getAllEmplacement(){
-		
+		zoneDao.setConnection(this.connect);
 		ArrayList<Emplacement> liste = new ArrayList<Emplacement>();
 		Statement st = null;
 		ResultSet rs = null;
@@ -97,13 +99,37 @@ public ArrayList<Emplacement> getAllEmplacement(){
 				liste.add(new Emplacement(rs.getLong("id"),
 						rs.getDouble("loyer"),
 						rs.getInt("superficie"),
-						zoneDao.find(rs.getInt("idZone"))));  
+						zoneDao.find(rs.getInt("idZone")),
+						rs.getInt("distancePorte")));  
 			}	
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return liste;
 	}
+
+public ArrayList<Emplacement> getEmptyEmplacement(){
+	zoneDao.setConnection(this.connect);
+	ArrayList<Emplacement> liste = new ArrayList<Emplacement>();
+	Statement st = null;
+	ResultSet rs = null;
 	
+	try {
+		st = this.connect.createStatement();
+		String sql = "SELECT * FROM Emplacement WHERE id NOT IN (SELECT idEmplacement FROM Magasin) ";
+		rs = st.executeQuery(sql);
+		
+		while(rs.next()) {
+			liste.add(new Emplacement(rs.getLong("id"),
+					rs.getDouble("loyer"),
+					rs.getInt("superficie"),
+					zoneDao.find(rs.getInt("idZone")),
+					rs.getInt("distancePorte")));  
+		}	
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
+	return liste;
+}
 	
 }

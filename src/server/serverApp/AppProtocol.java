@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import common.Achat;
 import common.Borne;
+import common.Emplacement;
 import common.Personne;
 import common.Profil;
 import common.Vente;
@@ -24,6 +25,9 @@ public interface AppProtocol {
     public void askMagasinProfil(Profil p) throws IOException;
 	public void askListFournisseurs() throws IOException;
 	public void askListAchats() throws IOException;
+	public void askListEmplacement() throws IOException;
+	public void askEmptyListEmplacement() throws IOException;
+	
     
     //-------------------------------------------------------find--------------------------------------------------------\\
     public void askZone(long id) throws IOException;
@@ -33,6 +37,7 @@ public interface AppProtocol {
     public void askVente(long id) throws IOException;
     public void askMagasin(long id) throws IOException;
     public void askCategorieMagasinVenteX(long id) throws IOException;
+    public void askEmplacement(long id) throws IOException;
     
     //-------------------------------------------------------delete--------------------------------------------------------\\
     public void delZone(long id) throws IOException;
@@ -40,6 +45,7 @@ public interface AppProtocol {
     public void delProfil(long id) throws IOException;
     public void delPersonne(long id) throws IOException;
     public void delVente(long id) throws IOException;
+    public void delEmplacement(long id) throws IOException;
     
     //-------------------------------------------------------insert--------------------------------------------------------\\
     public void createZone(Zone zone) throws IOException;
@@ -48,6 +54,7 @@ public interface AppProtocol {
     public void createPersonne(Personne personne)throws IOException;
     public void createVente(Vente vente)throws IOException;
     public void createAchat(Achat achat) throws IOException;
+    public void createEmplacement(Emplacement emp) throws IOException;
     
     //-------------------------------------------------------update--------------------------------------------------------\\
     public void updateZone(Zone zone) throws IOException;
@@ -56,7 +63,8 @@ public interface AppProtocol {
     public void updatePersonne(Personne personne) throws IOException;
     public void updatePersonneProfil(Personne personne) throws IOException;
     public void updateVente(Vente vente) throws IOException;    
-
+    public void updateEmplacement(Emplacement emp) throws IOException; 
+    
     //-------------------------------------------------------Answers List--------------------------------------------------------\\
     public void sendListZones(String s);
     public void sendListBornes(String s);
@@ -66,6 +74,6 @@ public interface AppProtocol {
     public void sendAllProfils(String s) throws IOException;
     public void sendAllMagasins(String s) throws IOException;  
     public void sendMagasinProfil(String s) throws IOException;
-	  
+    public void sendAllEmplacements(String s) throws IOException;   
     
 }

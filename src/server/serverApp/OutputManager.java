@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 
 import common.Achat;
 import common.Borne;
+import common.Emplacement;
 import common.Personne;
 import common.Profil;
 import common.Vente;
@@ -20,7 +21,12 @@ public class OutputManager implements AppProtocol{
 	}
 
 	//-------------------------------------------------------list--------------------------------------------------------\\
-    @Override
+	@Override
+	public void askListEmplacement() throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
     public void askListAchats() throws IOException {
 
     }
@@ -72,6 +78,12 @@ public class OutputManager implements AppProtocol{
 	}
 
 	//-------------------------------------------------------find--------------------------------------------------------\\
+	@Override
+	public void askEmplacement(long id) throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
+	
     @Override
 	public void askZone(long id) throws IOException {
 		// TODO Auto-generated method stub
@@ -114,6 +126,12 @@ public class OutputManager implements AppProtocol{
 	}
 
 	// -------------------------------------------------------delete--------------------------------------------------------\\
+	@Override
+	public void delEmplacement(long id) throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
+	
 	@Override
 	public void delZone(long id) throws IOException {
 		// TODO Auto-generated method stub
@@ -174,6 +192,17 @@ public class OutputManager implements AppProtocol{
 		// TODO Auto-generated method stub
 		
 	}
+	@Override
+	public void createEmplacement(Emplacement emp) throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	@Override
+	public void createAchat(Achat achat) throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
 
 	// -------------------------------------------------------update--------------------------------------------------------\\
 	@Override
@@ -208,6 +237,12 @@ public class OutputManager implements AppProtocol{
 
 	@Override
 	public void updateVente(Vente vente) throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	@Override
+	public void updateEmplacement(Emplacement emp) throws IOException {
 		// TODO Auto-generated method stub
 		
 	}
@@ -275,15 +310,18 @@ public class OutputManager implements AppProtocol{
 		
 	}
 
+
 	@Override
-	public void createAchat(Achat achat) throws IOException {
+	public void sendAllEmplacements(String s) throws IOException {
 		// TODO Auto-generated method stub
 		
 	}
-	
 
-
-
+	@Override
+	public void askEmptyListEmplacement() throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
 
 	// IMPLEMENT METHODS OF PROTOCOL FOR SENDING JSON TO CLIENT
 	

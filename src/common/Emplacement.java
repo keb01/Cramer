@@ -5,13 +5,15 @@ public class Emplacement {
 	private double price;
 	private int area;
 	private Zone zone;
+	private int exitDistance;
 	
-	public Emplacement(long id, double price, int area, Zone zone) {
+	public Emplacement(long id, double price, int area, Zone zone, int exitDistance) {
 		super();
 		this.id = id;
 		this.price = price;
 		this.area = area;
 		this.zone = zone;
+		this.exitDistance = exitDistance;
 	}
 	public Emplacement(){
 		
@@ -40,6 +42,12 @@ public class Emplacement {
 	}
 	public void setZone(Zone zone) {
 		this.zone = zone;
+	}
+	public int getExitDistance() {
+		return exitDistance;
+	}
+	public void setExitDistance(int exitDistance) {
+		this.exitDistance = exitDistance;
 	}
 	
 	

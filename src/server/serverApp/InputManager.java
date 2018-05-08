@@ -12,6 +12,7 @@ import org.json.JSONObject;
 
 import common.Achat;
 import common.Borne;
+import common.Emplacement;
 import common.Personne;
 import common.Profil;
 import common.Vente;
@@ -77,6 +78,13 @@ public class InputManager {
 						Profil p = new Profil(param.getLong("id"),param.getString("nomProfil"));
 						handler.askMagasinProfil(p);
 						break;
+					case "EMPLACEMENT":
+						if(param.getString("type").equals("EMPTY")){
+							handler.askEmptyListEmplacement();
+						}else{
+							handler.askListEmplacement();
+						}
+						break;
 					default:
 						break;
 					}
@@ -105,6 +113,9 @@ public class InputManager {
 					case "MAGASIN":
 						handler.askMagasin(param.getLong("id"));
 						break;
+					case "EMPLACEMENT":
+						handler.askEmplacement(param.getLong("id"));
+						break;
 					default:
 						break;
 					}
@@ -128,6 +139,9 @@ public class InputManager {
 					case "VENTE":
 						handler.delVente(param.getLong("id"));
 						break;
+					case "EMPLACEMENT":
+						handler.delEmplacement(param.getLong("id"));
+						break;
 					default:
 						break;
 					}
@@ -146,7 +160,6 @@ public class InputManager {
 						break;
 					case "BORNE":
 						Borne borne = new Borne(-1,new Zone(param.getInt("idZone"), "", "", 0));
-						System.out.println("BORNE TO ADD :  "+param.getInt("idZone"));
 						handler.createBorne(borne);
 						break;
 					case "PROFIL":
@@ -160,6 +173,10 @@ public class InputManager {
 					case "VENTE":
 						Vente vente = new Vente(param.getLong("id"),param.getLong("idArticle"),param.getLong("idEmploye"),param.getLong("idClient"),param.getLong("quantite"),param.getLong("prix"),param.getString("dateVente"));
 						handler.createVente(vente);
+						break;
+					case "EMPLACEMENT":
+						Emplacement emp = new Emplacement(param.getLong("id"),param.getDouble("price"),param.getInt("area"),new Zone(param.getInt("idZone"), "", "", 0),param.getInt("exitDistance"));
+						handler.createEmplacement(emp);
 						break;
 					default:
 						break;
@@ -192,6 +209,10 @@ public class InputManager {
 					case "PERSONNEPROFIL":
 						Personne personnePro = new Personne(param.getLong("id"), param.getString("nom"), param.getString("prenom"), param.getLong("age"), param.getString("adresse"), param.getLong("codePostal"), param.getString("ville"), param.getLong("idProfil"));
 						handler.updatePersonneProfil(personnePro);
+						break;
+					case "EMPLACEMENT":
+						Emplacement emp = new Emplacement(param.getLong("id"),param.getDouble("price"),param.getInt("area"),new Zone(param.getInt("idZone"), "", "", 0),param.getInt("exitDistance"));
+						handler.updateEmplacement(emp);
 						break;
 					default:
 						break;
