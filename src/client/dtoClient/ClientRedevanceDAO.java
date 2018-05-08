@@ -8,7 +8,7 @@ import org.codehaus.jackson.map.ObjectMapper;
 
 import common.*;
 
-public class ClientRedevanceDAO {
+public class ClientRedevanceDAO extends ClientDAO<Redevance>{
 	private Query queryManager;
 
 	public ClientRedevanceDAO(Query q){
