@@ -13,6 +13,8 @@ import common.Personne;
 import common.Profil;
 import common.Vente;
 import common.Zone;
+import common.Redevance;
+
 import server.model.AchatDAO;
 import server.model.BorneDAO;
 import server.model.CategorieMagasin;
@@ -23,6 +25,7 @@ import server.model.PersonneDAO;
 import server.model.ProfilDAO;
 import server.model.VenteDAO;
 import server.model.ZoneDAO;
+import server.model.RedevanceDAO;
 
 import java.io.IOException;
 import java.net.Socket;
@@ -224,6 +227,21 @@ public class HandleClient implements Runnable,AppProtocol{
         out.sendAllProfils(json);
 	}
 	
+	
+	@Override
+	public void askAllRedevances() throws IOException{
+		RedevanceDAO redevanceDAO = new RedevanceDAO();
+		redevanceDAO.setConnection(c);
+		ArrayList<Redevance> listeRedevances = new ArrayList<Redevance>();
+		listeRedevances = redevanceDAO.getAllRedevances();
+		System.out.println(listeRedevances);
+		/**** JSON MAPPER ****/
+		ObjectMapper mapper = new ObjectMapper();
+		String json = mapper.writeValueAsString(listeRedevances);
+        out.sendAllProfils(json);
+	}
+	
+	
 	//-------------------------------------------------------find--------------------------------------------------------\\
 	
 	@Override
@@ -318,6 +336,22 @@ public class HandleClient implements Runnable,AppProtocol{
 			/**** JSON MAPPER ****/
 					
 		}
+	    
+	    
+	    @Override
+		public void askRedevance(long id) throws IOException {
+			RedevanceDAO redDAO = new RedevanceDAO();
+			redDAO.setConnection(c);
+	    	Redevance red = new Redevance();
+	    	red = redDAO.find(id);
+			/**** JSON MAPPER ****/
+
+			ObjectMapper mapper = new ObjectMapper();
+			String json = mapper.writeValueAsString(red);
+	        out.sendAllRedevances(json);
+			
+		}
+	    
 
 	  //-------------------------------------------------------delete--------------------------------------------------------\\
 	    
@@ -382,6 +416,18 @@ public class HandleClient implements Runnable,AppProtocol{
 			empDAO.setConnection(c);
 			Emplacement emp = new Emplacement(id, 0.0, 0, null,0);
 			empDAO.delete(emp);
+			/**** JSON MAPPER ****/
+	        out.sendListZones("ok");
+			
+		}
+		
+		
+		@Override
+		public void delRedevance(int id) throws IOException {
+			RedevanceDAO redDAO = new RedevanceDAO();
+			redDAO.setConnection(c);
+			Redevance red = new Redevance(id, null, "", 0,null);
+			redDAO.delete(red);
 			/**** JSON MAPPER ****/
 	        out.sendListZones("ok");
 			
@@ -462,6 +508,14 @@ public class HandleClient implements Runnable,AppProtocol{
 			magDAO.create(magasin);
 			
 		}
+		
+		@Override
+		public void createRedevance(Redevance red) throws IOException {
+			RedevanceDAO redDAO = new RedevanceDAO();
+			redDAO.setConnection(c);
+			redDAO.create(red);
+			
+		}
 
 		//-------------------------------------------------------update--------------------------------------------------------\\
 		
@@ -535,6 +589,14 @@ public class HandleClient implements Runnable,AppProtocol{
 			
 		}
 		
+		@Override
+		public void updateRedevance(Redevance red) throws IOException {
+			RedevanceDAO redDAO = new RedevanceDAO();
+			redDAO.setConnection(c);
+			redDAO.update(red);
+			
+		}
+		
 		//-------------------------------------------------------list--------------------------------------------------------\\
 		@Override
 		public void sendListZones(String s) {
@@ -585,6 +647,13 @@ public class HandleClient implements Runnable,AppProtocol{
 			// TODO Auto-generated method stub
 			
 		}
+		
+		@Override
+	    public void sendAllRedevances(String s) throws IOException{
+			// TODO Auto-generated method stub
+			
+		}
+
 
 
 
