@@ -1,13 +1,3 @@
-Carrefour;8;980;0
-Leonidas;1;90;0
-Marionnaud;2;130;0
-Celio;3;150;0
-Swarovski;4;60;0
-Orange;5;70;0
-LCL;6;100;1
-Swatch;14;50;0
-Bose;16;100;0
-Cinéma;20;800;1
 Bowling;19;710;1
 Fitness;21;500;1
 Pharmacie;11;80;0
@@ -15,8 +5,18 @@ Sephora;2;150;0
 Apple;16;250;1
 Alain Afflelou;23;180;0
 Le Paradis du fruit;24;200;0
+Carrefour;8;980;0
+Orange;5;70;0
+LCL;6;100;1
+Swatch;14;50;0
+Bose;16;100;0
+Cinéma;20;800;1
 Kiko;28;50;0
 Fnac;27;300;0
+Leonidas;1;90;0
+Marionnaud;2;130;0
+Celio;3;150;0
+Swarovski;4;60;0
 Subway;24;140;0
 Waffle Factory;24;160;0
 The Kaze;17;170;0
