@@ -119,14 +119,16 @@ public class ProfilDAO extends DAO<Profil>{
 		Statement st =null;
 		ResultSet rs =null;
 		
-		Profil profil = new Profil();
+		Profil profil = new Profil(0,"");
 		try {
 			st = this.connect.createStatement();
 			String sql = "select idProfil, nomProfil , Max(NB) from ( select pr.idProfil,pr.nomProfil, count(*) as NB from Profil pr, ProfilCat pc, CategorieMagasin cm, Vente v, Employe e, Client c, Magasin m where m.id=e.idMagasin and e.id = v.idEmploye and cm.id=m.idCategorieMagasin and pr.id=pc.idProfil and pc.idCategorieMagasin=cm.id and v.idClient=c.id and c.id="+idClient+" group by idProfil) as RES";
 			rs = st.executeQuery(sql);
 			
 			while(rs.next()){
+				if(rs.getLong("id")!=0) {
 				profil = new Profil(rs.getLong("id"),rs.getString("nomProfil"));
+				}
 			}	
 		} catch (SQLException e) {
 			e.printStackTrace();
