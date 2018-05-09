@@ -352,9 +352,25 @@ public class HandleClient implements Runnable,AppProtocol{
 			
 		}
 	    
+		@Override
+		public void askProfilVente(long id) throws IOException {
+			ProfilDAO pDAO = new ProfilDAO();
+			pDAO.setConnection(c);
+			Profil p = new Profil();
+			p = pDAO.findProfilVente(id);
+			
+			ObjectMapper mapper = new ObjectMapper();
+			String json = mapper.writeValueAsString(p);
+	        out.sendAllRedevances(json);
+			
+		}
+	    
+	    
+	    
 
 	  //-------------------------------------------------------delete--------------------------------------------------------\\
 	    
+
 	@Override
 		public void delZone(long id) throws IOException {
 			ZoneDAO zDAO = new ZoneDAO();

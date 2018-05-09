@@ -41,6 +41,7 @@ public interface AppProtocol {
     public void askCategorieMagasinVenteX(long id) throws IOException;
     public void askEmplacement(long id) throws IOException;
     public void askRedevance(long id) throws IOException;  
+    public void askProfilVente(long id)throws IOException;
     
     //-------------------------------------------------------delete--------------------------------------------------------\\
     public void delZone(long id) throws IOException;

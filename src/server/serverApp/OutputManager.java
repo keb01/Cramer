@@ -84,6 +84,12 @@ public class OutputManager implements AppProtocol{
 		// TODO Auto-generated method stub
 		
 	}
+    
+    @Override
+	public void askEmptyListEmplacement() throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
 
 	//-------------------------------------------------------find--------------------------------------------------------\\
 	@Override
@@ -139,6 +145,13 @@ public class OutputManager implements AppProtocol{
 		
 	}
 
+
+	@Override
+	public void askProfilVente(long id) throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
+	
 	// -------------------------------------------------------delete--------------------------------------------------------\\
 	@Override
 	public void delEmplacement(long id) throws IOException {
@@ -229,6 +242,12 @@ public class OutputManager implements AppProtocol{
 		// TODO Auto-generated method stub
 		
 	}
+	
+	@Override
+	public void createMagasin(Magasin magasin) throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
 
 	// -------------------------------------------------------update--------------------------------------------------------\\
 	@Override
@@ -285,6 +304,7 @@ public class OutputManager implements AppProtocol{
 	}
 	
 	
+
 	@Override
 	public void sendListZones(String s) {
 		ow.println(s);
@@ -345,18 +365,6 @@ public class OutputManager implements AppProtocol{
 
 	@Override
 	public void sendAllEmplacements(String s) throws IOException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void askEmptyListEmplacement() throws IOException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void createMagasin(Magasin magasin) throws IOException {
 		// TODO Auto-generated method stub
 		
 	}
