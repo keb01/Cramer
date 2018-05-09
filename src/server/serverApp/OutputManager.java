@@ -12,6 +12,7 @@ import common.Personne;
 import common.Profil;
 import common.Vente;
 import common.Zone;
+import common.Redevance;
 
 public class OutputManager implements AppProtocol{
 	PrintWriter ow;
@@ -77,6 +78,12 @@ public class OutputManager implements AppProtocol{
 		// TODO Auto-generated method stub
 		
 	}
+    
+    @Override
+	public void askAllRedevances() throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
 
 	//-------------------------------------------------------find--------------------------------------------------------\\
 	@Override
@@ -125,6 +132,12 @@ public class OutputManager implements AppProtocol{
 		// TODO Auto-generated method stub
 		
 	}
+	
+	@Override
+	public void askRedevance(long id) throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
 
 	// -------------------------------------------------------delete--------------------------------------------------------\\
 	@Override
@@ -159,6 +172,12 @@ public class OutputManager implements AppProtocol{
 	
 	@Override
 	public void delVente(long id) throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	@Override
+	public void delRedevance(int id) throws IOException {
 		// TODO Auto-generated method stub
 		
 	}
@@ -204,6 +223,12 @@ public class OutputManager implements AppProtocol{
 		// TODO Auto-generated method stub
 		
 	}
+	
+	@Override
+	public void createRedevance(Redevance redevance) throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
 
 	// -------------------------------------------------------update--------------------------------------------------------\\
 	@Override
@@ -244,6 +269,12 @@ public class OutputManager implements AppProtocol{
 	
 	@Override
 	public void updateEmplacement(Emplacement emp) throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	@Override
+	public void updateRedevance(Redevance redevance) throws IOException {
 		// TODO Auto-generated method stub
 		
 	}
@@ -326,6 +357,12 @@ public class OutputManager implements AppProtocol{
 
 	@Override
 	public void createMagasin(Magasin magasin) throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	@Override
+	public void sendAllRedevances(String s) throws IOException {
 		// TODO Auto-generated method stub
 		
 	}

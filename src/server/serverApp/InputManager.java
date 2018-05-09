@@ -18,6 +18,7 @@ import common.Personne;
 import common.Profil;
 import common.Vente;
 import common.Zone;
+import common.Redevance;
 
 public class InputManager {
 	AppProtocol handler;
@@ -75,6 +76,9 @@ public class InputManager {
 					case "MAGASIN":
 						handler.askAllMagasins();
 						break;
+					case "REDEVANCE":
+						handler.askAllRedevances();
+						break;
 					case "MAGASINSPROFIL":
 						Profil p = new Profil(param.getLong("id"),param.getString("nomProfil"));
 						handler.askMagasinProfil(p);
@@ -114,6 +118,9 @@ public class InputManager {
 					case "MAGASIN":
 						handler.askMagasin(param.getLong("id"));
 						break;
+					case "REDEVANCE":
+						handler.askRedevance(param.getLong("id"));
+						break;
 					case "EMPLACEMENT":
 						handler.askEmplacement(param.getLong("id"));
 						break;
@@ -139,6 +146,9 @@ public class InputManager {
 						break;
 					case "VENTE":
 						handler.delVente(param.getLong("id"));
+						break;
+					case "REDEVANCE":
+						handler.delRedevance(param.getint("id"));
 						break;
 					case "EMPLACEMENT":
 						handler.delEmplacement(param.getLong("id"));
@@ -179,6 +189,10 @@ public class InputManager {
 						Emplacement emp = new Emplacement(param.getLong("id"),param.getDouble("price"),param.getInt("area"),new Zone(param.getInt("idZone"), "", "", 0),param.getInt("exitDistance"));
 						handler.createEmplacement(emp);
 						break;
+					case "REDEVANCE":
+						Redevance red = new Redevance(param.getInt("id_redevance"),new Magasin(param.getInt("id_magasin"), "", "", 0, 0, "", null),param.getString("nom_magasin"),param.getFloat("montant_redevance"),param.getDate("date_redevance"));
+						handler.createRedevance(red);
+						break;
 					case "MAGASIN":
 						Magasin magasin = new Magasin(param.getLong("id"), param.getString("logo"), param.getString("nom"), param.getString("description"), param.getLong("idEmplacement"), param.getLong("idCategorieMagasin"));
 						handler.createMagasin(magasin);
@@ -218,6 +232,10 @@ public class InputManager {
 					case "EMPLACEMENT":
 						Emplacement emp = new Emplacement(param.getLong("id"),param.getDouble("price"),param.getInt("area"),new Zone(param.getInt("idZone"), "", "", 0),param.getInt("exitDistance"));
 						handler.updateEmplacement(emp);
+						break;
+					case "REDEVANCE":
+						Redevance red = new Redevance(param.getInt("id_redevance"),new Magasin(param.getInt("id_magasin"), "", "", 0, 0, "", null),param.getString("nom_magasin"),param.getFloat("montant_redevance"),param.getDate("date_redevance"));
+						handler.updateRedevance(red);
 						break;
 					default:
 						break;
