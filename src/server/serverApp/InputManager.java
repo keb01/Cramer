@@ -5,6 +5,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Date;
 
 import org.codehaus.jackson.map.ObjectMapper;
 import org.json.JSONException;
@@ -190,7 +191,7 @@ public class InputManager {
 						handler.createEmplacement(emp);
 						break;
 					case "REDEVANCE":
-						Redevance red = new Redevance(param.getInt("id_redevance"),new Magasin(param.getInt("id_magasin"), "", "","", 0, 0),param.getString("nom_magasin"),param.getFloat("montant_redevance"),param.getDate("date_redevance"));
+						Redevance red = new Redevance(param.getInt("id_redevance"),new Magasin(param.getInt("id_magasin"), "", "","", 0, 0),param.getString("nom_magasin"),Float.parseFloat(param.getString("montant_redevance")),new Date(Date.parse(param.getString("date_redevance"))));
 						handler.createRedevance(red);
 						break;
 					case "MAGASIN":
@@ -234,7 +235,7 @@ public class InputManager {
 						handler.updateEmplacement(emp);
 						break;
 					case "REDEVANCE":
-						Redevance red = new Redevance(param.getInt("id_redevance"),new Magasin(param.getInt("id_magasin"), "", "", 0, 0, "", null),param.getString("nom_magasin"),param.getFloat("montant_redevance"),param.getDate("date_redevance"));
+						Redevance red = new Redevance(param.getInt("id_redevance"),new Magasin(param.getInt("id_magasin"), "", "","", 0, 0),param.getString("nom_magasin"),Float.parseFloat(param.getString("montant_redevance")),new Date(Date.parse(param.getString("date_redevance"))));
 						handler.updateRedevance(red);
 						break;
 					default:
