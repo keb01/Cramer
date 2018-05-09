@@ -161,6 +161,14 @@ public class AppGestionProfil {
 	
 	public void selectedClient(Personne m) {
 		panelDetailProfil.setVisible(true);
+		Profil p = profilDAO.findProfilVente(m.getId());
+		if (p.getId()==0){
+			m.setIdProfil(1);
+			clientPersonneDAO.updateProfil(m);
+		}else{
+			m.setIdProfil(p.getId());
+			clientPersonneDAO.updateProfil(m);
+		}
 		selectClient = m;
 		updateListeProfil();
 		
