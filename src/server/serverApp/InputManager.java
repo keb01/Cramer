@@ -148,7 +148,7 @@ public class InputManager {
 						handler.delVente(param.getLong("id"));
 						break;
 					case "REDEVANCE":
-						handler.delRedevance(param.getint("id"));
+						handler.delRedevance(param.getInt("id"));
 						break;
 					case "EMPLACEMENT":
 						handler.delEmplacement(param.getLong("id"));
@@ -190,7 +190,7 @@ public class InputManager {
 						handler.createEmplacement(emp);
 						break;
 					case "REDEVANCE":
-						Redevance red = new Redevance(param.getInt("id_redevance"),new Magasin(param.getInt("id_magasin"), "", "", 0, 0, "", null),param.getString("nom_magasin"),param.getFloat("montant_redevance"),param.getDate("date_redevance"));
+						Redevance red = new Redevance(param.getInt("id_redevance"),new Magasin(param.getInt("id_magasin"), "", "","", 0, 0),param.getString("nom_magasin"),param.getFloat("montant_redevance"),param.getDate("date_redevance"));
 						handler.createRedevance(red);
 						break;
 					case "MAGASIN":
