@@ -522,6 +522,7 @@ public class HandleClient implements Runnable,AppProtocol{
 			MagasinDAO magDAO = new MagasinDAO();
 			magDAO.setConnection(c);
 			magDAO.create(magasin);
+			out.sendListMagasin("OK");
 			
 		}
 		
@@ -530,6 +531,7 @@ public class HandleClient implements Runnable,AppProtocol{
 			RedevanceDAO redDAO = new RedevanceDAO();
 			redDAO.setConnection(c);
 			redDAO.create(red);
+			
 			
 		}
 

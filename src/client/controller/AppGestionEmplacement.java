@@ -35,9 +35,14 @@ public class AppGestionEmplacement {
 	private Query qManager;								// query manager (DTO) of the main app
 	private ArrayList<UnlocatedStore> unlocatedStore;	// Stores without location from csv
 	private ArrayList<UnlocatedStore> restUnlocated;	// Stores without location after algorithm
-	private ArrayList<UnlocatedStore> tmpUnlocated;	// Stores without location after algorithm (temporary list)
+	private ArrayList<UnlocatedStore> tmpUnlocated;		// Stores without location after algorithm (temporary list)
+	
 	private ArrayList<Magasin> locatedStores;			// Stores with new location
+	
 	private ArrayList<Emplacement> emptyLocations;		// Empty location of the Mall
+	private ArrayList<Emplacement> restEmptyLocations;	// Empty location of the Mall after algorithm
+	private ArrayList<Emplacement> tmpEmptyLocations;	// Empty location of the Mall after algorithm (temporary list)
+	
 	private ArrayList<Emplacement> locations;			// All location of the Mall
 	private EmplacementDTO empDTO;						// location DTO
 	private ClientMagasinDAO magDTO;					// magasin DTO
@@ -62,10 +67,12 @@ public class AppGestionEmplacement {
 		//Load empty locations
 		emptyLocations = empDTO.getEmptyEmplacement();
         
-		//magDTO.create(new Magasin(1, "tot", "Carrefour", "Grande surface", 8, 24));	
+		
 		
 		locatedStores = setStoreLocation();
 		restUnlocated = new ArrayList<>();
+		//If some stores are not located, the list of Stores is shuffle and the algorithm is run 1000x 
+		//This random solver increase the chance to find the best location of each store
 		if(locatedStores.size() != unlocatedStore.size()){
 			ArrayList<Magasin> tmp = new ArrayList<>();
 			for(int i=0; i<1000; i++){
@@ -73,15 +80,31 @@ public class AppGestionEmplacement {
 				tmp = setStoreLocation();
 				if(tmp.size() > locatedStores.size()){
 					locatedStores = tmp;
-					restUnlocated = new ArrayList<>(tmpUnlocated);
+					restUnlocated = tmpUnlocated;
+					restEmptyLocations = tmpEmptyLocations;
 				}
 			}
 		}		
+		
+		for(Magasin m : locatedStores){
+			System.out.println("Magasin : "+m.getNom()+" : "+m.getIdEmplacement());
+		}
+		for(UnlocatedStore u : restUnlocated){
+			System.out.println("Magasin : "+u.getName());
+		}
+
+		
+		createStoresDB(locatedStores);
 	}
 	
 	
+	public void createStoresDB(ArrayList<Magasin> storesList){
+		for(Magasin m : storesList){
+			magDTO.create(m);
+		}
+	}
 	
-	
+
 	public ArrayList<Magasin> setStoreLocation(){
 		tmpUnlocated = new ArrayList<>();
 		ArrayList<Magasin> list = new ArrayList<>();
@@ -113,25 +136,24 @@ public class AppGestionEmplacement {
 				if(selectedLoc.size()>1){
 					for(int i=0; i<selectedLoc.size(); i++){
 						for(int j=1; j<selectedLoc.size();j++){	
-							gapi =  Math.abs((us.getArea()-selectedLoc.get(i).getArea()));	
+							gapi =  Math.abs((us.getArea()-selectedLoc.get(i).getArea()));
 							gapj =  Math.abs((us.getArea()-selectedLoc.get(j).getArea()));
-							if(gapj<=gapi){
-								tmp = selectedLoc.get(j);
+							if(gapj<=gapi){ 												//Compare area gap between locations
+								tmp = selectedLoc.get(j);									//The location with the smaller gap is set to the beginning of the list
 								selectedLoc.set(j, selectedLoc.get(i));
 								selectedLoc.set(i, tmp);
 							}
 						}
 					}
 				}
-				list.add(new Magasin(0, "", us.getName(), "toto", selectedLoc.get(0).getId(), us.getType()));
+				list.add(new Magasin(0, "none", us.getName(), "none", selectedLoc.get(0).getId(), us.getType()));
 				rest.remove(selectedLoc.get(0));
-				//System.out.println("---CHOIX Emplacement "+selectedLoc.get(0).getId()+" Taille : "+selectedLoc.get(0).getArea()+" Sortie"+selectedLoc.get(0).getExitDistance());
-
 			}else{
 				//Store cannot be placed into a location
 				tmpUnlocated.add(us);
 			}
 		}
+		tmpEmptyLocations = new ArrayList<>(rest);
 		return list;
 	}
 	
