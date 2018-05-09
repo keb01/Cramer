@@ -125,6 +125,8 @@ public class InputManager {
 					case "EMPLACEMENT":
 						handler.askEmplacement(param.getLong("id"));
 						break;
+					case "PROFILVENTE":
+						handler.askProfilVente(param.getLong("idClient"));
 					default:
 						break;
 					}

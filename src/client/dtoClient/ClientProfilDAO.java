@@ -67,6 +67,29 @@ public class ClientProfilDAO extends ClientDAO<Profil> {
 		return obja;
 	}
 	
+	public Profil findProfilVente(long idClient){
+		//ArrayList unusual
+		
+		queryManager.setQueryType("FIND");
+		queryManager.setTable("PROFILVENTE");
+		queryManager.setParam("{ \"id\":"+idClient+"}");
+		
+		
+		String answer = queryManager.executeQuery();
+		ObjectMapper objectMapper = new ObjectMapper();
+		Profil obja = new Profil();
+		
+		try {
+			obja = objectMapper.readValue(answer, Profil.class);
+			
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		return obja;
+	}
+	
 	public void delete(Profil obj){
 		//ArrayList unusual
 		
