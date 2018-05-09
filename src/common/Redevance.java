@@ -33,7 +33,7 @@ public class Redevance {
      * @param date_redevance date
      * @param montant_redevance amount
      */
-    public Redevance(int id_redevance, Magasin id_magasin, Date date_redevance, float montant_redevance) {
+    public Redevance(int id_redevance, Magasin id_magasin, String nom_magasin, float montant_redevance, Date date_redevance) {
         this.id_redevance = id_redevance;
         this.id_magasin = id_magasin;
         this.nom_magasin = id_magasin.getNom();

@@ -18,7 +18,7 @@ public class ClientRedevanceDAO extends ClientDAO<Redevance>{
 	//*****************************************Extended methods of DAO*********************************************************
 
 	@Override
-	public Redevance find(long id) {
+	public Redevance find(long id_redevance) {
 		//ArrayList unusual
 		
 				queryManager.setQueryType("FIND");
