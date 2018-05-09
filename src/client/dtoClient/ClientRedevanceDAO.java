@@ -23,7 +23,7 @@ public class ClientRedevanceDAO extends ClientDAO<Redevance>{
 		
 				queryManager.setQueryType("FIND");
 				queryManager.setTable("REDEVANCE");
-				queryManager.setParam("{\"id_redevance\":\""+Long.toString(id)+"\"}");
+				queryManager.setParam("{\"id_redevance\":\""+Long.toString(id_redevance)+"\"}");
 				String answer = queryManager.executeQuery();
 				
 				ObjectMapper objectMapper = new ObjectMapper();
@@ -45,7 +45,7 @@ public class ClientRedevanceDAO extends ClientDAO<Redevance>{
 		
 		queryManager.setQueryType("INSERT");
 		queryManager.setTable("REDEVANCE");
-		queryManager.setParam("{\"id_redevance\":"+Long.toString(obj.getId_redevance())+",\"id_magasin\":\""+obj.getId_magasin()+"\",\"nom_magasin\":\""+obj.getNom_magasin()+"\",\"montant_redevance\":"+obj.getMontant_redevance()+"\",\"date_redevance\":\"+obj.getDate_redevance()+\"}");	
+		queryManager.setParam("{\"id_redevance\":"+Long.toString(obj.getid_Redevance())+",\"id_magasin\":\""+obj.getId_magasin()+"\",\"nom_magasin\":\""+obj.getNom_magasin()+"\",\"montant_redevance\":"+obj.getMontant_redevance()+"\",\"date_redevance\":\"+obj.getDate_redevance()+\"}");	
 		
 		String answer = queryManager.executeQuery();
 		
@@ -59,7 +59,7 @@ public class ClientRedevanceDAO extends ClientDAO<Redevance>{
 		
 		queryManager.setQueryType("UPDATE");
 		queryManager.setTable("REDEVANCE");
-		queryManager.setParam("{\"id_redevance\":"+Long.toString(obj.getId_redevance())+",\"id_magasin\":\""+obj.getId_magasin()+"\",\"nom_magasin\":\""+obj.getNom_magasin()+"\",\"montant_redevance\":"+obj.getMontant_redevance()+"\",\"date_redevance\":\"+obj.getDate_redevance()+\"}");
+		queryManager.setParam("{\"id_redevance\":"+Long.toString(obj.getid_Redevance())+",\"id_magasin\":\""+obj.getId_magasin()+"\",\"nom_magasin\":\""+obj.getNom_magasin()+"\",\"montant_redevance\":"+obj.getMontant_redevance()+"\",\"date_redevance\":\"+obj.getDate_redevance()+\"}");
 		
 		
 		String answer = queryManager.executeQuery();
@@ -75,7 +75,7 @@ public class ClientRedevanceDAO extends ClientDAO<Redevance>{
 		
 		queryManager.setQueryType("DELETE");
 		queryManager.setTable("REDEVANCE");
-		queryManager.setParam("{\"id_redevance\":\""+Long.toString(obj.getId_redevance())+"\"}");
+		queryManager.setParam("{\"id_redevance\":\""+Long.toString(obj.getid_Redevance())+"\"}");
 		
 		String answer = queryManager.executeQuery();
 		
