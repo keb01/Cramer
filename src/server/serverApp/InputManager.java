@@ -12,6 +12,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import common.Achat;
+import common.AchatDetail;
 import common.Borne;
 import common.Emplacement;
 import common.Magasin;
@@ -20,6 +21,7 @@ import common.Profil;
 import common.Vente;
 import common.Zone;
 import common.Redevance;
+import common.StockMagasin;
 
 public class InputManager {
 	AppProtocol handler;
@@ -53,6 +55,15 @@ public class InputManager {
                 switch (queryType) {
 				case "LIST":
 					switch (table) {
+					case "STOCK":
+						handler.askListStockMagasin(param.getLong("idMagasin"));
+						break;
+					case "ACHATDETAILS":
+						handler.askListAchatDetails(param.getLong("idAchat"));
+						break;
+					case "ARTICLEFOURNISSEUR":
+						handler.askListArticles(param.getLong("idFournisseur"));
+						break;
 					case "ACHAT":
 						handler.askListAchats();
 						break;
@@ -164,6 +175,13 @@ public class InputManager {
 				case "INSERT":
 					
 					switch (table) {
+					case "ACHATDETAIL":
+						AchatDetail achatDetail = new AchatDetail();
+						achatDetail.idAchat = param.getLong("idAchat");
+						achatDetail.idArticle = param.getLong("idArticle");
+						achatDetail.quantite = param.getInt("quantite");
+						handler.createAchatDetail(achatDetail);
+						break;
 					case "ACHAT":
 						Achat achat = new Achat(-1,idEmploye,Long.toString(System.currentTimeMillis()),0,param.getInt("total"),param.getLong("id"));
 						handler.createAchat(achat);
@@ -208,6 +226,19 @@ public class InputManager {
 				case "UPDATE":
 					
 					switch (table) {
+					case "STOCK":
+						StockMagasin s = new StockMagasin();
+						s.idMagasin = param.getInt("idMagasin");
+						s.idArticle = param.getInt("idArticle");
+						s.quantite = param.getInt("quantite");
+						handler.updateStockQuantite(s);
+						break;
+					case "ACHAT":
+						Achat a = new Achat();
+						a.id = param.getLong("idAchat");
+						a.statut = param.getInt("statut");
+						handler.updateAchatStatut(a);
+						break;
 					case "ZONE":
 						Zone zone = new Zone(param.getLong("id"),param.getString("nom"),param.getString("description"),param.getDouble("coefP"));
 						handler.updateZone(zone);

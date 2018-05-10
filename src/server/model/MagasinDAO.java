@@ -236,5 +236,26 @@ public ArrayList<CategorieMagasin> getCategorieMagasin(){
 		return liste;
 	}
 	
+	public Magasin getMagasinDAchat(long idAchat) {
+		Magasin magasin = null;
+		Statement st = null;
+		ResultSet rs = null;
+
+		try {
+			st = this.connect.createStatement();
+			String sql = "SELECT * FROM Magasin,Employe,Achat WHERE Employe.idMagasin=Magasin.id AND Achat.idEmploye=Employe.id AND Achat.id="
+					+ idAchat;
+			rs = st.executeQuery(sql);
+
+			if (rs.first()) {
+				magasin = new Magasin(rs.getInt("id"), rs.getString("logo"), rs.getString("nom"),
+						rs.getString("description"), rs.getInt("idEmplacement"), rs.getInt("idCategorieMagasin"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return magasin;
+	}
 	
 }

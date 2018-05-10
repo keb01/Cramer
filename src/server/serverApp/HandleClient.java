@@ -5,6 +5,8 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.json.JSONException;
 
 import common.Achat;
+import common.AchatDetail;
+import common.Article;
 import common.Borne;
 import common.Emplacement;
 import common.Fournisseur;
@@ -14,8 +16,9 @@ import common.Profil;
 import common.Vente;
 import common.Zone;
 import common.Redevance;
-
+import common.StockMagasin;
 import server.model.AchatDAO;
+import server.model.ArticleDAO;
 import server.model.BorneDAO;
 import server.model.CategorieMagasin;
 import server.model.EmplacementDAO;
@@ -26,6 +29,7 @@ import server.model.ProfilDAO;
 import server.model.VenteDAO;
 import server.model.ZoneDAO;
 import server.model.RedevanceDAO;
+import server.model.StockMagasinDAO;
 
 import java.io.IOException;
 import java.net.Socket;
@@ -75,6 +79,43 @@ public class HandleClient implements Runnable,AppProtocol{
 	}
 
 	//-------------------------------------------------------list--------------------------------------------------------\\
+	@Override
+	public void askListStockMagasin(long idMagasin) throws IOException {
+		StockMagasinDAO stockDAO = new StockMagasinDAO();
+		stockDAO.setConnection(c);
+		ArrayList<StockMagasin> liste = new ArrayList<>();
+		liste = stockDAO.getAllStocksMagasin(idMagasin);
+		/**** JSON MAPPER ****/
+		ObjectMapper mapper = new ObjectMapper();
+		String json = mapper.writeValueAsString(liste);
+		out.sendList(json);
+	}
+
+	@Override
+	public void askListAchatDetails(long idAchat) throws IOException {
+		AchatDAO achatDAO = new AchatDAO();
+		achatDAO.setConnection(c);
+		ArrayList<AchatDetail> liste = new ArrayList<>();
+		liste = achatDAO.getAllAchatDetails(idAchat);
+		/**** JSON MAPPER ****/
+		ObjectMapper mapper = new ObjectMapper();
+		String json = mapper.writeValueAsString(liste);
+		out.sendList(json);
+	}
+
+	@Override
+	public void askListArticles(long idfournisseur) throws IOException {
+		ArticleDAO articlesDAO = new ArticleDAO();
+		articlesDAO.setConnection(c);
+		ArrayList<Article> liste = new ArrayList<>();
+		liste = articlesDAO.getAllArticles(idfournisseur);
+		/**** JSON MAPPER ****/
+		ObjectMapper mapper = new ObjectMapper();
+		String json = mapper.writeValueAsString(liste);
+		out.sendList(json);
+	}
+	
+	
 	@Override
 	public void askListEmplacement() throws IOException {
 		EmplacementDAO empDAO = new EmplacementDAO();
@@ -452,6 +493,18 @@ public class HandleClient implements Runnable,AppProtocol{
 		//-------------------------------------------------------insert--------------------------------------------------------\\
 	
 		@Override
+		public void createAchatDetail(AchatDetail achatDetail) throws IOException {
+			AchatDAO aDAO = new AchatDAO();
+			aDAO.setConnection(c);
+			ArrayList<AchatDetail> list = new ArrayList<>();
+			list.add(achatDetail);
+			aDAO.addDetailsAchat(list, achatDetail.idAchat);
+			/**** JSON MAPPER ****/
+
+			out.sendList("ok");
+		}
+		
+		@Override
 		public void createAchat(Achat achat) throws IOException {
 			AchatDAO aDAO = new AchatDAO();
 			aDAO.setConnection(c);
@@ -536,7 +589,23 @@ public class HandleClient implements Runnable,AppProtocol{
 		}
 
 		//-------------------------------------------------------update--------------------------------------------------------\\
-		
+		@Override
+		public void updateStockQuantite(StockMagasin stock) throws IOException {
+			StockMagasinDAO sDAO = new StockMagasinDAO();
+			sDAO.setConnection(c);
+			sDAO.updateStockQuantiteFromMagasinEtArticle(stock);
+
+			out.sendList("[{\"ok\": 1}]");
+		}
+
+		@Override
+		public void updateAchatStatut(Achat achat) throws IOException {
+			AchatDAO aDAO = new AchatDAO();
+			aDAO.setConnection(c);
+			aDAO.updateStatut(achat);
+
+			out.sendList("[{\"ok\": 1}]");
+		}	
 		@Override
 		public void updateZone(Zone zone) throws IOException {
 			ZoneDAO zDAO = new ZoneDAO();

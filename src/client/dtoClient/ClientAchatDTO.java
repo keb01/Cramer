@@ -7,6 +7,7 @@ import java.util.Arrays;
 import org.codehaus.jackson.map.ObjectMapper;
 
 import common.Achat;
+import common.AchatDetail;
 import common.Borne;
 import common.Fournisseur;
 import common.Magasin;
@@ -71,4 +72,42 @@ public class ClientAchatDTO extends ClientDAO<Achat> {
 		return listAchats;
 		
 	}
+  
+  public ArrayList<AchatDetail> getAchatDetails(long idAchat) {
+    queryManager.setQueryType("LIST");
+		queryManager.setTable("ACHATDETAILS");
+		queryManager.setParam("{\"idAchat\":"+idAchat+"}");
+    
+    String answer = queryManager.executeQuery();
+		ObjectMapper objectMapper = new ObjectMapper();
+		ArrayList<AchatDetail> list = new ArrayList<>();
+		
+		try {
+			AchatDetail[] tab = objectMapper.readValue(answer, AchatDetail[].class);
+			list = new ArrayList<>(Arrays.asList(tab));
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		return list;
+  }
+  
+  public void ajouterAchatDetail(AchatDetail d) {
+    queryManager.setQueryType("INSERT");
+		queryManager.setTable("ACHATDETAIL");
+		queryManager.setParam("{\"idAchat\":"+d.idAchat+", \"idArticle\":"+d.idArticle+", \"quantite\":"+d.quantite+"}");
+    
+    String answer = queryManager.executeQuery();
+  }
+  
+  public void changerAchatStatut(Achat a)
+  {
+    queryManager.setQueryType("UPDATE");
+    queryManager.setTable("ACHAT");
+    queryManager.setParam("{\"idAchat\": "+a.id+", \"statut\": "+a.statut+"}");
+    
+    String answer = queryManager.executeQuery();
+  }
+
 }

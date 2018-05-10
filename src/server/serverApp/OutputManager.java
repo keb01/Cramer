@@ -5,6 +5,7 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 
 import common.Achat;
+import common.AchatDetail;
 import common.Borne;
 import common.Emplacement;
 import common.Magasin;
@@ -13,6 +14,7 @@ import common.Profil;
 import common.Vente;
 import common.Zone;
 import common.Redevance;
+import common.StockMagasin;
 
 public class OutputManager implements AppProtocol{
 	PrintWriter ow;
@@ -375,6 +377,43 @@ public class OutputManager implements AppProtocol{
 		
 	}
 
+	@Override
+	public void askListStockMagasin(long idMagasin) throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void askListAchatDetails(long idAchat) throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void askListArticles(long idfournisseur) throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void createAchatDetail(AchatDetail achatDetail) throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateStockQuantite(StockMagasin stock) throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateAchatStatut(Achat achat) throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
+
 	// IMPLEMENT METHODS OF PROTOCOL FOR SENDING JSON TO CLIENT
+	
 	
 }

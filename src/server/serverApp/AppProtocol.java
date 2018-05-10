@@ -3,6 +3,7 @@ package server.serverApp;
 import java.io.IOException;
 
 import common.Achat;
+import common.AchatDetail;
 import common.Borne;
 import common.Emplacement;
 import common.Magasin;
@@ -11,13 +12,18 @@ import common.Profil;
 import common.Vente;
 import common.Zone;
 import common.Redevance;
+import common.StockMagasin;
 
 public interface AppProtocol {
 
 
     // QUERIES
 	//-------------------------------------------------------list--------------------------------------------------------\\
-    public void askListMagasin() throws IOException;
+
+	public void askListStockMagasin(long idMagasin) throws IOException;
+	public void askListAchatDetails(long idAchat) throws IOException;
+	public void askListArticles(long idfournisseur) throws IOException;
+	public void askListMagasin() throws IOException;
     public void askListBornes() throws IOException;
     public void askListZones() throws IOException;
     public void askListVentesClientX(long id) throws IOException;
@@ -54,6 +60,7 @@ public interface AppProtocol {
 
     
     //-------------------------------------------------------insert--------------------------------------------------------\\
+    public void createAchatDetail(AchatDetail achatDetail) throws IOException;
     public void createZone(Zone zone) throws IOException;
     public void createBorne(Borne borne)throws IOException;
     public void createProfil(Profil profil)throws IOException;
@@ -65,6 +72,8 @@ public interface AppProtocol {
     public void createRedevance(Redevance redevance)throws IOException;
     
     //-------------------------------------------------------update--------------------------------------------------------\\
+    public void updateStockQuantite(StockMagasin stock) throws IOException;
+    public void updateAchatStatut(Achat achat) throws IOException;
     public void updateZone(Zone zone) throws IOException;
     public void updateBorne(Borne borne) throws IOException;
     public void updateProfil(Profil profil) throws IOException;

@@ -5,6 +5,10 @@ public class AchatDetail {
 	public long idArticle; 
 	public int quantite;
 	
+  public AchatDetail() {
+    
+  }
+  
 	public AchatDetail(long idAchat, long idArticle, int quantite) {
 		this.idAchat = idAchat;
 		this.idArticle = idArticle;

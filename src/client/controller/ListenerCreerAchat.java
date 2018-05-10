@@ -9,31 +9,25 @@ import java.awt.event.MouseListener;
 import javax.swing.JLabel;
 
 import common.Achat;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 
 
 
-public class ListenerCreerAchat implements MouseListener{
+public class ListenerCreerAchat implements MouseListener, ActionListener{
 
 	private AppGestionStock c;
-	private Achat p;
 	
 	
-	public ListenerCreerAchat(AppGestionStock c,Achat p) {
+	public ListenerCreerAchat(AppGestionStock c) {
 		this.c = c;
-		this.p=p;
 	}
 	
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
-		JLabel l = (JLabel) arg0.getSource();
-		for(Component la : l.getParent().getComponents()){
-			la.setForeground(Color.BLACK);
-		}
-		l.setForeground(Color.RED);
-	c.creerAchat(p);
-		
-		
+		c.creerAchat();
+	
 	}
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
@@ -53,8 +47,13 @@ public class ListenerCreerAchat implements MouseListener{
 	@Override
 	public void mouseReleased(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		
 	}
+
+  @Override
+  public void actionPerformed(ActionEvent e)  {
+    		  mouseClicked(null);
+
+  }
 	
 
 }
