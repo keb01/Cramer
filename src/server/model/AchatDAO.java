@@ -51,7 +51,7 @@ public class AchatDAO extends DAO<Achat> {
 		try {
 			st = this.connect.createStatement();
 
-			String sql = "INSERT INTO Achat values(NULL," + obj.idEmploye + ",NULL," + "" + obj.dateAchat + ","
+			String sql = "INSERT INTO Achat values(NULL," + obj.idEmploye + ",1," + " '" + obj.dateAchat + "',"
 					+ obj.statut + "," + obj.total + "," + obj.idFournisseur + ")";
 			st.executeUpdate(sql);
 		} catch (SQLException e) {

@@ -5,7 +5,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.Date;
+import java.sql.Date;
+import java.time.LocalDate;
 
 import org.codehaus.jackson.map.ObjectMapper;
 import org.json.JSONException;
@@ -31,6 +32,12 @@ public class InputManager {
 	public InputManager(InputStream in, AppProtocol handler) throws IOException {
 		this.in = in;
 		this.handler = handler;
+	}
+	
+	public String getNow() {
+		String now = Date.valueOf(LocalDate.now()).toString();
+		System.out.println(now);
+		return now;
 	}
 	
 	
@@ -183,7 +190,7 @@ public class InputManager {
 						handler.createAchatDetail(achatDetail);
 						break;
 					case "ACHAT":
-						Achat achat = new Achat(-1,idEmploye,Long.toString(System.currentTimeMillis()),0,param.getInt("total"),param.getLong("id"));
+						Achat achat = new Achat(-1,idEmploye, getNow() ,0,param.getInt("total"),param.getLong("id"));
 						handler.createAchat(achat);
 						break;
 					case "ZONE":

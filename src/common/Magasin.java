@@ -75,5 +75,7 @@ public class Magasin {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
+	public String toString() {
+		return this.nom;
+	}
 }

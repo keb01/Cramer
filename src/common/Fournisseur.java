@@ -16,5 +16,9 @@ public class Fournisseur {
 		
 	}
 	
+	public String toString() {
+		    return this.siret;
+	}
+	
 	
 }
