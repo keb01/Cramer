@@ -72,7 +72,7 @@ public class ClientProfilDAO extends ClientDAO<Profil> {
 		
 		queryManager.setQueryType("FIND");
 		queryManager.setTable("PROFILVENTE");
-		queryManager.setParam("{ \"id\":"+idClient+"}");
+		queryManager.setParam("{\"id\":"+idClient+"}");
 		
 		
 		String answer = queryManager.executeQuery();

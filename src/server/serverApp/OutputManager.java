@@ -357,6 +357,13 @@ public class OutputManager implements AppProtocol{
 		// TODO Auto-generated method stub
 		
 	}
+	
+	@Override
+	public void sendProfilVente(String s) throws IOException {
+		ow.println(s);
+		// TODO Auto-generated method stub
+		
+	}
 
 	@Override
 	public void askListFournisseurs() throws IOException {

@@ -94,5 +94,6 @@ public interface AppProtocol {
     public void sendMagasinProfil(String s) throws IOException;
     public void sendAllEmplacements(String s) throws IOException;
     public void sendAllRedevances(String s) throws IOException;
+    public void sendProfilVente(String s) throws IOException;
     
 }
