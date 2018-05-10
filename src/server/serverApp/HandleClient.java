@@ -402,7 +402,7 @@ public class HandleClient implements Runnable,AppProtocol{
 			
 			ObjectMapper mapper = new ObjectMapper();
 			String json = mapper.writeValueAsString(p);
-	        out.sendAllRedevances(json);
+	        out.sendProfilVente(json);
 			
 		}
 	    
@@ -740,6 +740,13 @@ public class HandleClient implements Runnable,AppProtocol{
 			// TODO Auto-generated method stub
 			
 		}
+
+		@Override
+		public void sendProfilVente(String s) throws IOException {
+			// TODO Auto-generated method stub
+			
+		}
+		
 
 
 
