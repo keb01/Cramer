@@ -1,28 +1,41 @@
 package client.controller;
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Deque;
 import java.util.LinkedList;
 
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
-
-import org.codehaus.jackson.map.ser.impl.UnknownSerializer;
-
-import com.mysql.fabric.xmlrpc.base.Array;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+import javax.swing.border.Border;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EmptyBorder;
 
 import client.dtoClient.ClientMagasinDAO;
 import client.dtoClient.EmplacementDTO;
 import client.dtoClient.Query;
 import client.model.UnlocatedStore;
+import client.view.AddBorneWindow;
+import client.view.ItemList;
+import client.view.PanelListe;
+import client.view.PanelLocations;
 import common.Emplacement;
 import common.Magasin;
+import common.Zone;
 
 
 /**
@@ -32,34 +45,92 @@ import common.Magasin;
  */
 public class AppGestionEmplacement {
 	private JPanel tabPanel;							// Jpanel Tab of this app
+	private PanelLocations panelLoc;
+	private PanelListe panelStores;
 	private Query qManager;								// query manager (DTO) of the main app
 	private ArrayList<UnlocatedStore> unlocatedStore;	// Stores without location from csv
 	private ArrayList<UnlocatedStore> restUnlocated;	// Stores without location after algorithm
 	private ArrayList<UnlocatedStore> tmpUnlocated;		// Stores without location after algorithm (temporary list)
-	
 	private ArrayList<Magasin> locatedStores;			// Stores with new location
-	
 	private ArrayList<Emplacement> emptyLocations;		// Empty location of the Mall
 	private ArrayList<Emplacement> restEmptyLocations;	// Empty location of the Mall after algorithm
 	private ArrayList<Emplacement> tmpEmptyLocations;	// Empty location of the Mall after algorithm (temporary list)
-	
 	private ArrayList<Emplacement> locations;			// All location of the Mall
 	private EmplacementDTO empDTO;						// location DTO
 	private ClientMagasinDAO magDTO;					// magasin DTO
+	private JFileChooser dialogue;
+	private String csv;
+	private JLabel errorLabel;
+	
 	
 	public AppGestionEmplacement(JPanel tabPanel,Query q){
 		
-		// GUI Tab panel initialization 
+		//***************** GUI Tab panel initialization *****************
 		this.tabPanel = tabPanel;
 		this.tabPanel.setLayout(new BorderLayout());
+		panelLoc = new PanelLocations();
+		panelStores = new PanelListe();
+		this.tabPanel.add(panelStores,BorderLayout.WEST);
+		JScrollPane scroll = new JScrollPane(panelStores);
+		scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		this.tabPanel.add(panelLoc,BorderLayout.SOUTH);
+		panelStores.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+		tabPanel.add(scroll,BorderLayout.WEST);
+		errorLabel = new JLabel();
+		errorLabel.setForeground(Color.RED);
+		tabPanel.add(errorLabel,BorderLayout.CENTER);
+		
+		
+		
+		//*****************GUI Top bar and options*****************
+		
+		JPanel searchBar = new JPanel();
+		searchBar.setLayout(new FlowLayout(FlowLayout.LEFT));
+		searchBar.setPreferredSize(new Dimension(600, 40));
+		Border border = searchBar.getBorder();
+		Border margin = new EmptyBorder(0,0,10,0);
+		searchBar.setBorder(new CompoundBorder(border, margin));
+		searchBar.add(new JLabel("Fichier CSV "));
+		JTextField fileName = new JTextField("Select csv file");
+		fileName.setPreferredSize(new Dimension(200,24));
+		searchBar.add(fileName);
+		JButton selectFileButton = new JButton("Selectioner");
+		dialogue = new JFileChooser();
+		selectFileButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dialogue.showOpenDialog(null);
+				csv = dialogue.getSelectedFile().getAbsolutePath();
+				fileName.setText(csv);
+				//Read CSV file with unlocated stores
+				unlocatedStore = readUnlocatedStoresCSVFile(csv);
+				updateStoresList(unlocatedStore);
+			}
+		});
+		searchBar.add(selectFileButton);
+		
+		JButton mappingButton = new JButton("Placer les magasins");
+		mappingButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				emptyLocations = empDTO.getEmptyEmplacement();
+				startMapping();
+				errorLabel.setText(restUnlocated.size()+" Magasins ne peuvent pas être placés !");
+			}
+		}); 
+		searchBar.add(mappingButton);
+		
+		tabPanel.add(searchBar,BorderLayout.NORTH);
+		
+		//*******************************************************
+		
 		
 		// DTO initialization
 		this.qManager = q;
 		empDTO = new EmplacementDTO(qManager);
 		magDTO = new ClientMagasinDAO(qManager);
 		
-		//Read CSV file with unlocated stores
-		unlocatedStore = readUnlocatedStoresCSVFile("MagasinAPlacer.csv");
+
 		
 		//Load all locations
 		locations = empDTO.getAllEmplacement();
@@ -68,9 +139,21 @@ public class AppGestionEmplacement {
 		emptyLocations = empDTO.getEmptyEmplacement();
         
 		
-		
-		locatedStores = setStoreLocation();
+		for(Emplacement e : locations){
+			panelLoc.addLocation(e.getId());
+		}
+		for(Emplacement e : emptyLocations){
+			panelLoc.setLocationEmpty(e.getId());
+		}
+
+	}
+	
+	
+	public void startMapping(){
 		restUnlocated = new ArrayList<>();
+		locatedStores = setStoreLocation();
+		restUnlocated = tmpUnlocated;
+		
 		//If some stores are not located, the list of Stores is shuffle and the algorithm is run 1000x 
 		//This random solver increase the chance to find the best location of each store
 		if(locatedStores.size() != unlocatedStore.size()){
@@ -84,16 +167,7 @@ public class AppGestionEmplacement {
 					restEmptyLocations = tmpEmptyLocations;
 				}
 			}
-		}		
-		
-		for(Magasin m : locatedStores){
-			System.out.println("Magasin : "+m.getNom()+" : "+m.getIdEmplacement());
 		}
-		for(UnlocatedStore u : restUnlocated){
-			System.out.println("Magasin : "+u.getName());
-		}
-
-		
 		createStoresDB(locatedStores);
 	}
 	
@@ -101,7 +175,9 @@ public class AppGestionEmplacement {
 	public void createStoresDB(ArrayList<Magasin> storesList){
 		for(Magasin m : storesList){
 			magDTO.create(m);
+			panelLoc.setLocationFull(m.getIdEmplacement(),m.getNom());
 		}
+		updateStoresList(restUnlocated);
 	}
 	
 
@@ -191,6 +267,21 @@ public class AppGestionEmplacement {
             }
         }
         return list;
+	}
+	
+	
+	public void updateStoresList(ArrayList<UnlocatedStore> list){
+		panelStores.removeAll();
+		int px = 1;
+		for(UnlocatedStore u : list){
+			ItemList i = new ItemList(u.getName()+" | "+u.getArea()+"m2"+" | Porte :"+u.getExitOption());
+			i.setMaximumSize(new Dimension(300, 37));
+			px++;
+			panelStores.add(i);
+		}
+		panelStores.setPreferredSize(new Dimension(300, px*37));
+		panelStores.revalidate();
+		panelStores.repaint();
 	}
 	
 }
