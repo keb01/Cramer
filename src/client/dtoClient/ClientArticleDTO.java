@@ -61,4 +61,25 @@ public class ClientArticleDTO extends ClientDAO<Article> {
 		return listArticles;
 		
 	}
+	
+	public ArrayList<Article> getAllArticlesOfMagasin(long idMagasin) {
+		
+		queryManager.setQueryType("LIST");
+		queryManager.setTable("ARTICLEMAGASIN");
+		queryManager.setParam("{\"idMagasin\":"+idMagasin+"}");
+		String answer = queryManager.executeQuery();
+		ObjectMapper objectMapper = new ObjectMapper();
+		ArrayList<Article> listArticles = new ArrayList<>();
+		
+		try {
+			Article[] tab = objectMapper.readValue(answer, Article[].class);
+			listArticles = new ArrayList<>(Arrays.asList(tab));
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		return listArticles;
+		
+	}
 }

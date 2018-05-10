@@ -19,7 +19,8 @@ public interface AppProtocol {
 
     // QUERIES
 	//-------------------------------------------------------list--------------------------------------------------------\\
-
+	public void askListArticleMagasin(long idMagasin) throws IOException;
+	public void askListEmploye() throws IOException;
 	public void askListStockMagasin(long idMagasin) throws IOException;
 	public void askListAchatDetails(long idAchat) throws IOException;
 	public void askListArticles(long idfournisseur) throws IOException;
@@ -95,5 +96,6 @@ public interface AppProtocol {
     public void sendAllEmplacements(String s) throws IOException;
     public void sendAllRedevances(String s) throws IOException;
     public void sendProfilVente(String s) throws IOException;
+	
     
 }

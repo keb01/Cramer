@@ -30,7 +30,7 @@ public class ClientAchatDTO extends ClientDAO<Achat> {
 		
 				queryManager.setQueryType("INSERT");
 				queryManager.setTable("ACHAT");
-				queryManager.setParam("{\"id\":"+obj.idFournisseur+",\"total\":"+obj.total+"}");
+				queryManager.setParam("{\"id\":"+obj.idFournisseur+",\"total\":"+obj.total+",\"idEmploye\":"+obj.idEmploye+"}");
 				
 				//queryManager.getParam().get(0)=Long.toString(obj.getId());
 				//queryManager.getParam().get(1)=Long.toString(obj.getZone().getId());

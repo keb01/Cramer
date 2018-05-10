@@ -17,7 +17,6 @@ public class ListenerAchatSelection implements ListSelectionListener {
   @Override
   public void valueChanged(ListSelectionEvent e) {
     JList<Achat> list = (JList<Achat>) e.getSource();
-    
     c.montrerAchat(list.getSelectedValue());
   }
 }

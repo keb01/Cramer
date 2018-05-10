@@ -109,6 +109,36 @@ public class ArticleDAO extends DAO<Article> {
 
 	// ***********************************************************************************************************************
 
+	public ArrayList<Article> listArticleMagasin(long idMagasin){
+		
+		ArrayList<Article> liste = new ArrayList<Article>();
+		Statement st = null;
+		ResultSet rs = null;
+
+		try {
+			st = this.connect.createStatement();
+			String sql = "SELECT * FROM StockMagasin,Article as A WHERE StockMagasin.idArticle = A.id and StockMagasin.idMagasin = "+ idMagasin;
+			rs = st.executeQuery(sql);
+
+			while (rs.next()) {
+				Article a = new Article();
+				a.setId(rs.getInt("A.id"));
+				a.setNom(rs.getString("A.nom"));
+				a.setDescription(rs.getString("A.description"));
+				a.setUrlImage(rs.getString("A.image"));
+				a.setPoids(rs.getInt("A.poids"));
+				a.setProvenance(rs.getString("A.provenance"));
+				liste.add(a);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return liste;
+		
+		
+		
+	}
 	public Article findInMagasin(long idMag, long idProd) {
 		Article produit = new Article();
 

@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 
 import org.codehaus.jackson.map.ObjectMapper;
@@ -27,7 +29,7 @@ import common.StockMagasin;
 public class InputManager {
 	AppProtocol handler;
 	InputStream in;
-	private long idEmploye = 1;
+
 	
 	public InputManager(InputStream in, AppProtocol handler) throws IOException {
 		this.in = in;
@@ -35,9 +37,9 @@ public class InputManager {
 	}
 	
 	public String getNow() {
-		String now = Date.valueOf(LocalDate.now()).toString();
-		System.out.println(now);
-		return now;
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		java.util.Date date = new java.util.Date();
+		return dateFormat.format(date); //2016/11/16 12:08:43
 	}
 	
 	
@@ -62,6 +64,12 @@ public class InputManager {
                 switch (queryType) {
 				case "LIST":
 					switch (table) {
+					case "ARTICLEMAGASIN":
+						handler.askListArticleMagasin(param.getLong("idMagasin"));
+						break;
+					case "EMPLOYE":
+						handler.askListEmploye();
+						break;
 					case "STOCK":
 						handler.askListStockMagasin(param.getLong("idMagasin"));
 						break;
@@ -190,7 +198,7 @@ public class InputManager {
 						handler.createAchatDetail(achatDetail);
 						break;
 					case "ACHAT":
-						Achat achat = new Achat(-1,idEmploye, getNow() ,0,param.getInt("total"),param.getLong("id"));
+						Achat achat = new Achat(-1,param.getInt("idEmploye"), getNow() ,0,param.getInt("total"),param.getLong("id"));
 						handler.createAchat(achat);
 						break;
 					case "ZONE":

@@ -5,6 +5,14 @@ public class Achat {
   public static final int STATUT_RECU = 1;
   public static final int STATUT_ANNULE = 2;
   
+  public static String statutText(int statut) {
+	  switch(statut) {
+	    case STATUT_ANNULE: return "Annulé";
+	    case STATUT_COMMANDE: return "Commandé";
+	    case STATUT_RECU: return "Reçu";
+	    default: return "Invalide";
+	  }
+  }
   
 	public long id;
 	public long idEmploye; 
@@ -19,7 +27,7 @@ public class Achat {
   }
   
   public String toString() {
-    return "(statut: "+statut+") le "+dateAchat;
+    return "(statut: "+statutText(statut)+") le "+dateAchat;
   }
   
 	public Achat(long id, long idEmploye, String dateAchat, int statut, int total, long idFournisseur) {

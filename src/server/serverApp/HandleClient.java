@@ -79,6 +79,31 @@ public class HandleClient implements Runnable,AppProtocol{
 	}
 
 	//-------------------------------------------------------list--------------------------------------------------------\\
+	
+	@Override
+	public void askListArticleMagasin(long idMagasin) throws IOException {
+		ArticleDAO articleDAO = new ArticleDAO();
+		articleDAO.setConnection(c);
+		ArrayList<Article> liste = new ArrayList<>();
+		liste = articleDAO.listArticleMagasin(idMagasin);
+		/**** JSON MAPPER ****/
+		ObjectMapper mapper = new ObjectMapper();
+		String json = mapper.writeValueAsString(liste);
+		out.sendList(json);
+	}
+	
+	@Override
+	public void askListEmploye() throws IOException {
+		PersonneDAO personneDAO = new PersonneDAO();
+		personneDAO.setConnection(c);
+		ArrayList<Personne> liste = new ArrayList<>();
+		liste = personneDAO.getAllEmployes();
+		/**** JSON MAPPER ****/
+		ObjectMapper mapper = new ObjectMapper();
+		String json = mapper.writeValueAsString(liste);
+		out.sendList(json);
+	}
+
 	@Override
 	public void askListStockMagasin(long idMagasin) throws IOException {
 		StockMagasinDAO stockDAO = new StockMagasinDAO();

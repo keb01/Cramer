@@ -420,6 +420,18 @@ public class OutputManager implements AppProtocol{
 		
 	}
 
+	@Override
+	public void askListEmploye() throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void askListArticleMagasin(long idMagasin) throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
+
 	// IMPLEMENT METHODS OF PROTOCOL FOR SENDING JSON TO CLIENT
 	
 	

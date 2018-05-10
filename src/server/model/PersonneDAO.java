@@ -146,4 +146,34 @@ public class PersonneDAO extends DAO<Personne>{
 		
 	}
 	
+public ArrayList<Personne> getAllEmployes(){
+		
+		ArrayList<Personne> personnes =new  ArrayList<Personne>();
+		Statement st =null;
+		ResultSet rs =null;
+		
+		try {
+			st = this.connect.createStatement();
+			String sql = "SELECT * from Personne, Employe where Personne.id = Employe.idPersonne";
+			rs = st.executeQuery(sql);
+			
+			while(rs.next()) {
+				Personne personne = new Personne(rs.getInt("Personne.id"),
+										rs.getString("nom"), 
+										rs.getString("prenom"), 
+										rs.getInt("age"), 
+										rs.getString("adresse"), 
+										rs.getInt("codePostal"), 
+										rs.getString("ville"),  
+										rs.getInt("idProfil"));
+				personnes.add(personne);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return personnes;
+		
+	}
 }

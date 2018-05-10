@@ -83,6 +83,8 @@ public class Personne {
 		this.ville = ville;
 	}
 	
-	
+	public String toString() {
+		return prenom+" "+nom.toUpperCase();
+	}
 	
 }

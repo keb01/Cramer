@@ -14,6 +14,7 @@ import client.dtoClient.ClientAchatDTO;
 import client.dtoClient.ClientArticleDTO;
 import client.dtoClient.ClientFournisseurDTO;
 import client.dtoClient.ClientMagasinDAO;
+import client.dtoClient.ClientPersonneDAO;
 import client.dtoClient.ClientStockMagasinDTO;
 import client.dtoClient.Query;
 import client.view.PanelListe;
@@ -22,6 +23,7 @@ import common.AchatDetail;
 import common.Article;
 import common.Fournisseur;
 import common.Magasin;
+import common.Personne;
 import common.StockMagasin;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
@@ -38,6 +40,7 @@ public class AppGestionStock {
 	private ClientArticleDTO articleDTO;
 	private ClientMagasinDAO magasinDTO;
 	private ClientStockMagasinDTO stockMagasinDTO;
+	private ClientPersonneDAO personneDTO;
 
 	private JPanel tabPanel;
 	private JPanel panelCreerAchat;
@@ -48,8 +51,9 @@ public class AppGestionStock {
 	private ArrayList<Achat> listeAchats;
 	private ArrayList<Magasin> listeMagasins;
 	private ArrayList<Fournisseur> listeFournisseurs;
+	private JComboBox<Personne> employes;
 	private JComboBox<Fournisseur> selectFournisseur;
-	private JTextField total;
+	private JSpinner total;
 
 	private Achat achatCourant;
 	private Magasin magasinCourant;
@@ -93,6 +97,7 @@ public class AppGestionStock {
 		this.articleDTO = new ClientArticleDTO(q);
 		this.magasinDTO = new ClientMagasinDAO(q);
 		this.stockMagasinDTO = new ClientStockMagasinDTO(q);
+		this.personneDTO = new ClientPersonneDAO(q);
 
 		// Stores list initialization
 		listeFournisseurs = fournisseurDTO.getAllFournisseurs();
@@ -102,13 +107,20 @@ public class AppGestionStock {
 			fournisseursSiret[i] = listeFournisseurs.get(i).siret;
 
 		panelCreerAchat.setLayout(new GridLayout(1, 3));
+		
+		
+		ArrayList<Personne> listeEmployes = personneDTO.getAllEmployes();
+		employes = new JComboBox<>(listeEmployes.toArray(new Personne[listeEmployes.size()]));
 		selectFournisseur = new JComboBox<>(listeFournisseurs.toArray(new Fournisseur[listeFournisseurs.size()]));
+		panelCreerAchat.add(employes);
+		panelCreerAchat.add(new JLabel("Fournisseur: "));
 		panelCreerAchat.add(selectFournisseur);
 
-		total = new JTextField();
+		panelCreerAchat.add(new JLabel("Total: "));
+		total = new JSpinner();
 		panelCreerAchat.add(total);
 
-		JButton creer = new JButton("Créer");
+		JButton creer = new JButton("Passer une commande");
 		panelCreerAchat.add(creer);
 		creer.addActionListener(new ListenerCreerAchat(this));
 
@@ -175,18 +187,20 @@ public class AppGestionStock {
 		Achat a = new Achat();
 
 		Fournisseur f = (Fournisseur) selectFournisseur.getSelectedItem();
+		a.idEmploye = ((Personne)employes.getSelectedItem()).getId();
 		a.idFournisseur = f.id;
-		a.total = Integer.parseInt(total.getText());
+		a.total = Integer.parseInt(total.getValue().toString());
 
 		achatDTO.create(a);
 		updateListeAchats();
 	}
 
 	public void montrerAchat(Achat a) {
+		if ( a == null ) return;
 		achatCourant = a;
 		panelDetail.removeAll();
 
-		achatBordereau.setText("statut: " + a.statut + " / le: " + a.dateAchat + " / total: " + a.total);
+		achatBordereau.setText("statut: " + Achat.statutText(a.statut) + " / le: " + a.dateAchat + " / total: " + a.total);
 		panelDetail.add(achatBordereau);
 
 		if (a.statut == Achat.STATUT_COMMANDE) {
@@ -229,12 +243,14 @@ public class AppGestionStock {
 		achatCourant.statut = 1;
 		achatDTO.changerAchatStatut(achatCourant);
 		montrerAchat(achatCourant);
+		updateListeAchats();
 	}
 
 	public void achatAnnule() {
 		achatCourant.statut = 2;
 		achatDTO.changerAchatStatut(achatCourant);
 		montrerAchat(achatCourant);
+		updateListeAchats();
 	}
 
 	private void updateListeMagasins() {
@@ -254,6 +270,12 @@ public class AppGestionStock {
 		magasinCourant = magasin;
 		panelDetail.removeAll();
 
+		ArrayList<Article> list = articleDTO.getAllArticlesOfMagasin(magasin.getId());
+		HashMap<Long, String> namesById = new HashMap<>();
+		for ( Article a : list )
+			namesById.put(a.getId(), a.getNom());
+		System.out.println(namesById);
+		
 		JPanel liste = new PanelListe();
 		ArrayList<StockMagasin> stocks = stockMagasinDTO.getAllStocks(magasin.getId());
 		for (StockMagasin s : stocks) {
@@ -265,12 +287,14 @@ public class AppGestionStock {
 			JButton vendre = new JButton("Vendre");
 			vendre.addActionListener((a) -> vendre(s.idArticle, s.quantite - 1));
 			article.add(vendre);
-			article.add(new JLabel(s.idArticle + " (stock:" + s.quantite + ")"));
+			article.add(new JLabel(namesById.get(s.idArticle) + " (stock:" + s.quantite + ")"));
 
 			liste.add(article);
 		}
 
 		panelDetail.add(liste);
+		panelDetail.revalidate();
+		panelDetail.repaint();
 	}
 
 	public void vendre(long idArticle, int nouvelleQuantite) {
