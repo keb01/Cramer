@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Deque;
 import java.util.LinkedList;
-
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
@@ -24,18 +23,15 @@ import javax.swing.JTextField;
 import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
-
 import client.dtoClient.ClientMagasinDAO;
 import client.dtoClient.EmplacementDTO;
 import client.dtoClient.Query;
 import client.model.UnlocatedStore;
-import client.view.AddBorneWindow;
 import client.view.ItemList;
 import client.view.PanelListe;
 import client.view.PanelLocations;
 import common.Emplacement;
 import common.Magasin;
-import common.Zone;
 
 
 /**
