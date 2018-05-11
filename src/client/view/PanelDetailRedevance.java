@@ -7,6 +7,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.util.Date;
 
 import javax.swing.BorderFactory;
 //import javax.swing.BorderFactory;
@@ -23,6 +24,8 @@ import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
+import common.Redevance;
+
 
 public class PanelDetailRedevance extends JPanel{
 	private JLabel redevance;
@@ -34,7 +37,7 @@ public class PanelDetailRedevance extends JPanel{
 		this.setLayout(new BorderLayout());
 		this.setBorder(new LineBorder(Color.GRAY));
 		
-		//**************Information Borne***********************
+		//**************Information ***********************
 		JPanel infoText = new JPanel();
 		Border border = infoText.getBorder();
 		Border margin = new EmptyBorder(20,10,10,10);
@@ -52,12 +55,22 @@ public class PanelDetailRedevance extends JPanel{
         JLabel lbl = new JLabel();
         
         lbl.setOpaque(true);
-        //lbl.setIcon(new ImageIcon("Pictures/kiosk.png"));
+      
         info.add(lbl,BorderLayout.WEST);
         info.add(infoText,BorderLayout.CENTER);
 		
 		//********************************************************************
 				
+	}
+	
+	
+	//public void update(int id,long idM, String nomM, float montant, Date date){
+		//comboRedevance.setSelectedItem(formule);
+	public void update(long idM){	
+	this.redevance.setText(toString());
+		this.formule.setText(Redevance.toStringBis(idM));
+		this.revalidate();
+		this.repaint();
 	}
 	
 	public String getSelectedMagasin(){

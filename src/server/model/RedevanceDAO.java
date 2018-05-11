@@ -189,7 +189,7 @@ public class RedevanceDAO extends DAO<Redevance>{
 				
 				while(rs.next()) {
 					liste.add(new Redevance(rs.getInt("id_redevance"),
-							magasinDao.find(rs.getInt("id-magasin")),
+							magasinDao.find(rs.getInt("id_magasin")),
 							rs.getString("nom_magasin"),
 							rs.getFloat("montant_redevance"),
 							rs.getDate("date_redevance"))); 

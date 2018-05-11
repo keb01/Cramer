@@ -119,11 +119,11 @@ public class Redevance {
      * method to display a fee
      * @return the display
      */
-    public String toString() {
+    public  String toString() {
         return "Magasin: "+this.nom_magasin + "   MONTANT:" + this.montant_redevance+"\u20AC";
     }
     
-    public String toStringBis(long id) {
+    public static String toStringBis(long id) {
     	RedevanceDAO redevanceDAO = new RedevanceDAO();
     	return redevanceDAO.afficheF(id);
     }

@@ -43,7 +43,7 @@ import common.Emplacement;
 
 public class AppGestionRedevance {
 
-		private PanelListe panelMagasin;
+		private PanelListe panelMagasin,panelRedevance;
 		private PanelDetailRedevance panelDetailRedevance;
 		private JPanel tabPanel;
 		private ArrayList<Magasin> listeMagasin;
@@ -62,7 +62,7 @@ public class AppGestionRedevance {
 			this.tabPanel = tabPanel;
 			this.tabPanel.setLayout(new BorderLayout());
 			panelMagasin = new PanelListe();
-			
+			panelRedevance = new PanelListe();
 			panelDetailRedevance = new PanelDetailRedevance();
 			tabPanel.add(panelMagasin,BorderLayout.WEST);
 			JScrollPane scroll = new JScrollPane(panelMagasin);
@@ -72,7 +72,7 @@ public class AppGestionRedevance {
 			panelMagasin.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
 			
 			tabPanel.add(scroll,BorderLayout.WEST);
-			
+			tabPanel.add(panelRedevance,BorderLayout.CENTER);
 			tabPanel.add(panelDetailRedevance,BorderLayout.EAST);
 			
 					
@@ -91,18 +91,6 @@ public class AppGestionRedevance {
 			listeRedevance = RedevanceDAO.getAllRedevances();
 
 
-			/*panelDetailRedevance.setListenerSuppButton(new ActionListener() {
-				public void actionPerformed(ActionEvent evt) {
-					deleteRedevance();
-				}
-			});
-
-	        panelDetailRedevance.setListenerModifButton(new ActionListener() {
-	            public void actionPerformed(ActionEvent evt) {
-	                updateRedevance();
-	            }
-	        });*/
-
 
 	      //*****************Search bar and options*****************
 	    		// Bar panel settings
@@ -113,27 +101,6 @@ public class AppGestionRedevance {
 	    		Border margin = new EmptyBorder(0,0,10,0);
 	    		searchBar.setBorder(new CompoundBorder(border, margin));
 	    		
-	    		
-	    		// Display nb Redevances available
-	    		/*RedevanceCounter = new JLabel(listeRedevance.size()+" Redevances");
-	    		searchBar.add(RedevanceCounter);
-	    		JButton addButton = new JButton("Ajouter");
-	    		searchBar.add(addButton);*/
-	    		
-	    		/*   A VERIFIER
-	    		
-	    		//init add Redevance window with listMagasin parameter
-	    		ArrayList<String> array = new ArrayList<>();
-	    		for(Magasin z : listeMagasin){
-	    			array.add(z.getId()+": "+z.getNom()+" "+z.getDescription());
-	    		}
-	    		addWindow = new AddBorneWindow(this, array.toArray(new String[array.size()]));
-	    		addButton.addActionListener(new ActionListener() {
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						addWindow.setVisible(true);
-					}
-				});*/
 	    		
 	    		// display Bar panel
 	    		tabPanel.add(searchBar,BorderLayout.NORTH);
@@ -146,27 +113,7 @@ public class AppGestionRedevance {
 			
 		}
 		
-		
-		/*public void updatelisteMagasin(){
-			panelMagasin.removeAll();
-			int px = 1;
-			Magasin tousMagasin = new Magasin(0, "Tous", "les Magasins", 1);
-			selectMagasin = touteMagasin;
-			ItemList lbl = new ItemList(touteMagasin.getNom()+" "+touteMagasin.getDescription());
-			lbl.addMouseListener(new ListenerMagasin(this,touteMagasin));
-			lbl.setMaximumSize(new Dimension(300, 37));
-			panelMagasin.add(lbl);
-			for(Magasin m : listeMagasin){
-				ItemList label = new ItemList(m.getNom()+" "+m.getDescription());
-				label.addMouseListener(new ListenerMagasin(this,m));
-				label.setMaximumSize(new Dimension(300, 37));
-				panelMagasin.add(label);
-				px++;
-			}
-			panelMagasin.setPreferredSize(new Dimension(300, px*37));
-			panelMagasin.revalidate();
-			panelMagasin.repaint();
-		}*/
+	
 		
 		public void updatelisteMagasin(){
 			panelMagasin.removeAll();
@@ -185,66 +132,63 @@ public class AppGestionRedevance {
 			panelMagasin.setPreferredSize(new Dimension(300, px*37));
 			panelMagasin.revalidate();
 			panelMagasin.repaint();
+			
+			
+			
+			
 		}
 		
 
 		
 		
+		
 		public void updateListeRedevance(){
-			
+			panelRedevance.removeAll();
+			panelDetailRedevance.removeAll();
+			panelDetailRedevance.revalidate();
+			panelDetailRedevance.repaint();
 			int px = 0;
-			RedevanceCounter.setText(listeRedevance.size()+" redevances");
-			if(selectMagasin.getId() == 0){
+			if(selectMagasin.getId()!=0) {
 				for(Redevance p : listeRedevance){
-						ItemList label = new ItemList("Redevance "+p.getid_Redevance());
-						label.setMaximumSize(new Dimension(2000, 37));
-						label.addMouseListener(new ListenerRedevance(this,p));
-						panelBorne.add(label);
-						px++;
-				}
-			}else{
-				for(Redevance p : listeRedevance){
-					if(p.getId_magasin().getId() == selectMagasin.getId()){
-						ItemList label = new ItemList("Redevance "+p.getid_Redevance());
+					if(selectMagasin.getId() == p.getId_magasin().getId()){
+						ItemList label = new ItemList("Voir la redevance");
 						label.setMaximumSize(new Dimension(2000, 37));
 						label.addMouseListener(new ListenerRedevance(this,p));
 						panelRedevance.add(label);
 						px++;
 					}
-				}
+				}	
 			}
-			
+			panelRedevance.setPreferredSize(new Dimension(300, px*37));
+			panelRedevance.revalidate();
+			panelRedevance.repaint();
 		}
 		
 
 		public void selectedMagasin(Magasin m) {
-			panelDetailRedevance.setVisible(false);
+			panelDetailRedevance.setVisible(true);
 			selectMagasin = m;
-			updatelisteRedevance();
+			updateListeRedevance();
 			
 		}
 
-		/*public void selectedRedevance(Redevance p) {
+		public void selectedRedevance(Redevance p) {
 			selectRedevance = p;
 			ArrayList<String> array = new ArrayList<>();
 			for(Magasin z : listeMagasin){
 				array.add(z.getId()+": "+z.getNom()+" "+z.getDescription());
 			}
 				
-			panelDetailRedevance.update("Redevance "+p.getid_Redevance(),p.getId_magasin().getId(),p.getNom_magasin(),p.getMontant_redevance(),p.getDate_redevance());
-			//panelDetailRedevance.setListenerModifButton(new ListenerModifArticle(this));
-			//panelDetailRedevance.setListenerSuppButton(new ListenerDelArticle(this));
+			//panelDetailRedevance.update(p.getid_Redevance(),p.getId_magasin().getId(),p.getNom_magasin(),p.getMontant_redevance(),p.getDate_redevance());
+			panelDetailRedevance.update(p.getid_Redevance());
+
 			panelDetailRedevance.setVisible(true);
-		}*/
+		}
 
-		//public void afficherFenetreModif(){
-			//fenetreModif.update(selectProduit.getNom());
-			//fenetreModif.setListenerRecButton(new ListenerRecArticle(this));
-			//fenetreModif.setVisible(true);
-		//}
+	
+		
 
-
-		/*public void updateRedevance() {
+		public void updateRedevance() {
 	        String selectedMagasin = panelDetailRedevance.getSelectedMagasin();
 	        String[] parts = selectedMagasin.split(":");
 	        for(Magasin z : listeMagasin){
@@ -253,25 +197,10 @@ public class AppGestionRedevance {
 	            }
 	        }
 	        RedevanceDAO.update(selectRedevance);
-	        updatelisteRedevance();
+	        updateListeRedevance();
 			
-		}*/
-		
-		
-		
-		/*public void addRedevance(String Magasin){
-			String[] parts = Magasin.split(":");
-			RedevanceDAO.create(new Redevance(-1, new Magasin(Integer.parseInt(parts[0]), "", "",1)));
-			listeRedevance = RedevanceDAO.getAllRedevances();
-		    updatelisteRedevance();
-		    addWindow.dispose();
 		}
-
-		public void deleteRedevance(){
-			RedevanceDAO.delete(selectRedevance);
-			selectRedevance = null;
-			panelDetailRedevance.setVisible(false);
-			listeRedevance = RedevanceDAO.getAllRedevances();
-			updatelisteRedevance();
-		}*/
+		
+		
+		
 	}
