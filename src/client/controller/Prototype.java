@@ -39,13 +39,13 @@ public class Prototype {
 			tabbedPane.add("Gestion Profil",AppGestionProfilPanel);
 			tabbedPane.add("Gestion Stock", AppGestionStockPanel);
 			tabbedPane.add("Gestion Redevance", AppGestionRedevancetPanel);
-			//tabbedPane.add("Gestion Emplacement", AppGestionEmplacementPanel);
+			tabbedPane.add("Gestion Emplacement", AppGestionEmplacementPanel);
 			
 			new AppGestionBorne(AppGestionBornePanel,q);
 			new AppGestionProfil(AppGestionProfilPanel,q);
 			new AppGestionStock(AppGestionStockPanel, q);
 			new AppGestionRedevance(AppGestionRedevancetPanel, q);
-			//new AppGestionEmplacement(AppGestionEmplacementPanel, q);
+			new AppGestionEmplacement(AppGestionEmplacementPanel, q);
 		
 		
 		fenetrePrincipale.setVisible(true);
