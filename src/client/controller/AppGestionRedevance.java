@@ -138,7 +138,7 @@ public class AppGestionRedevance {
 			if(selectMagasin.getId()!=0) {
 				for(Redevance p : listeRedevance){
 					if(selectMagasin.getId() == p.getId_magasin().getId()){
-						ItemList label = new ItemList("Voir la redevance");
+						ItemList label = new ItemList("Voir la redevance  du : " +p.getDate_redevance());
 						label.setMaximumSize(new Dimension(2000, 37));
 						label.addMouseListener(new ListenerRedevance(this,p));
 						panelRedevance.add(label);
@@ -167,7 +167,7 @@ public class AppGestionRedevance {
 		
 		
 		public void selectedRedevance(Redevance r){
-			panelRedevance.removeAll();
+			
 			panelDetailRedevance.removeAll();
 			panelDetailRedevance.revalidate();
 			panelDetailRedevance.repaint();
@@ -175,17 +175,19 @@ public class AppGestionRedevance {
 			if(selectMagasin.getId()!=0) {
 				for(Redevance p : listeRedevance){
 					if(selectMagasin.getId() == p.getId_magasin().getId()){
-						ItemList label = new ItemList("PrixM2 * Superficie * CoefZone + Frequentation = "+ p.getMontant_redevance());
+						
+						ItemList label = new ItemList("PrixM2 * Superficie * CoefZone + Frequentation = "+ p.getMontant_redevance()+ " \u20AC");
 						label.setMaximumSize(new Dimension(2000, 37));
 						label.addMouseListener(new ListenerRedevance(this,p));
-						panelRedevance.add(label);
+						panelDetailRedevance.add(label);
+						
 						px++;
 					}
 				}	
 			}
-			panelRedevance.setPreferredSize(new Dimension(300, px*37));
-			panelRedevance.revalidate();
-			panelRedevance.repaint();
+			panelDetailRedevance.setPreferredSize(new Dimension(800, px*37));
+			panelDetailRedevance.revalidate();
+			panelDetailRedevance.repaint();
 		}
 		
 
