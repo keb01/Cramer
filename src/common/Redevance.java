@@ -2,6 +2,8 @@ package common;
 
 import java.util.Date;
 
+import server.model.RedevanceDAO;
+
 public class Redevance {
 
     /**
@@ -38,6 +40,14 @@ public class Redevance {
         this.id_magasin = id_magasin;
         this.nom_magasin = id_magasin.getNom();
         this.montant_redevance = montant_redevance;
+        this.date_redevance = date_redevance;
+    }
+    
+    public Redevance(int id_redevance, Magasin id_magasin, String nom_magasin, Date date_redevance) {
+        this.id_redevance = id_redevance;
+        this.id_magasin = id_magasin;
+        this.nom_magasin = id_magasin.getNom();
+        this.montant_redevance = calculR(id_magasin.getId());
         this.date_redevance = date_redevance;
     }
 
@@ -111,6 +121,18 @@ public class Redevance {
      */
     public String toString() {
         return "Magasin: "+this.nom_magasin + "   MONTANT:" + this.montant_redevance+"\u20AC";
+    }
+    
+    public String toStringBis(long id) {
+    	RedevanceDAO redevanceDAO = new RedevanceDAO();
+    	return redevanceDAO.afficheF(id);
+    }
+    
+    public float  calculR (long id) {
+    	RedevanceDAO redevanceDAO = new RedevanceDAO();
+    	return redevanceDAO.calculR(id);
+    	
+    	
     }
 
    
