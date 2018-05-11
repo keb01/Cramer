@@ -64,14 +64,30 @@ public class PanelDetailRedevance extends JPanel{
 	}
 	
 	
+	
+	
 	//public void update(int id,long idM, String nomM, float montant, Date date){
 		//comboRedevance.setSelectedItem(formule);
-	public void update(long idM){	
+	/*public void update(long idM){	
+		
 	this.redevance.setText(toString());
 		this.formule.setText(Redevance.toStringBis(idM));
+		
 		this.revalidate();
 		this.repaint();
-	}
+	}*/
+	
+	
+	public void update(float montant){	
+		//comboRedevance.setModel(new DefaultComboBoxModel<String>());
+		//comboRedevance.setSelectedItem(comboRedevance.getSelectedItem().toString());
+		this.redevance.setText("" + montant);
+			this.formule.setText("Prixm2 * superficie * coefZone + frequentation");
+			//this.comboRedevance =  new JComboBox<String>() ;
+			this.revalidate();
+			this.repaint();
+			}
+		
 	
 	public String getSelectedMagasin(){
 		return comboRedevance.getSelectedItem().toString();

@@ -3,13 +3,9 @@ package client.controller;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Random;
 
 import javax.swing.BorderFactory;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -17,28 +13,17 @@ import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 
-import client.dtoClient.ClientRedevanceDAO;
-import client.dtoClient.ClientDAO;
 import client.dtoClient.ClientMagasinDAO;
-import client.dtoClient.ClientPersonneDAO;
-import client.dtoClient.ClientProfilDAO;
 import client.dtoClient.ClientRedevanceDAO;
-import client.dtoClient.ClientMagasinDAO;
-import client.dtoClient.EmplacementDTO;
 import client.dtoClient.Query;
 import client.view.AddBorneWindow;
 import client.view.ItemList;
 import client.view.PanelDetailRedevance;
-import client.view.PanelDetailRedevance;
 import client.view.PanelListe;
-import common.Redevance;
 import common.Magasin;
-import common.Personne;
-import common.Profil;
-import common.Zone;
 import common.Redevance;
-import common.Borne;
-import common.Emplacement;
+//import client.dtoClient.EmplacementDTO;
+//import server.model.EmplacementDAO;
 
 
 public class AppGestionRedevance {
@@ -48,6 +33,7 @@ public class AppGestionRedevance {
 		private JPanel tabPanel;
 		private ArrayList<Magasin> listeMagasin;
 		private ArrayList<Redevance> listeRedevance;
+		//private ArrayList<EmplacementDTO> listeEmplacement;                EMPLACEMENT
 		private ClientRedevanceDAO RedevanceDAO;
 		private ClientMagasinDAO MagasinDAO;
 		private Redevance selectRedevance;
@@ -55,6 +41,7 @@ public class AppGestionRedevance {
 		private Query qManager;
 		private AddBorneWindow addWindow;
 		private JLabel RedevanceCounter;
+		//private EmplacementDTO emplacementDTO ;                              EMPLACEMENT
 		
 		public AppGestionRedevance(JPanel tabPanel,Query q){
 			
@@ -84,12 +71,12 @@ public class AppGestionRedevance {
 			this.listeRedevance = new ArrayList<Redevance>();
 			this.RedevanceDAO = new ClientRedevanceDAO(qManager);
 			this.MagasinDAO = new ClientMagasinDAO(qManager);
-			
+			//this.emplacementDTO = new EmplacementDTO(qManager);                EMPLACEMENT
 			
 			//Areas list initialization
 			listeMagasin = MagasinDAO.getAllMagasins(); 
 			listeRedevance = RedevanceDAO.getAllRedevances();
-
+			//listeEmplacement = EmplacementDAO.getAllEmplacement();           EMPLACEMENT
 
 
 	      //*****************Search bar and options*****************
@@ -171,22 +158,65 @@ public class AppGestionRedevance {
 			updateListeRedevance();
 			
 		}
+		
+		
+		
+		
+		
+		
+		
+		
+		public void selectedRedevance(Redevance r){
+			panelRedevance.removeAll();
+			panelDetailRedevance.removeAll();
+			panelDetailRedevance.revalidate();
+			panelDetailRedevance.repaint();
+			int px = 0;
+			if(selectMagasin.getId()!=0) {
+				for(Redevance p : listeRedevance){
+					if(selectMagasin.getId() == p.getId_magasin().getId()){
+						ItemList label = new ItemList("PrixM2 * Superficie * CoefZone + Frequentation = "+ p.getMontant_redevance());
+						label.setMaximumSize(new Dimension(2000, 37));
+						label.addMouseListener(new ListenerRedevance(this,p));
+						panelRedevance.add(label);
+						px++;
+					}
+				}	
+			}
+			panelRedevance.setPreferredSize(new Dimension(300, px*37));
+			panelRedevance.revalidate();
+			panelRedevance.repaint();
+		}
+		
+
+		
+		
+		
+		
+		
+		
+		
+		/*
 
 		public void selectedRedevance(Redevance p) {
 			selectRedevance = p;
 			ArrayList<String> array = new ArrayList<>();
 			for(Magasin z : listeMagasin){
-				array.add(z.getId()+": "+z.getNom()+" "+z.getDescription());
+				array.add(z.getId()+": "+z.getNom());
 			}
 				
 			//panelDetailRedevance.update(p.getid_Redevance(),p.getId_magasin().getId(),p.getNom_magasin(),p.getMontant_redevance(),p.getDate_redevance());
-			panelDetailRedevance.update(p.getid_Redevance());
-
+			
+			//panelDetailRedevance.update(p.getid_Redevance());
+			//System.out.println(p.getMontant_redevance()  + p.getId_magasin.getIdEmplacement().getArea() +" * " + p.getId_magasin.getIdEmplacement().getZone().getCoefP() + "+ frequentation");
+			System.out.println(p.getMontant_redevance() + " = PrixM2 * Superficie * CoefZone + Frequentation");
+			panelDetailRedevance.update(p.getMontant_redevance());
+			
 			panelDetailRedevance.setVisible(true);
-		}
+		} */
 
 	
-		
+	
 
 		public void updateRedevance() {
 	        String selectedMagasin = panelDetailRedevance.getSelectedMagasin();
