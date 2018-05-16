@@ -141,7 +141,7 @@ public class AppGestionStock {
 		panelAjoutDetail.add(detailQuantite);
 		panelAjoutDetail.add(detailAjout);
 		achatBordereau = new JLabel();
-
+		
 		detailAjout.addActionListener(new ListenerAjoutDetail(this));
 
 		achatRecu = new JButton("Recu");
